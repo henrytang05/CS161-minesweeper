@@ -1,0 +1,25 @@
+# ninja log v5
+3109	3354	7194147832338744	D:/Files/VSCode/CS161-minesweeper/Game.exe	7a13969ebfc1e464
+190	2770	7194140465840599	CMakeFiles/Game.dir/main.cpp.obj	78319076636f55e7
+265	346	7194104883924971	CMakeFiles/Game.dir/Game_autogen/mocs_compilation.cpp.obj	90611df0bea39338
+198	6946	7194121828658123	CMakeFiles/Game.dir/ChessPieces/ChessPieces.cpp.obj	4daa74d64d3859d3
+220	7174	7194121831057628	CMakeFiles/Game.dir/ChessPieces/Knight/Knight.cpp.obj	2fc00dd68535072c
+262	7139	7194121830673528	CMakeFiles/Game.dir/ChessPieces/Rook/Rook.cpp.obj	7e7129dba2f4b05f
+72	172	7194147800498914	D:/Files/VSCode/CS161-minesweeper/build/Game_autogen/timestamp	bde61e41148da1cc
+72	172	7194147800498914	Game_autogen/timestamp	bde61e41148da1cc
+15	39	0	D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/cmake.verify_globs	8d13152974c1133f
+194	6670	7194121821495390	CMakeFiles/Game.dir/ChessPieces/Bishop/Bishop.cpp.obj	a20cca580661bf7f
+72	172	7194147800498914	Game_autogen/mocs_compilation.cpp	bde61e41148da1cc
+72	172	7194147800498914	D:/Files/VSCode/CS161-minesweeper/build/Game_autogen/mocs_compilation.cpp	bde61e41148da1cc
+249	5870	7194121817332217	CMakeFiles/Game.dir/ChessPieces/Queen/Queen.cpp.obj	5d6d3c62a9a5cd1e
+230	6787	7194121822513020	CMakeFiles/Game.dir/ChessPieces/Pawn/Pawn.cpp.obj	20355760743bc14e
+175	3108	7194147829927112	CMakeFiles/Game.dir/GameBoard/GameBoard.cpp.obj	efa4ec8e4280eb3f
+204	7593	7194121835167088	CMakeFiles/Game.dir/ChessPieces/King/King.cpp.obj	a6a95923b35cb48a
+34	88	0	D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/cmake.verify_globs	8d13152974c1133f
+121	436	7194315240308736	Game_autogen/timestamp	bde61e41148da1cc
+121	436	7194315240308736	Game_autogen/mocs_compilation.cpp	bde61e41148da1cc
+121	436	7194315240308736	D:/Files/VSCode/CS161-minesweeper/build/Game_autogen/timestamp	bde61e41148da1cc
+121	436	7194315240308736	D:/Files/VSCode/CS161-minesweeper/build/Game_autogen/mocs_compilation.cpp	bde61e41148da1cc
+459	6882	7194315304798595	CMakeFiles/Game.dir/main.cpp.obj	78319076636f55e7
+443	7690	7194315312876789	CMakeFiles/Game.dir/GameBoard/GameBoard.cpp.obj	efa4ec8e4280eb3f
+7690	8177	7194315317643948	D:/Files/VSCode/CS161-minesweeper/Game.exe	7a13969ebfc1e464

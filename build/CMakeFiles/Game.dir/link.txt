@@ -1,0 +1,3 @@
+"C:\Install\Programming Language\C++\Compiler\winlibs-x86_64-mcf-seh-gcc-13.2.0-llvm-16.0.6-mingw-w64ucrt-11.0.1-r2\mingw64\bin\cmake.exe" -E rm -f CMakeFiles\Game.dir/objects.a
+C:\Install\PROGRA~1\C__~1\Compiler\WINLIB~1.1-R\mingw64\bin\ar.exe qc CMakeFiles\Game.dir/objects.a @CMakeFiles\Game.dir\objects1.rsp
+C:\Install\PROGRA~1\C__~1\Compiler\WINLIB~1.1-R\mingw64\bin\G__~1.EXE -g -mwindows -Wl,--whole-archive CMakeFiles\Game.dir/objects.a -Wl,--no-whole-archive -o D:\Files\VSCode\mine\CS161-minesweeper\Game.exe -Wl,--out-implib,libGame.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Game.dir\linkLibs.rsp
