@@ -7,7 +7,33 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QWidget>
+class GameBoard;
+class Square;
 
+class GameBoard : public QMainWindow {
+   public:
+    GameBoard(QWidget* parent = nullptr) : QMainWindow(parent) { setupGameBoard(); }
+    ~GameBoard() {}
+
+   public slots:
+    void squareClicked(Square* square, int row, int col);
+
+   public:
+    static int squareRevealed;
+
+   private:
+    std::vector<std::vector<Square*>> grid;
+    std::vector<std::pair<int, int>> mines;
+    void initializeGameBoard();
+    void setupGameBoard();
+    bool isValidBombPosition(int row, int col);
+    void updateSurroundingCells(int row, int col);
+    void render_square(Square* square, int row, int col);
+    void breakSurroundingCells(int row, int col);
+    void revealAllBombs();
+    void announcement(std::string);
+    QGridLayout* mainGridLayout;
+};
 class Square : public QPushButton {
    public:
     Square(QWidget* parent = nullptr) : QPushButton(parent) {
@@ -29,30 +55,14 @@ class Square : public QPushButton {
     void setMine() { this->isMine = true; }
     bool getIsMine() { return this->isMine; }
     bool getIsRevealed() { return this->isRevealed; }
-    void setAsRevealed() { this->isRevealed = true; }
-    void setAsNotRevealed() { this->isRevealed = false; }
+
+    void setAsRevealed() {
+        GameBoard::squareRevealed++;
+        this->isRevealed = true;
+    }
+    void setAsNotRevealed() {
+        GameBoard::squareRevealed--;
+        this->isRevealed = false;
+    }
 };
-
-class GameBoard : public QMainWindow {
-   public:
-    GameBoard(QWidget* parent = nullptr) : QMainWindow(parent) { setupGameBoard(); }
-    ~GameBoard() {}
-
-   public slots:
-    void squareClicked(Square* square, int row, int col);
-
-   private:
-    std::vector<std::vector<Square*>> grid;
-    std::vector<std::pair<int, int>> mines;
-
-    void initializeGameBoard();
-    void setupGameBoard();
-    bool isValidBombPosition(int row, int col);
-    void updateSurroundingCells(int row, int col);
-    void render_square(Square* square, int row, int col);
-    void breakSurroundingCells(int row, int col);
-
-    QGridLayout* mainGridLayout;
-};
-
 #endif

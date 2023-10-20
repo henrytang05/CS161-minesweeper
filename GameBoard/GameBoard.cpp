@@ -3,8 +3,9 @@
 #include <random>
 
 #define CELL_SIZE 50
-constexpr int BOARD_SIZE = 16;
-constexpr int MINE_NUMBER = 40;
+constexpr int BOARD_SIZE = 3;
+constexpr int MINE_NUMBER = 0;
+int GameBoard::squareRevealed = 0;
 void setIcon(
     QPushButton* button, const QIcon icon, int width = CELL_SIZE / 2,
     int length = CELL_SIZE / 2
@@ -145,27 +146,47 @@ void GameBoard::setupGameBoard() {
         }
     }
     initializeGameBoard();
-
     setCentralWidget(gridWidget);
-    QFont wordFont;
-    wordFont.setFamily("Cambria Math");
-    wordFont.setStyle(QFont::StyleNormal);
-    wordFont.setWeight(QFont::Normal);
-    wordFont.setPointSize(20);
-    bool currentPlayer = true;
-    QLabel* turnLabel = new QLabel(this);
-    turnLabel->setGeometry(CELL_SIZE * BOARD_SIZE + 20, 30, 150, 30);
-    turnLabel->setFont(wordFont);
-    turnLabel->setAlignment(Qt::AlignCenter);
-    turnLabel->setText(currentPlayer ? "White's turn!" : "Black's turn!");
+    this->setFixedSize(BOARD_SIZE * CELL_SIZE + 200, BOARD_SIZE * CELL_SIZE + 100);
 }
+void GameBoard::announcement(std::string message) {
+    QLabel* annoucement = new QLabel(this);
 
+    annoucement->setAlignment(Qt::AlignCenter);
+    annoucement->setGeometry(BOARD_SIZE * CELL_SIZE + 5, 10, 200, 200);
+    QString qMessage = QString::fromStdString(message);
+    annoucement->setText(qMessage);
+    std::string styleSheet =
+        "font-size: 30px; font-family: Sans-serif; font-style: normal; color: ";
+    styleSheet += (message == "You Win") ? "green;" : "red;";
+    annoucement->setStyleSheet(QString::fromStdString(styleSheet));
+    annoucement->show();
+}
+void GameBoard::revealAllBombs() {
+    for (auto row : grid) {
+        for (Square* square : row) {
+            if (square->getIsMine() && !square->getIsRevealed()) {
+                square->setStyleSheet("background-color: red");
+                setIcon(square, QIcon("Pictures/bomb.png"));
+            }
+            disconnect(square, &Square::clicked, nullptr, nullptr);
+        }
+    }
+    announcement("Game Over");
+}
+void newGame() {
+    GameBoard* gameBoard = new GameBoard();
+    gameBoard->show();
+}
 void GameBoard::squareClicked(Square* square, int row, int col) {
-    square->setAsRevealed();
     if (square->getIsMine()) {
-        square->setStyleSheet("background-color: red");
-        setIcon(square, QIcon("Pictures/bomb.png"));
+        revealAllBombs();
         return;
     }
+    square->setAsRevealed();
     render_square(square, row, col);
+    if (squareRevealed == BOARD_SIZE * BOARD_SIZE - MINE_NUMBER) {
+        announcement("You Win");
+        newGame();
+    }
 }
