@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QGridLayout>
+#include <QLabel>
 #include <QMainWindow>
 #include <QPushButton>
 #include <QWidget>
@@ -13,6 +14,7 @@ class Square : public QPushButton {
         isMine = false;
         isFlagged = false;
         isRevealed = false;
+        bombCount = 0;
     }
     ~Square() {}
 
@@ -20,6 +22,15 @@ class Square : public QPushButton {
     bool isMine;
     bool isFlagged;
     bool isRevealed;
+
+   public:
+    int bombCount;
+
+    void setMine() { this->isMine = true; }
+    bool getIsMine() { return this->isMine; }
+    bool getIsRevealed() { return this->isRevealed; }
+    void setAsRevealed() { this->isRevealed = true; }
+    void setAsNotRevealed() { this->isRevealed = false; }
 };
 
 class GameBoard : public QMainWindow {
@@ -28,14 +39,20 @@ class GameBoard : public QMainWindow {
     ~GameBoard() {}
 
    public slots:
-    void squareClicked(QPushButton* square, int row, int col);
+    void squareClicked(Square* square, int row, int col);
 
    private:
-    QGridLayout* mainGridLayout;
+    std::vector<std::vector<Square*>> grid;
+    std::vector<std::pair<int, int>> mines;
+
     void initializeGameBoard();
     void setupGameBoard();
-    std::vector<std::vector<QPushButton*>> grid;
-    std::vector<std::pair<int, int>> mines;
+    bool isValidBombPosition(int row, int col);
+    void updateSurroundingCells(int row, int col);
+    void render_square(Square* square, int row, int col);
+    void breakSurroundingCells(int row, int col);
+
+    QGridLayout* mainGridLayout;
 };
 
 #endif

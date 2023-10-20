@@ -2,10 +2,9 @@
 
 #include <random>
 
-#define CELL_SIZE 60
-constexpr int BOARD_SIZE = 8;
-constexpr int MINE_NUMBER = 10;
-
+#define CELL_SIZE 50
+constexpr int BOARD_SIZE = 16;
+constexpr int MINE_NUMBER = 40;
 void setIcon(
     QPushButton* button, const QIcon icon, int width = CELL_SIZE / 2,
     int length = CELL_SIZE / 2
@@ -17,54 +16,156 @@ void setIcon(
         button->setIconSize(iconSize);
     }
 }
+bool GameBoard::isValidBombPosition(int row, int col) {
+    if (!grid[row][col]->getIsMine()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+void GameBoard::updateSurroundingCells(int row, int col) {
+    int direction[8][2] = {
+        {-1, -1},  // Up-Left
+        {-1, 0},   // Up
+        {-1, 1},   // Up-Right
+        {0, -1},   // Left
+        {0, 1},    // Right
+        {1, -1},   // Down-Left
+        {1, 0},    // Down
+        {1, 1}     // Down-Right
+    };
+    for (auto& move : direction) {
+        int newRow = row + move[0];
+        int newCol = col + move[1];
+        if (newRow < 0 || newRow >= BOARD_SIZE || newCol < 0 || newCol >= BOARD_SIZE ||
+            grid[newRow][newCol]->getIsMine())
+            continue;
+        grid[newRow][newCol]->bombCount++;
+    }
+}
+void GameBoard::breakSurroundingCells(int row, int col) {
+    if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE ||
+        grid[row][col]->getIsRevealed()) {
+        return;
+    }
+    Square* square = grid[row][col];
+    square->setAsRevealed();
+    if (grid[row][col]->bombCount != 0) {
+        render_square(grid[row][col], row, col);
+        return;
+    }
+    square->setStyleSheet("background-color: green");
+
+    int direction[8][2] = {
+        {-1, -1},  // Up-Left
+        {-1, 0},   // Up
+        {-1, 1},   // Up-Right
+        {0, -1},   // Left
+        {0, 1},    // Right
+        {1, -1},   // Down-Left
+        {1, 0},    // Down
+        {1, 1}     // Down-Right
+    };
+    for (auto& move : direction) {
+        int newRow = row + move[0];
+        int newCol = col + move[1];
+        breakSurroundingCells(newRow, newCol);
+    }
+}
+void GameBoard::render_square(Square* square, int row, int col) {
+    switch (square->bombCount) {
+        case 1:
+            setIcon(square, QIcon("Pictures/number-1.png"));
+            break;
+        case 2:
+            setIcon(square, QIcon("Pictures/number-2.png"));
+            break;
+        case 3:
+            setIcon(square, QIcon("Pictures/number-3.png"));
+            break;
+        case 4:
+            setIcon(square, QIcon("Pictures/number-4.png"));
+            break;
+        case 5:
+            setIcon(square, QIcon("Pictures/number-5.png"));
+            break;
+        case 6:
+            setIcon(square, QIcon("Pictures/number-6.png"));
+            break;
+        case 7:
+            setIcon(square, QIcon("Pictures/number-7.png"));
+            break;
+        case 8:
+            setIcon(square, QIcon("Pictures/number-8.png"));
+            break;
+        default:
+            square->setAsNotRevealed();
+            breakSurroundingCells(row, col);
+    }
+}
 
 void GameBoard::initializeGameBoard() {
     std::random_device rd;
     std::mt19937 generator(rd());
     std::uniform_int_distribution<int> distribution(0, BOARD_SIZE - 1);
 
-    int arraySize = MINE_NUMBER;
-
-    for (int i = 0; i < arraySize; i++) {
+    for (int i = 0; i < MINE_NUMBER; i++) {
         int rowRandomNumber = distribution(generator);
         int colRandomNumber = distribution(generator);
-        mines.emplace_back(std::make_pair(rowRandomNumber, colRandomNumber));
+        if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
+            grid[rowRandomNumber][colRandomNumber]->setMine();
+            updateSurroundingCells(rowRandomNumber, colRandomNumber);
+
+        }
+
+        else
+            --i;
     }
 }
 
 void GameBoard::setupGameBoard() {
-    setFixedSize(900, 800);
-
     QWidget* gridWidget = new QWidget(this);
     gridWidget->setFixedSize(CELL_SIZE * BOARD_SIZE, CELL_SIZE * BOARD_SIZE);
 
     mainGridLayout = new QGridLayout(gridWidget);
 
-    grid.resize(BOARD_SIZE, std::vector<QPushButton*>(BOARD_SIZE, nullptr));
-    initializeGameBoard();
+    grid.resize(BOARD_SIZE, std::vector<Square*>(BOARD_SIZE, nullptr));
+    // this->setFixedSize(500, 1000);
 
     for (int row = 0; row < BOARD_SIZE; row++) {
         for (int col = 0; col < BOARD_SIZE; col++) {
-            QPushButton* square = new QPushButton(gridWidget);
+            Square* square = new Square(gridWidget);
             square->setFixedSize(CELL_SIZE, CELL_SIZE);
 
-            connect(square, &QPushButton::clicked, this, [this, square, row, col]() {
+            connect(square, &Square::clicked, this, [this, square, row, col]() {
                 squareClicked(square, row, col);
             });
-
+            grid[row][col] = square;
             mainGridLayout->addWidget(square, row, col);
         }
     }
+    initializeGameBoard();
 
     setCentralWidget(gridWidget);
+    QFont wordFont;
+    wordFont.setFamily("Cambria Math");
+    wordFont.setStyle(QFont::StyleNormal);
+    wordFont.setWeight(QFont::Normal);
+    wordFont.setPointSize(20);
+    bool currentPlayer = true;
+    QLabel* turnLabel = new QLabel(this);
+    turnLabel->setGeometry(CELL_SIZE * BOARD_SIZE + 20, 30, 150, 30);
+    turnLabel->setFont(wordFont);
+    turnLabel->setAlignment(Qt::AlignCenter);
+    turnLabel->setText(currentPlayer ? "White's turn!" : "Black's turn!");
 }
 
-void GameBoard::squareClicked(QPushButton* square, int row, int col) {
-    if (std::find(mines.begin(), mines.end(), std::make_pair(row, col)) != mines.end()) {
+void GameBoard::squareClicked(Square* square, int row, int col) {
+    square->setAsRevealed();
+    if (square->getIsMine()) {
         square->setStyleSheet("background-color: red");
         setIcon(square, QIcon("Pictures/bomb.png"));
         return;
     }
-    square->setStyleSheet("background-color: green");
-    square->setText("None");
+    render_square(square, row, col);
 }
