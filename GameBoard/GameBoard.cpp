@@ -114,9 +114,7 @@ void GameBoard::initializeGameBoard() {
         if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
             grid[rowRandomNumber][colRandomNumber]->setMine();
             updateSurroundingCells(rowRandomNumber, colRandomNumber);
-
         }
-
         else
             --i;
     }
