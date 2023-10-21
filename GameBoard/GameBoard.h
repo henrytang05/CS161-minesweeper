@@ -9,14 +9,20 @@
 #include <QWidget>
 class GameBoard;
 class Square;
-
+constexpr int CELL_SIZE = 50;
+constexpr int BOARD_SIZE = 8;
+constexpr int MINE_NUMBER = BOARD_SIZE * BOARD_SIZE / 8;
 class GameBoard : public QMainWindow {
    public:
-    GameBoard(QWidget* parent = nullptr) : QMainWindow(parent) { setupGameBoard(); }
+    GameBoard(QWidget* parent = nullptr, int level = 0) : QMainWindow(parent) {
+        setupGameBoard(level);
+        this->show();
+    }
     ~GameBoard() {}
 
    public slots:
     void squareClicked(Square* square, int row, int col);
+    void restartClicked(GameBoard*);
 
    public:
     static int squareRevealed;
@@ -24,8 +30,9 @@ class GameBoard : public QMainWindow {
    private:
     std::vector<std::vector<Square*>> grid;
     std::vector<std::pair<int, int>> mines;
+    QPushButton* replayButton;
     void initializeGameBoard();
-    void setupGameBoard();
+    void setupGameBoard(int);
     bool isValidBombPosition(int row, int col);
     void updateSurroundingCells(int row, int col);
     void render_square(Square* square, int row, int col);
@@ -65,4 +72,5 @@ class Square : public QPushButton {
         this->isRevealed = false;
     }
 };
+
 #endif

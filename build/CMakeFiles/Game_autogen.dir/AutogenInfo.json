@@ -242,6 +242,12 @@
 			"MU",
 			"YEMM2VTFIQ/moc_GameBoard.cpp",
 			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.h",
+			"MU",
+			"RLYI6A3WMQ/moc_HomeWindow.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -316,6 +322,11 @@
 	[
 		[
 			"D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.cpp",
 			"MU",
 			null
 		],

@@ -13,8 +13,9 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # SOURCES at CMakeLists.txt:5 (FILE)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/Files/VSCode/CS161-minesweeper/Mine/*.cpp")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/Files/VSCode/CS161-minesweeper/HomeWindow/*.cpp")
 set(OLD_GLOB
+  "D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

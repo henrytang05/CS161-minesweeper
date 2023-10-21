@@ -40,6 +40,8 @@ Game_autogen/timestamp: \
   D:/Files/VSCode/CS161-minesweeper/CMakeLists.txt \
   D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp \
   D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.h \
+  D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.cpp \
+  D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.h \
   CMakeFiles/3.28.0-rc2/CMakeCCompiler.cmake \
   CMakeFiles/3.28.0-rc2/CMakeCXXCompiler.cmake \
   CMakeFiles/3.28.0-rc2/CMakeRCCompiler.cmake \

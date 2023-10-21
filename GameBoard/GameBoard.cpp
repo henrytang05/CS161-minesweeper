@@ -2,9 +2,6 @@
 
 #include <random>
 
-#define CELL_SIZE 50
-constexpr int BOARD_SIZE = 3;
-constexpr int MINE_NUMBER = 0;
 int GameBoard::squareRevealed = 0;
 void setIcon(
     QPushButton* button, const QIcon icon, int width = CELL_SIZE / 2,
@@ -124,14 +121,13 @@ void GameBoard::initializeGameBoard() {
     }
 }
 
-void GameBoard::setupGameBoard() {
+void GameBoard::setupGameBoard(int level) {
     QWidget* gridWidget = new QWidget(this);
     gridWidget->setFixedSize(CELL_SIZE * BOARD_SIZE, CELL_SIZE * BOARD_SIZE);
 
     mainGridLayout = new QGridLayout(gridWidget);
 
     grid.resize(BOARD_SIZE, std::vector<Square*>(BOARD_SIZE, nullptr));
-    // this->setFixedSize(500, 1000);
 
     for (int row = 0; row < BOARD_SIZE; row++) {
         for (int col = 0; col < BOARD_SIZE; col++) {
@@ -148,6 +144,15 @@ void GameBoard::setupGameBoard() {
     initializeGameBoard();
     setCentralWidget(gridWidget);
     this->setFixedSize(BOARD_SIZE * CELL_SIZE + 200, BOARD_SIZE * CELL_SIZE + 100);
+
+    replayButton = new QPushButton("Replay", this);
+    replayButton->setGeometry(BOARD_SIZE * CELL_SIZE + 50, 20, 100, 50);
+    connect(replayButton, &QPushButton::clicked, this, [this]() {
+        restartClicked(this);
+    });
+
+    // QPushButton* level1Button = new QPushButton("Level 1", this);
+    // level1Button->setGeometry(BOARD_SIZE * CELL_SIZE + 50, 00, 100, 50);
 }
 void GameBoard::announcement(std::string message) {
     QLabel* annoucement = new QLabel(this);
@@ -186,7 +191,11 @@ void GameBoard::squareClicked(Square* square, int row, int col) {
     square->setAsRevealed();
     render_square(square, row, col);
     if (squareRevealed == BOARD_SIZE * BOARD_SIZE - MINE_NUMBER) {
-        announcement("You Win");
-        newGame();
+        announcement("You Win!");
     }
+}
+void GameBoard::restartClicked(GameBoard* gameboard) {
+    gameboard->close();
+    GameBoard* newGameBoard = new GameBoard();
+    newGameBoard->show();
 }
