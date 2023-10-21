@@ -248,6 +248,12 @@
 			"MU",
 			"RLYI6A3WMQ/moc_HomeWindow.cpp",
 			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Square/Square.h",
+			"MU",
+			"WGNDTPATUA/moc_Square.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -330,6 +336,7 @@
 			"MU",
 			null
 		],
+		[ "D:/Files/VSCode/CS161-minesweeper/Square/Square.cpp", "MU", null ],
 		[ "D:/Files/VSCode/CS161-minesweeper/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

@@ -2,7 +2,8 @@
 
 #include <random>
 
-int GameBoard::squareRevealed = 0;
+int Square::squareRevealed = 0;
+
 void setIcon(
     QPushButton* button, const QIcon icon, int width = CELL_SIZE / 2,
     int length = CELL_SIZE / 2
@@ -190,7 +191,7 @@ void GameBoard::squareClicked(Square* square, int row, int col) {
     }
     square->setAsRevealed();
     render_square(square, row, col);
-    if (squareRevealed == BOARD_SIZE * BOARD_SIZE - MINE_NUMBER) {
+    if (Square::squareRevealed == BOARD_SIZE * BOARD_SIZE - MINE_NUMBER) {
         announcement("You Win!");
     }
 }
