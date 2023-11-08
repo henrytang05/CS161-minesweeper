@@ -17,7 +17,7 @@ class HomeWindow : public QMainWindow {
         stackedWidget = new QStackedWidget(this);
         setupHomeWindow();
         setCentralWidget(stackedWidget);
-        setupNewGame();
+        setupLevelSelection();
         stackedWidget->addWidget(homePage);
         stackedWidget->addWidget(levelSelectionPage);
         stackedWidget->setCurrentWidget(homePage);
@@ -31,7 +31,7 @@ class HomeWindow : public QMainWindow {
     void setLevel(int level);
 
    private slots:
-    void setupNewGame();
+    void setupLevelSelection();
     void resumeGame();
     void startGame(int level);
 
@@ -40,6 +40,6 @@ class HomeWindow : public QMainWindow {
     QWidget* homePage;
     QWidget* levelSelectionPage;
     GameBoard* gameBoard;
-}
+};
 
 #endif

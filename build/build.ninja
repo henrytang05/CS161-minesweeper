@@ -208,7 +208,7 @@ build Game_autogen/timestamp Game_autogen/mocs_compilation.cpp | ${cmake_ninja_w
 #############################################
 # Phony custom command for CMakeFiles\Game_autogen_timestamp_deps
 
-build CMakeFiles/Game_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Game_autogen_timestamp_deps: phony D$:/Unsorted/QT/6.6.0/mingw_64/./bin/moc.exe D$:/Unsorted/QT/6.6.0/mingw_64/./bin/uic.exe D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Widgets.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Core.a
+build CMakeFiles/Game_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Game_autogen_timestamp_deps: phony D$:/Unsorted/QT/6.6.0/mingw_64/./bin/moc.exe D$:/Unsorted/QT/6.6.0/mingw_64/./bin/uic.exe D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Core.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Widgets.a
 
 
 #############################################

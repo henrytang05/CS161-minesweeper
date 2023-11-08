@@ -11,14 +11,17 @@
 #include "../Square/Square.h"
 class GameBoard;
 
-constexpr int CELL_SIZE = 50;
-constexpr int BOARD_SIZE = 8;
-constexpr int MINE_NUMBER = 15;
-class GameBoard : public QMainWindow {
+class GameBoard : public QWidget {
    public:
-    GameBoard(QWidget* parent = nullptr, int level = 0) : QMainWindow(parent) {
-        setupGameBoard(level);
-        this->show();
+    GameBoard(QWidget* parent = nullptr, int level = 0) : QWidget(parent) {
+        if (level == 1)
+            BOARD_SIZE = 8;
+        else if (level == 2)
+            BOARD_SIZE = 10;
+        else if (level == 3)
+            BOARD_SIZE = 15;
+        MINE_NUMBER = BOARD_SIZE * 3 / 4;
+        setupGameBoard();
     }
     ~GameBoard() {}
    public slots:
@@ -27,7 +30,7 @@ class GameBoard : public QMainWindow {
 
    private:
     void initializeGameBoard();
-    void setupGameBoard(int);
+    void setupGameBoard();
     bool isValidBombPosition(int row, int col);
     void updateSurroundingCells(int row, int col);
     void render_square(Square* square, int row, int col);
@@ -37,7 +40,9 @@ class GameBoard : public QMainWindow {
     QGridLayout* mainGridLayout;
 
    public:
-    static int squareRevealed;
+    inline static int BOARD_SIZE = 0;
+    inline static int MINE_NUMBER = 0;
+    inline static constexpr int CELL_SIZE = 50;
 
    private:
     std::vector<std::vector<Square*>> grid;

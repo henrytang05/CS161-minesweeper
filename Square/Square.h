@@ -14,6 +14,7 @@ class Square : public QPushButton {
         isFlagged = false;
         isRevealed = false;
         bombCount = 0;
+        setStyleSheet("background-color: #c0c0c0");
     }
     ~Square() {}
     void setMine();
@@ -29,6 +30,6 @@ class Square : public QPushButton {
 
    public:
     int bombCount;
-    static int squareRevealed;
+    inline static int squareRevealed = 0;
 };
 #endif

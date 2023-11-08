@@ -2,11 +2,55 @@
 
 #include <random>
 
-int Square::squareRevealed = 0;
+void GameBoard::initializeGameBoard() {
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::uniform_int_distribution<int> distribution(0, GameBoard::BOARD_SIZE - 1);
 
+    for (int i = 0; i < GameBoard::MINE_NUMBER; i++) {
+        int rowRandomNumber = distribution(generator);
+        int colRandomNumber = distribution(generator);
+        if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
+            grid[rowRandomNumber][colRandomNumber]->setMine();
+            updateSurroundingCells(rowRandomNumber, colRandomNumber);
+        } else
+            --i;
+    }
+}
+
+void GameBoard::setupGameBoard() {
+    this->setFixedSize(
+        GameBoard::CELL_SIZE * GameBoard::BOARD_SIZE,
+        GameBoard::CELL_SIZE * GameBoard::BOARD_SIZE
+    );
+    mainGridLayout = new QGridLayout(this);
+    grid.resize(
+        GameBoard::BOARD_SIZE, std::vector<Square*>(GameBoard::BOARD_SIZE, nullptr)
+    );
+
+    for (int row = 0; row < GameBoard::BOARD_SIZE; row++) {
+        for (int col = 0; col < GameBoard::BOARD_SIZE; col++) {
+            Square* square = new Square(this);
+            square->setFixedSize(GameBoard::CELL_SIZE, GameBoard::CELL_SIZE);
+
+            connect(square, &Square::clicked, this, [this, square, row, col]() {
+                squareClicked(square, row, col);
+            });
+            grid[row][col] = square;
+            mainGridLayout->addWidget(square, row, col);
+        }
+    }
+    initializeGameBoard();
+
+    // replayButton = new QPushButton("Replay", this);
+    // replayButton->setGeometry(GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 50, 20,
+    // 100, 50); connect(replayButton, &QPushButton::clicked, this, [this]() {
+    //     restartClicked(this);
+    // });
+}
 void setIcon(
-    QPushButton* button, const QIcon icon, int width = CELL_SIZE / 2,
-    int length = CELL_SIZE / 2
+    QPushButton* button, const QIcon icon, int width = GameBoard::CELL_SIZE / 2,
+    int length = GameBoard::CELL_SIZE / 2
 ) {
     QSize iconSize(width, length);
     QPixmap pixmap = icon.pixmap(iconSize);
@@ -36,15 +80,15 @@ void GameBoard::updateSurroundingCells(int row, int col) {
     for (auto& move : direction) {
         int newRow = row + move[0];
         int newCol = col + move[1];
-        if (newRow < 0 || newRow >= BOARD_SIZE || newCol < 0 || newCol >= BOARD_SIZE ||
-            grid[newRow][newCol]->getIsMine())
+        if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
+            newCol >= GameBoard::BOARD_SIZE || grid[newRow][newCol]->getIsMine())
             continue;
         grid[newRow][newCol]->bombCount++;
     }
 }
 void GameBoard::breakSurroundingCells(int row, int col) {
-    if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE ||
-        grid[row][col]->getIsRevealed()) {
+    if (row < 0 || row >= GameBoard::BOARD_SIZE || col < 0 ||
+        col >= GameBoard::BOARD_SIZE || grid[row][col]->getIsRevealed()) {
         return;
     }
     Square* square = grid[row][col];
@@ -103,60 +147,13 @@ void GameBoard::render_square(Square* square, int row, int col) {
     }
 }
 
-void GameBoard::initializeGameBoard() {
-    std::random_device rd;
-    std::mt19937 generator(rd());
-    std::uniform_int_distribution<int> distribution(0, BOARD_SIZE - 1);
-
-    for (int i = 0; i < MINE_NUMBER; i++) {
-        int rowRandomNumber = distribution(generator);
-        int colRandomNumber = distribution(generator);
-        if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
-            grid[rowRandomNumber][colRandomNumber]->setMine();
-            updateSurroundingCells(rowRandomNumber, colRandomNumber);
-        } else
-            --i;
-    }
-}
-
-void GameBoard::setupGameBoard(int level) {
-    QWidget* gridWidget = new QWidget(this);
-    gridWidget->setFixedSize(CELL_SIZE * BOARD_SIZE, CELL_SIZE * BOARD_SIZE);
-
-    mainGridLayout = new QGridLayout(gridWidget);
-
-    grid.resize(BOARD_SIZE, std::vector<Square*>(BOARD_SIZE, nullptr));
-
-    for (int row = 0; row < BOARD_SIZE; row++) {
-        for (int col = 0; col < BOARD_SIZE; col++) {
-            Square* square = new Square(gridWidget);
-            square->setFixedSize(CELL_SIZE, CELL_SIZE);
-
-            connect(square, &Square::clicked, this, [this, square, row, col]() {
-                squareClicked(square, row, col);
-            });
-            grid[row][col] = square;
-            mainGridLayout->addWidget(square, row, col);
-        }
-    }
-    initializeGameBoard();
-    setCentralWidget(gridWidget);
-    this->setFixedSize(BOARD_SIZE * CELL_SIZE + 200, BOARD_SIZE * CELL_SIZE + 100);
-
-    replayButton = new QPushButton("Replay", this);
-    replayButton->setGeometry(BOARD_SIZE * CELL_SIZE + 50, 20, 100, 50);
-    connect(replayButton, &QPushButton::clicked, this, [this]() {
-        restartClicked(this);
-    });
-
-    // QPushButton* level1Button = new QPushButton("Level 1", this);
-    // level1Button->setGeometry(BOARD_SIZE * CELL_SIZE + 50, 00, 100, 50);
-}
 void GameBoard::announcement(std::string message) {
     QLabel* annoucement = new QLabel(this);
 
     annoucement->setAlignment(Qt::AlignCenter);
-    annoucement->setGeometry(BOARD_SIZE * CELL_SIZE + 5, 10, 200, 200);
+    annoucement->setGeometry(
+        GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 5, 10, 200, 200
+    );
     QString qMessage = QString::fromStdString(message);
     annoucement->setText(qMessage);
     std::string styleSheet =
@@ -188,7 +185,8 @@ void GameBoard::squareClicked(Square* square, int row, int col) {
     }
     square->setAsRevealed();
     render_square(square, row, col);
-    if (Square::squareRevealed == BOARD_SIZE * BOARD_SIZE - MINE_NUMBER) {
+    if (Square::squareRevealed ==
+        GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
         announcement("You Win!");
     }
 }
@@ -197,5 +195,4 @@ void GameBoard::restartClicked(GameBoard* gameboard) {
     delete gameboard;
     GameBoard* newGameBoard = new GameBoard();
     newGameBoard->show();
-    newGameBoard->setupGameBoard(1);
 }

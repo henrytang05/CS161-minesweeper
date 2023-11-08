@@ -38,7 +38,7 @@ void HomeWindow::setupHomeWindow() {
     layout->addStretch();
 }
 
-void HomeWindow::setupNewGame() {
+void HomeWindow::setupLevelSelection() {
     levelSelectionPage = new QWidget;
     QVBoxLayout* mainLayout = new QVBoxLayout();
     levelSelectionPage->setLayout(mainLayout);
@@ -71,4 +71,12 @@ void HomeWindow::setupNewGame() {
     connect(hard, &QPushButton::clicked, this, [this]() { startGame(3); });
 }
 void HomeWindow::resumeGame() {}
-void HomeWindow::startGame(int level) {}
+void HomeWindow::startGame(int level) {
+    gameBoard = new GameBoard(this, level);
+    stackedWidget->addWidget(gameBoard);
+    stackedWidget->setCurrentWidget(gameBoard);
+    this->setFixedSize(
+        GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 200,
+        GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 100
+    );
+}
