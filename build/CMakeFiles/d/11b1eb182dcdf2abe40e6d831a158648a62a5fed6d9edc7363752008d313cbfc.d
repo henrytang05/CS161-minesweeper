@@ -37,6 +37,8 @@ Game_autogen/timestamp: \
   C:/Install/Programming\ Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-windres.cmake \
   C:/Install/Programming\ Language/Cmake/share/cmake-3.28/Modules/Platform/Windows.cmake \
   C:/Install/Programming\ Language/Cmake/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake \
+  D:/Files/VSCode/CS161-minesweeper/Button/Button.cpp \
+  D:/Files/VSCode/CS161-minesweeper/Button/Button.h \
   D:/Files/VSCode/CS161-minesweeper/CMakeLists.txt \
   D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp \
   D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.h \

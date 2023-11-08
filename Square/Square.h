@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QWidget>
+
 class Square : public QPushButton {
    public:
     Square(QWidget* parent = nullptr) : QPushButton(parent) {

@@ -1,7 +1,9 @@
 #include "GameBoard/GameBoard.h"
 #include "HomeWindow/HomeWindow.h"
+#include "Memory/Memory.h"
 int main(int argc, char** argv) {
     QApplication app(argc, argv);
-    GameBoard game;
+    HomeWindow* home = new HomeWindow();
+    home->show();
     return app.exec();
 }

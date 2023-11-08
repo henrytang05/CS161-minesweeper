@@ -57,6 +57,14 @@ build CMakeFiles/Game.dir/Game_autogen/mocs_compilation.cpp.obj: CXX_COMPILER__G
   OBJECT_DIR = CMakeFiles\Game.dir
   OBJECT_FILE_DIR = CMakeFiles\Game.dir\Game_autogen
 
+build CMakeFiles/Game.dir/Button/Button.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Files/VSCode/CS161-minesweeper/Button/Button.cpp || cmake_object_order_depends_target_Game
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Game.dir\Button\Button.cpp.obj.d
+  FLAGS = -g -pthread
+  INCLUDES = -ID:/Files/VSCode/CS161-minesweeper/build/Game_autogen/include -isystem D:/Unsorted/QT/6.6.0/mingw_64/include -isystem D:/Unsorted/QT/6.6.0/mingw_64/include/QtCore -isystem D:/Unsorted/QT/6.6.0/mingw_64/mkspecs/win32-g++ -isystem D:/Unsorted/QT/6.6.0/mingw_64/include/QtWidgets -isystem D:/Unsorted/QT/6.6.0/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Game.dir
+  OBJECT_FILE_DIR = CMakeFiles\Game.dir\Button
+
 build CMakeFiles/Game.dir/GameBoard/GameBoard.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp || cmake_object_order_depends_target_Game
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Game.dir\GameBoard\GameBoard.cpp.obj.d
@@ -97,7 +105,7 @@ build CMakeFiles/Game.dir/main.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/F
 #############################################
 # Link the executable D:\Files\VSCode\CS161-minesweeper\Game.exe
 
-build D$:/Files/VSCode/CS161-minesweeper/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug CMakeFiles/Game.dir/Game_autogen/mocs_compilation.cpp.obj CMakeFiles/Game.dir/GameBoard/GameBoard.cpp.obj CMakeFiles/Game.dir/HomeWindow/HomeWindow.cpp.obj CMakeFiles/Game.dir/Square/Square.cpp.obj CMakeFiles/Game.dir/main.cpp.obj | D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Widgets.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Gui.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Core.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6EntryPoint.a || Game_autogen Game_autogen_timestamp_deps
+build D$:/Files/VSCode/CS161-minesweeper/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug CMakeFiles/Game.dir/Game_autogen/mocs_compilation.cpp.obj CMakeFiles/Game.dir/Button/Button.cpp.obj CMakeFiles/Game.dir/GameBoard/GameBoard.cpp.obj CMakeFiles/Game.dir/HomeWindow/HomeWindow.cpp.obj CMakeFiles/Game.dir/Square/Square.cpp.obj CMakeFiles/Game.dir/main.cpp.obj | D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Widgets.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Gui.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Core.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6EntryPoint.a || Game_autogen Game_autogen_timestamp_deps
   FLAGS = -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = D:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Widgets.a  D:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Gui.a  D:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  D:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6EntryPoint.a  -pthread  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -200,7 +208,7 @@ build Game_autogen/timestamp Game_autogen/mocs_compilation.cpp | ${cmake_ninja_w
 #############################################
 # Phony custom command for CMakeFiles\Game_autogen_timestamp_deps
 
-build CMakeFiles/Game_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Game_autogen_timestamp_deps: phony D$:/Unsorted/QT/6.6.0/mingw_64/./bin/moc.exe D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Core.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Widgets.a D$:/Unsorted/QT/6.6.0/mingw_64/./bin/uic.exe
+build CMakeFiles/Game_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Game_autogen_timestamp_deps: phony D$:/Unsorted/QT/6.6.0/mingw_64/./bin/moc.exe D$:/Unsorted/QT/6.6.0/mingw_64/./bin/uic.exe D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Widgets.a D$:/Unsorted/QT/6.6.0/mingw_64/lib/libQt6Core.a
 
 
 #############################################

@@ -13,7 +13,7 @@ class GameBoard;
 
 constexpr int CELL_SIZE = 50;
 constexpr int BOARD_SIZE = 8;
-constexpr int MINE_NUMBER = 1;
+constexpr int MINE_NUMBER = 15;
 class GameBoard : public QMainWindow {
    public:
     GameBoard(QWidget* parent = nullptr, int level = 0) : QMainWindow(parent) {

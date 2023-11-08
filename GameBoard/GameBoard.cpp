@@ -114,8 +114,7 @@ void GameBoard::initializeGameBoard() {
         if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
             grid[rowRandomNumber][colRandomNumber]->setMine();
             updateSurroundingCells(rowRandomNumber, colRandomNumber);
-        }
-        else
+        } else
             --i;
     }
 }
@@ -195,6 +194,8 @@ void GameBoard::squareClicked(Square* square, int row, int col) {
 }
 void GameBoard::restartClicked(GameBoard* gameboard) {
     gameboard->close();
+    delete gameboard;
     GameBoard* newGameBoard = new GameBoard();
     newGameBoard->show();
+    newGameBoard->setupGameBoard(1);
 }

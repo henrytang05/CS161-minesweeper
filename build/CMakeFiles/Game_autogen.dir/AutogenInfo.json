@@ -238,6 +238,12 @@
 	"HEADERS" : 
 	[
 		[
+			"D:/Files/VSCode/CS161-minesweeper/Button/Button.h",
+			"MU",
+			"5HGRVRULZM/moc_Button.cpp",
+			null
+		],
+		[
 			"D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.h",
 			"MU",
 			"YEMM2VTFIQ/moc_GameBoard.cpp",
@@ -326,6 +332,7 @@
 	"SETTINGS_FILE" : "D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/Game_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/Files/VSCode/CS161-minesweeper/Button/Button.cpp", "MU", null ],
 		[
 			"D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp",
 			"MU",
