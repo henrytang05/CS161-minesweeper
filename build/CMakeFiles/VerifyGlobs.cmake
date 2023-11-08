@@ -26,6 +26,7 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/Files/VSCode/CS161-minesweeper/HomeWindow/*.cpp")
 set(OLD_GLOB
   "D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.cpp"
+  "D:/Files/VSCode/CS161-minesweeper/HomeWindow/Style.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

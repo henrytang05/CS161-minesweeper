@@ -10,13 +10,16 @@
 #include <string>
 
 #include "../GameBoard/GameBoard.h"
-
+#include "../HomeWindow/Style.h"
+#include "Style.h"
 class HomeWindow : public QMainWindow {
    public:
     HomeWindow(QMainWindow* parent = nullptr) : QMainWindow(parent) {
         stackedWidget = new QStackedWidget(this);
+        setupWindowTitle("Main Window", 500, 500, this, "245344");
         setupHomeWindow();
         setCentralWidget(stackedWidget);
+
         setupLevelSelection();
         stackedWidget->addWidget(homePage);
         stackedWidget->addWidget(levelSelectionPage);
@@ -34,12 +37,14 @@ class HomeWindow : public QMainWindow {
     void setupLevelSelection();
     void resumeGame();
     void startGame(int level);
+    void restartGame(GameBoard* gameBoard);
 
    private:
     QStackedWidget* stackedWidget;
     QWidget* homePage;
     QWidget* levelSelectionPage;
     GameBoard* gameBoard;
+    QPushButton* replayButton;
 };
 
 #endif

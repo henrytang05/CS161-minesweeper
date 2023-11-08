@@ -256,6 +256,12 @@
 			null
 		],
 		[
+			"D:/Files/VSCode/CS161-minesweeper/HomeWindow/Style.h",
+			"MU",
+			"RLYI6A3WMQ/moc_Style.cpp",
+			null
+		],
+		[
 			"D:/Files/VSCode/CS161-minesweeper/Square/Square.h",
 			"MU",
 			"WGNDTPATUA/moc_Square.cpp",
@@ -343,6 +349,7 @@
 			"MU",
 			null
 		],
+		[ "D:/Files/VSCode/CS161-minesweeper/HomeWindow/Style.cpp", "MU", null ],
 		[ "D:/Files/VSCode/CS161-minesweeper/Square/Square.cpp", "MU", null ],
 		[ "D:/Files/VSCode/CS161-minesweeper/main.cpp", "MU", null ]
 	],

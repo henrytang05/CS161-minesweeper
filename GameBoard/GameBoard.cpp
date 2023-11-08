@@ -23,7 +23,6 @@ void GameBoard::setupGameBoard() {
         GameBoard::CELL_SIZE * GameBoard::BOARD_SIZE,
         GameBoard::CELL_SIZE * GameBoard::BOARD_SIZE
     );
-    mainGridLayout = new QGridLayout(this);
     grid.resize(
         GameBoard::BOARD_SIZE, std::vector<Square*>(GameBoard::BOARD_SIZE, nullptr)
     );
@@ -37,16 +36,11 @@ void GameBoard::setupGameBoard() {
                 squareClicked(square, row, col);
             });
             grid[row][col] = square;
-            mainGridLayout->addWidget(square, row, col);
+            mainGrid->addWidget(square, row, col);
         }
     }
-    initializeGameBoard();
 
-    // replayButton = new QPushButton("Replay", this);
-    // replayButton->setGeometry(GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 50, 20,
-    // 100, 50); connect(replayButton, &QPushButton::clicked, this, [this]() {
-    //     restartClicked(this);
-    // });
+    initializeGameBoard();
 }
 void setIcon(
     QPushButton* button, const QIcon icon, int width = GameBoard::CELL_SIZE / 2,
@@ -189,10 +183,4 @@ void GameBoard::squareClicked(Square* square, int row, int col) {
         GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
         announcement("You Win!");
     }
-}
-void GameBoard::restartClicked(GameBoard* gameboard) {
-    gameboard->close();
-    delete gameboard;
-    GameBoard* newGameBoard = new GameBoard();
-    newGameBoard->show();
 }

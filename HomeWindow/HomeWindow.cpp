@@ -26,7 +26,6 @@ void HomeWindow::setupHomeWindow() {
     });
     connect(Resume, &QPushButton::clicked, this, &HomeWindow::resumeGame);
 
-    setupWindowTitle("Main Window", 500, 500, this, "245344");
     layout->addStretch();
     layout->addWidget(titleWelcome, 0, Qt::AlignCenter);
     layout->addSpacing(10);
@@ -73,10 +72,31 @@ void HomeWindow::setupLevelSelection() {
 void HomeWindow::resumeGame() {}
 void HomeWindow::startGame(int level) {
     gameBoard = new GameBoard(this, level);
-    stackedWidget->addWidget(gameBoard);
-    stackedWidget->setCurrentWidget(gameBoard);
     this->setFixedSize(
         GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 200,
         GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 100
     );
+    replayButton = new QPushButton("Replay");
+    replayButton->setGeometry(
+        GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 50, 20, 100, 50
+    );
+
+    setupButton(replayButton, "FFF6F6");
+    connect(replayButton, &QPushButton::clicked, this, [this]() {
+        this->restartGame(gameBoard);
+    });
+    QVBoxLayout* mainLayout = new QVBoxLayout(gameBoard);
+    QHBoxLayout* layout = new QHBoxLayout();
+    layout->addWidget(replayButton);
+    mainLayout->addLayout(layout);
+    mainLayout->addLayout(GameBoard::mainGrid);
+
+    this->setCentralWidget(gameBoard);
+    stackedWidget->addWidget(gameBoard);
+    stackedWidget->setCurrentWidget(gameBoard);
+}
+void HomeWindow::restartGame(GameBoard* gameBoard) {
+    stackedWidget->setCurrentWidget(homePage);
+    delete gameBoard;
+    gameBoard = nullptr;
 }

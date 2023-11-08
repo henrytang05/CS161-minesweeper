@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QPushButton>
+#include <QString>
 #include <QWidget>
 
 class Square : public QPushButton {

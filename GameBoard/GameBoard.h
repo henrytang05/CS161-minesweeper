@@ -21,6 +21,8 @@ class GameBoard : public QWidget {
         else if (level == 3)
             BOARD_SIZE = 15;
         MINE_NUMBER = BOARD_SIZE * 3 / 4;
+        mainGrid = new QGridLayout(this);
+
         setupGameBoard();
     }
     ~GameBoard() {}
@@ -37,16 +39,17 @@ class GameBoard : public QWidget {
     void breakSurroundingCells(int row, int col);
     void revealAllBombs();
     void announcement(std::string);
-    QGridLayout* mainGridLayout;
 
    public:
     inline static int BOARD_SIZE = 0;
     inline static int MINE_NUMBER = 0;
     inline static constexpr int CELL_SIZE = 50;
+    inline static QGridLayout* mainGrid = nullptr;
 
    private:
     std::vector<std::vector<Square*>> grid;
     std::vector<std::pair<int, int>> mines;
     QPushButton* replayButton;
+    QVBoxLayout* layout;
 };
 #endif
