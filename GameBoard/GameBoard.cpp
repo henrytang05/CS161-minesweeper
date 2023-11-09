@@ -2,6 +2,8 @@
 
 #include <random>
 
+#include "../Style/Style.h"
+
 void GameBoard::initializeGameBoard() {
     std::random_device rd;
     std::mt19937 generator(rd());
@@ -31,10 +33,10 @@ void GameBoard::setupGameBoard() {
         for (int col = 0; col < GameBoard::BOARD_SIZE; col++) {
             Square* square = new Square(this);
             square->setFixedSize(GameBoard::CELL_SIZE, GameBoard::CELL_SIZE);
-
-            connect(square, &Square::clicked, this, [this, square, row, col]() {
+            square->connect(square, &Square::clicked, this, [this, square, row, col]() {
                 squareClicked(square, row, col);
             });
+            setupButton(square, "#EEA6B9", false);
             grid[row][col] = square;
             mainGrid->addWidget(square, row, col);
         }

@@ -3,16 +3,6 @@
 cmake_policy(SET CMP0009 NEW)
 
 # SOURCES at CMakeLists.txt:5 (FILE)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/Files/VSCode/CS161-minesweeper/Button/*.cpp")
-set(OLD_GLOB
-  "D:/Files/VSCode/CS161-minesweeper/Button/Button.cpp"
-  )
-if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
-  message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/cmake.verify_globs")
-endif()
-
-# SOURCES at CMakeLists.txt:5 (FILE)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/Files/VSCode/CS161-minesweeper/GameBoard/*.cpp")
 set(OLD_GLOB
   "D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp"
@@ -26,7 +16,6 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/Files/VSCode/CS161-minesweeper/HomeWindow/*.cpp")
 set(OLD_GLOB
   "D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.cpp"
-  "D:/Files/VSCode/CS161-minesweeper/HomeWindow/Style.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -37,6 +26,16 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/Files/VSCode/CS161-minesweeper/Square/*.cpp")
 set(OLD_GLOB
   "D:/Files/VSCode/CS161-minesweeper/Square/Square.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/cmake.verify_globs")
+endif()
+
+# SOURCES at CMakeLists.txt:5 (FILE)
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/Files/VSCode/CS161-minesweeper/Style/*.cpp")
+set(OLD_GLOB
+  "D:/Files/VSCode/CS161-minesweeper/Style/Style.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

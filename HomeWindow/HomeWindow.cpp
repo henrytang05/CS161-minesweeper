@@ -1,6 +1,6 @@
 #include "HomeWindow.h"
 
-#include "Style.h"
+#include "../Style/Style.h"
 // #include "../Button/Button.h"
 
 void HomeWindow::setupHomeWindow() {
@@ -72,6 +72,8 @@ void HomeWindow::setupLevelSelection() {
 void HomeWindow::resumeGame() {}
 void HomeWindow::startGame(int level) {
     gameBoard = new GameBoard(this, level);
+    gameBoard->setupGameBoard();
+
     this->setFixedSize(
         GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 200,
         GameBoard::BOARD_SIZE * GameBoard::CELL_SIZE + 100
@@ -86,12 +88,10 @@ void HomeWindow::startGame(int level) {
         this->restartGame(gameBoard);
     });
     QVBoxLayout* mainLayout = new QVBoxLayout(gameBoard);
-    QHBoxLayout* layout = new QHBoxLayout();
-    layout->addWidget(replayButton);
-    mainLayout->addLayout(layout);
+    // QHBoxLayout* layout = new QHBoxLayout();
+    mainLayout->addWidget(replayButton);
     mainLayout->addLayout(GameBoard::mainGrid);
 
-    this->setCentralWidget(gameBoard);
     stackedWidget->addWidget(gameBoard);
     stackedWidget->setCurrentWidget(gameBoard);
 }

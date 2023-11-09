@@ -10,8 +10,8 @@
 #include <string>
 
 #include "../GameBoard/GameBoard.h"
-#include "../HomeWindow/Style.h"
-#include "Style.h"
+#include "../Style/Style.h"
+
 class HomeWindow : public QMainWindow {
    public:
     HomeWindow(QMainWindow* parent = nullptr) : QMainWindow(parent) {

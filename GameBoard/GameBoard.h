@@ -22,8 +22,6 @@ class GameBoard : public QWidget {
             BOARD_SIZE = 15;
         MINE_NUMBER = BOARD_SIZE * 3 / 4;
         mainGrid = new QGridLayout(this);
-
-        setupGameBoard();
     }
     ~GameBoard() {}
    public slots:
@@ -32,7 +30,6 @@ class GameBoard : public QWidget {
 
    private:
     void initializeGameBoard();
-    void setupGameBoard();
     bool isValidBombPosition(int row, int col);
     void updateSurroundingCells(int row, int col);
     void render_square(Square* square, int row, int col);
@@ -41,6 +38,7 @@ class GameBoard : public QWidget {
     void announcement(std::string);
 
    public:
+    void setupGameBoard();
     inline static int BOARD_SIZE = 0;
     inline static int MINE_NUMBER = 0;
     inline static constexpr int CELL_SIZE = 50;

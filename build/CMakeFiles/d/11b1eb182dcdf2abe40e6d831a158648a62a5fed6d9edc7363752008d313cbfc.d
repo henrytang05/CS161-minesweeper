@@ -37,17 +37,15 @@ Game_autogen/timestamp: \
   C:/Install/Programming\ Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-windres.cmake \
   C:/Install/Programming\ Language/Cmake/share/cmake-3.28/Modules/Platform/Windows.cmake \
   C:/Install/Programming\ Language/Cmake/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake \
-  D:/Files/VSCode/CS161-minesweeper/Button/Button.cpp \
-  D:/Files/VSCode/CS161-minesweeper/Button/Button.h \
   D:/Files/VSCode/CS161-minesweeper/CMakeLists.txt \
   D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp \
   D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.h \
   D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.cpp \
   D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.h \
-  D:/Files/VSCode/CS161-minesweeper/HomeWindow/Style.cpp \
-  D:/Files/VSCode/CS161-minesweeper/HomeWindow/Style.h \
   D:/Files/VSCode/CS161-minesweeper/Square/Square.cpp \
   D:/Files/VSCode/CS161-minesweeper/Square/Square.h \
+  D:/Files/VSCode/CS161-minesweeper/Style/Style.cpp \
+  D:/Files/VSCode/CS161-minesweeper/Style/Style.h \
   CMakeFiles/3.28.0-rc2/CMakeCCompiler.cmake \
   CMakeFiles/3.28.0-rc2/CMakeCXXCompiler.cmake \
   CMakeFiles/3.28.0-rc2/CMakeRCCompiler.cmake \

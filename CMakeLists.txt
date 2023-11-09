@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION "3.26")
 
 project(CS161-Minesweeper)
 
-FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp GameBoard/*.cpp HomeWindow/*.cpp Square/*.cpp Button/*.cpp)
+FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp GameBoard/*.cpp HomeWindow/*.cpp Square/*.cpp Style/*.cpp)
 
 set(TARGET_NAME Game)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)

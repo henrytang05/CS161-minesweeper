@@ -238,12 +238,6 @@
 	"HEADERS" : 
 	[
 		[
-			"D:/Files/VSCode/CS161-minesweeper/Button/Button.h",
-			"MU",
-			"5HGRVRULZM/moc_Button.cpp",
-			null
-		],
-		[
 			"D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.h",
 			"MU",
 			"YEMM2VTFIQ/moc_GameBoard.cpp",
@@ -256,15 +250,15 @@
 			null
 		],
 		[
-			"D:/Files/VSCode/CS161-minesweeper/HomeWindow/Style.h",
-			"MU",
-			"RLYI6A3WMQ/moc_Style.cpp",
-			null
-		],
-		[
 			"D:/Files/VSCode/CS161-minesweeper/Square/Square.h",
 			"MU",
 			"WGNDTPATUA/moc_Square.cpp",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Style/Style.h",
+			"MU",
+			"ZTQVCGDY76/moc_Style.cpp",
 			null
 		]
 	],
@@ -338,7 +332,6 @@
 	"SETTINGS_FILE" : "D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/Game_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "D:/Files/VSCode/CS161-minesweeper/Button/Button.cpp", "MU", null ],
 		[
 			"D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp",
 			"MU",
@@ -349,8 +342,8 @@
 			"MU",
 			null
 		],
-		[ "D:/Files/VSCode/CS161-minesweeper/HomeWindow/Style.cpp", "MU", null ],
 		[ "D:/Files/VSCode/CS161-minesweeper/Square/Square.cpp", "MU", null ],
+		[ "D:/Files/VSCode/CS161-minesweeper/Style/Style.cpp", "MU", null ],
 		[ "D:/Files/VSCode/CS161-minesweeper/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
