@@ -9,8 +9,9 @@
 #include "../GameBoardPage/GameBoardPage.h"
 
 class Square : public QPushButton {
-   public:
     friend class GameBoard;
+
+   public:
     Square(QWidget* parent = nullptr) : QPushButton(parent) {
         isMine = false;
         isFlagged = false;

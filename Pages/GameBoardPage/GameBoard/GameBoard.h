@@ -7,7 +7,7 @@
 #include <QPushButton>
 #include <QWidget>
 #include <random>
-
+#include <vector>
 #include "../../../Memory/Memory.h"
 #include "../../../Style/Style.h"
 #include "../Square/Square.h"
@@ -27,11 +27,11 @@ class GameBoard : public QWidget {
         setupGameBoard();
     }
     ~GameBoard() {
-        delete replayButton;
-        for (auto& row : grid)
-            for (auto& cell : row)
-                if (cell != nullptr) delete cell;
-        delete mainGrid;
+        // delete replayButton;
+        // for (auto& row : grid)
+        //     for (auto& cell : row)
+        //         if (cell != nullptr) delete cell;
+        // delete mainGrid;
     }
    public slots:
     void restartClicked(GameBoard*);

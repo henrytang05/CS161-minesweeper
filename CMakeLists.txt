@@ -4,7 +4,7 @@ project(CS161-Minesweeper VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp GameBoard/*.cpp HomeWindow/*.cpp Square/*.cpp Style/*.cpp Memory/*.cpp Pages/*.cpp )
+FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp HomeWindow/*.cpp Style/*.cpp Memory/*.cpp Pages/*.cpp)
 
 
 set(TARGET_NAME Game)
