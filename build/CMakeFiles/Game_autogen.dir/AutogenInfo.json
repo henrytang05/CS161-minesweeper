@@ -10,31 +10,22 @@
 		"D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/3.28.0-rc2/CMakeSystem.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake",
-		"D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/3.28.0-rc2/CMakeCCompiler.cmake",
 		"D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/3.28.0-rc2/CMakeCXXCompiler.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeGenericSystem.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeCInformation.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Compiler/GNU-C.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Compiler/GNU.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake",
-		"D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/3.28.0-rc2/CMakeRCCompiler.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeRCInformation.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-windres.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeCXXInformation.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Compiler/GNU.cmake",
+		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake",
+		"D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/3.28.0-rc2/CMakeRCCompiler.cmake",
+		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeRCInformation.cmake",
+		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-windres.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake",
 		"D:/Unsorted/QT/6.6.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
@@ -67,9 +58,8 @@
 		"D:/Unsorted/QT/6.6.0/mingw_64/lib/cmake/Qt6/Qt6Dependencies.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/FindThreads.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CheckLibraryExists.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CheckIncludeFile.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake",
+		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake",
+		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/FindPackageMessage.cmake",
 		"D:/Unsorted/QT/6.6.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersion.cmake",
@@ -238,15 +228,39 @@
 	"HEADERS" : 
 	[
 		[
-			"D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.h",
-			"MU",
-			"YEMM2VTFIQ/moc_GameBoard.cpp",
-			null
-		],
-		[
 			"D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.h",
 			"MU",
 			"RLYI6A3WMQ/moc_HomeWindow.cpp",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Memory/Memory.h",
+			"MU",
+			"MKVSUNSWZU/moc_Memory.cpp",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/GameBoard/GameBoard.h",
+			"MU",
+			"I66WJKSYMC/moc_GameBoard.cpp",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/GameBoardPage.h",
+			"MU",
+			"7NAVCAYPBG/moc_GameBoardPage.cpp",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/HomePage/HomePage.h",
+			"MU",
+			"27XQTN4GVJ/moc_HomePage.cpp",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/LevelSelectionPage/LevelSelectionPage.h",
+			"MU",
+			"JQNBVYDED4/moc_LevelSelectionPage.cpp",
 			null
 		],
 		[
@@ -313,7 +327,8 @@
 	"MOC_PATH_PREFIX" : false,
 	"MOC_PREDEFS_CMD" : 
 	[
-		"C:/Install/Programming Language/C++/Compiler/winlibs-x86_64-mcf-seh-gcc-13.2.0-llvm-16.0.6-mingw-w64ucrt-11.0.1-r2/mingw64/bin/c++.exe",
+		"C:/Install/Programming Language/C++/Compiler/winlibs-x86_64-mcf-seh-gcc-13.2.0-llvm-16.0.6-mingw-w64ucrt-11.0.1-r2/mingw64/bin/g++.exe",
+		"-std=gnu++17",
 		"-dM",
 		"-E",
 		"-c",
@@ -333,12 +348,28 @@
 	"SOURCES" : 
 	[
 		[
-			"D:/Files/VSCode/CS161-minesweeper/GameBoard/GameBoard.cpp",
+			"D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.cpp",
+			"MU",
+			null
+		],
+		[ "D:/Files/VSCode/CS161-minesweeper/Memory/Memory.cpp", "MU", null ],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/GameBoard/GameBoard.cpp",
 			"MU",
 			null
 		],
 		[
-			"D:/Files/VSCode/CS161-minesweeper/HomeWindow/HomeWindow.cpp",
+			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/GameBoardPage.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/HomePage/HomePage.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/LevelSelectionPage/LevelSelectionPage.cpp",
 			"MU",
 			null
 		],

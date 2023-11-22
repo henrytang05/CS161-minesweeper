@@ -1,0 +1,36 @@
+Info: Allocated  72  bytes for  Homewindow 
+Info: Memory used:  131 
+Info: Allocated  40  bytes
+Info: Memory used:  171 
+Info: Allocated  40  bytes for  HomePage 
+Info: Memory used:  211 
+Info: Allocated  32  bytes for  Layout 
+Info: Memory used:  243 
+Info: Allocated  32  bytes for  Layout 
+Info: Memory used:  275 
+Info: Allocated  40  bytes for  Label 
+Info: Memory used:  315 
+Info: Allocated  40  bytes for  Label 
+Info: Memory used:  355 
+Info: Allocated  32  bytes for  Layout 
+Info: Memory used:  387 
+Info: Allocated  40  bytes for  New Game Button 
+Info: Memory used:  427 
+Info: Allocated  40  bytes for  Resume Button 
+Info: Memory used:  467 
+Info: Allocated  40  bytes for  Level Selection Page 
+Info: Memory used:  507 
+Info: Allocated  32  bytes for  Layout 
+Info: Memory used:  539 
+Info: Allocated  40  bytes for  Label 
+Info: Memory used:  579 
+Info: Allocated  32  bytes for  Layout 
+Info: Memory used:  611 
+Info: Allocated  40  bytes for  easy button 
+Info: Memory used:  651 
+Info: Allocated  40  bytes for  medium button 
+Info: Memory used:  691 
+Info: Allocated  40  bytes for  hard button 
+Info: Memory used:  731 
+Info: Allocated  40  bytes for  Back Button 
+Info: Memory used:  771 

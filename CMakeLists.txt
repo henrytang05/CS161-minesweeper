@@ -1,18 +1,21 @@
 cmake_minimum_required(VERSION "3.26")
 
-project(CS161-Minesweeper)
+project(CS161-Minesweeper VERSION 1.0.0 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp GameBoard/*.cpp HomeWindow/*.cpp Square/*.cpp Style/*.cpp)
+FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp GameBoard/*.cpp HomeWindow/*.cpp Square/*.cpp Style/*.cpp Memory/*.cpp Pages/*.cpp)
+
+
 
 set(TARGET_NAME Game)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
-set(QT6_DIR D:/Unsorted/QT/6.6.0/mingw_64)
+set(QT6_DIR D:/Unsorted/QT/6.6.0/mingw_64) #replace the directory to your QT/6.6.0/mingw_64
 set(QT_COMPONENTS Widgets)
-
 set(CMAKE_PREFIX_PATH ${QT6_DIR})
-find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS} Widgets)
+find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
 
 include_directories(${QT6_DIR}/include)
 
@@ -40,4 +43,7 @@ qt_generate_deploy_app_script(
     OUTPUT_SCRIPT deploy_script
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
-install(SCRIPT ${deploy_script})
+set_target_properties(${TARGET_NAME} PROPERTIES
+    WIN32_EXECUTABLE ON
+    MACOSX_BUNDLE ON
+)

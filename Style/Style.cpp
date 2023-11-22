@@ -1,6 +1,6 @@
 #include "../Style/Style.h"
 
-void setupButton(QPushButton* b, std::string&& color, bool rounded) {
+void styleButton(QPushButton* b, std::string&& color, bool rounded) {
     if (color[0] == '#') color.erase(0, 1);
     b->setFixedSize(100, 50);
     if (!rounded)
@@ -10,7 +10,7 @@ void setupButton(QPushButton* b, std::string&& color, bool rounded) {
             QString(("background-color: #" + color + "; border-radius: 15px ;").c_str())
         );
 }
-void setupLabel(QLabel* label, std::string&& color) {
+void styleLabel(QLabel* label, std::string&& color) {
     if (color[0] == '#') color.erase(0, 1);
     QFont font = label->font();
     font.setPointSize(30);
@@ -23,7 +23,7 @@ void setupLabel(QLabel* label, std::string&& color) {
     label->setAlignment(Qt::AlignCenter);
 }
 
-void setupWindowTitle(
+void styleWindow(
     std::string&& title, int width, int height, QMainWindow* window, std::string&& color
 ) {
     window->setWindowTitle(QString::fromStdString(title));

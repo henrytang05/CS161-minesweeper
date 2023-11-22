@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C/C++: g++.exe build and debug active file",
+      "name": "Debug with g++",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/Game.exe",
@@ -26,7 +26,7 @@
         }
       ],
       "preLaunchTask": "C/C++: g++.exe build active file",
-      "visualizerFile": "C:/Users/tangq/AppData/Roaming/Code/User/workspaceStorage/0b2011de9ed0c211dc3eebe58486314c/tonka3000.qtvsctools/qt.natvis.xml"
+      // "visualizerFile": "C:/Users/tangq/AppData/Roaming/Code/User/workspaceStorage/0b2011de9ed0c211dc3eebe58486314c/tonka3000.qtvsctools/qt.natvis.xml"
     }
   ]
 }
