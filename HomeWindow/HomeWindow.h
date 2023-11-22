@@ -11,10 +11,10 @@
 #include <string>
 
 #include "../Memory/Memory.h"
+#include "../Pages/GameBoardPage/GameBoardPage/GameBoardPage.h"
 #include "../Pages/HomePage/HomePage.h"
 #include "../Pages/LevelSelectionPage/LevelSelectionPage.h"
 #include "../Style/Style.h"
-#include "..Pages/GameBoardPage/GameBoardPage.h"
 
 class HomeWindow : public QMainWindow {
    public:

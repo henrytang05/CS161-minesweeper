@@ -246,9 +246,15 @@
 			null
 		],
 		[
-			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/GameBoardPage.h",
+			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/GameBoardPage/GameBoardPage.h",
 			"MU",
-			"7NAVCAYPBG/moc_GameBoardPage.cpp",
+			"F3BU2UG2A2/moc_GameBoardPage.cpp",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/Square/Square.h",
+			"MU",
+			"TV57U3PIYY/moc_Square.cpp",
 			null
 		],
 		[
@@ -261,12 +267,6 @@
 			"D:/Files/VSCode/CS161-minesweeper/Pages/LevelSelectionPage/LevelSelectionPage.h",
 			"MU",
 			"JQNBVYDED4/moc_LevelSelectionPage.cpp",
-			null
-		],
-		[
-			"D:/Files/VSCode/CS161-minesweeper/Square/Square.h",
-			"MU",
-			"WGNDTPATUA/moc_Square.cpp",
 			null
 		],
 		[
@@ -359,7 +359,12 @@
 			null
 		],
 		[
-			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/GameBoardPage.cpp",
+			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/GameBoardPage/GameBoardPage.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/Files/VSCode/CS161-minesweeper/Pages/GameBoardPage/Square/Square.cpp",
 			"MU",
 			null
 		],
@@ -373,7 +378,6 @@
 			"MU",
 			null
 		],
-		[ "D:/Files/VSCode/CS161-minesweeper/Square/Square.cpp", "MU", null ],
 		[ "D:/Files/VSCode/CS161-minesweeper/Style/Style.cpp", "MU", null ],
 		[ "D:/Files/VSCode/CS161-minesweeper/main.cpp", "MU", null ]
 	],

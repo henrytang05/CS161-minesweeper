@@ -1,8 +1,8 @@
 #ifndef GAME_BOARD_PAGE_H
 #define GAME_BOARD_PAGE_H
-#include "../../Memory/Memory.h"
-#include "../../Style/Style.h"
-#include "GameBoard/GameBoard.h"
+
+#include "../../../Style/Style.h"
+#include "../GameBoard/GameBoard.h"
 
 class GameBoardPage : public QWidget {
    public:

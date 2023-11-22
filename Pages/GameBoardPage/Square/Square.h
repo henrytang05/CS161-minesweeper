@@ -5,8 +5,8 @@
 #include <QString>
 #include <QWidget>
 
-#include "../Memory/Memory.h"
-#include "..Pages/GameBoardPage/GameBoardPage.h"
+#include "../../../Memory/Memory.h"
+#include "../GameBoardPage/GameBoardPage.h"
 
 class Square : public QPushButton {
    public:

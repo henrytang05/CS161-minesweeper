@@ -9,8 +9,8 @@
 #include <random>
 
 #include "../../../Memory/Memory.h"
-#include "../../../Square/Square.h"
 #include "../../../Style/Style.h"
+#include "../Square/Square.h"
 
 class GameBoard : public QWidget {
     friend class Square;
