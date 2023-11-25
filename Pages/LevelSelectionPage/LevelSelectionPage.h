@@ -12,9 +12,15 @@
 #include "../../Memory/Memory.h"
 #include "../../Style/Style.h"
 class LevelSelectionPage : public QWidget {
+    Q_OBJECT
    public:
-    LevelSelectionPage(QWidget* parent = nullptr) { setupLevelSelectionPage(); }
+    LevelSelectionPage(QStackedWidget* parent = nullptr) { setupLevelSelectionPage(); }
     ~LevelSelectionPage() {}
     void setupLevelSelectionPage();
+
+   signals:
+    void easyClicked();
+    void mediumClicked();
+    void hardClicked();
 };
 #endif

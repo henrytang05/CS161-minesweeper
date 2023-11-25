@@ -27,6 +27,7 @@ void styleWindow(
     std::string&& title, int width, int height, QMainWindow* window, std::string&& color
 ) {
     window->setWindowTitle(QString::fromStdString(title));
-    window->setFixedSize(height, width);
+    window->setBaseSize(4, 3);
+    window->setMinimumWidth(width);
     window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
 }

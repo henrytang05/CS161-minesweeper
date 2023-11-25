@@ -1,22 +1,23 @@
 #ifndef SQUARE_H
 #define SQUARE_H
+#pragma once
 #include <QIcon>
 #include <QPushButton>
 #include <QString>
 #include <QWidget>
 
 #include "../../../Memory/Memory.h"
-#include "../GameBoardPage/GameBoardPage.h"
-
+#include "../../../Style/Style.h"
+// class GameBoard;
 class Square : public QPushButton {
     friend class GameBoard;
-
+    Q_OBJECT
    public:
     Square(QWidget* parent = nullptr) : QPushButton(parent) {
         isMine = false;
         isFlagged = false;
         isRevealed = false;
-        bombCount = 0;
+        surroundingMineCount = 0;
         setStyleSheet("background-color: #c0c0c0");
     }
     ~Square() {
@@ -28,6 +29,7 @@ class Square : public QPushButton {
     bool getIsRevealed();
     void setAsRevealed();
     void setAsNotRevealed();
+
    public slots:
     void squareClicked(int row, int col);
 
@@ -36,17 +38,16 @@ class Square : public QPushButton {
         const QIcon& icon, int width = Square::CELL_SIZE / 2,
         int length = Square::CELL_SIZE / 2
     );
+    void render_square(int, int);
+
+   public:
+    inline static constexpr int CELL_SIZE = 50;
+    int surroundingMineCount = 0;
+    inline static int squareRevealed = 0;
 
    private:
     bool isMine;
     bool isFlagged;
     bool isRevealed;
-
-   public:
-    inline static int MINE_NUMBER = 0;
-    inline static constexpr int CELL_SIZE = 50;
-    inline static int bombCount = 0;
-    inline static int squareRevealed = 0;
-    void render_square(int row, int col);
 };
 #endif

@@ -1,5 +1,5 @@
 #include "HomeWindow.h"
-
+// void Pages::newGameSlot() { emit newGameClicked(); }
 // #include "../Button/Button.h"
 
 // void HomeWindow::setupLevelSelectionPage() {}

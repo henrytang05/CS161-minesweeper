@@ -23,10 +23,8 @@ void HomePage::setupHomePage() {
     styleButton(newGame, "FFF6F6");
     styleButton(Resume, "EAF4D3");
 
-    // connect(newGame, &QPushButton::clicked, this, [this]() {
-    //     stackedWidget->setCurrentWidget(levelSelectionPage);
-    // });
-    // connect(Resume, &QPushButton::clicked, this, &HomeWindow::resumeGame);
+    connect(newGame, &QPushButton::clicked, this, &HomePage::newGameClicked);
+    // connect(Resume, &QPushButton::clicked, this, &HomePage::resumeGameClicked);
 
     mainLayout->addStretch();
     mainLayout->addLayout(labelLayout);

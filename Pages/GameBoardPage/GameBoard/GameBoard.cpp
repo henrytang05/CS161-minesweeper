@@ -1,20 +1,4 @@
 #include "GameBoard.h"
-
-void GameBoard::initializeGameBoard() {
-    std::random_device rd;
-    std::mt19937 generator(rd());
-    std::uniform_int_distribution<int> distribution(0, GameBoard::BOARD_SIZE - 1);
-
-    for (int i = 0; i < Square::MINE_NUMBER; i++) {
-        int rowRandomNumber = distribution(generator);
-        int colRandomNumber = distribution(generator);
-        if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
-            grid[rowRandomNumber][colRandomNumber]->setMine();
-            updateSurroundingCells(rowRandomNumber, colRandomNumber);
-        } else
-            --i;
-    }
-}
 void GameBoard::setupGameBoard() {
     this->setFixedSize(
         Square::CELL_SIZE * GameBoard::BOARD_SIZE,
@@ -23,7 +7,7 @@ void GameBoard::setupGameBoard() {
     grid.resize(
         GameBoard::BOARD_SIZE, std::vector<Square*>(GameBoard::BOARD_SIZE, nullptr)
     );
-    QGridLayout* mainGridLayout = new ("mainGridLayout") QGridLayout();
+    QGridLayout* mainGridLayout = new ("mainGridLayout") QGridLayout(this);
 
     for (int row = 0; row < GameBoard::BOARD_SIZE; row++) {
         for (int col = 0; col < GameBoard::BOARD_SIZE; col++) {
@@ -37,12 +21,25 @@ void GameBoard::setupGameBoard() {
             mainGridLayout->addWidget(square, row, col);
         }
     }
-    GameBoard::mainGrid->setLayout(mainGridLayout);
+    this->setLayout(mainGridLayout);
     initializeGameBoard();
-
     this->show();
 }
+void GameBoard::initializeGameBoard() {
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::uniform_int_distribution<int> distribution(0, GameBoard::BOARD_SIZE - 1);
 
+    for (int i = 0; i < GameBoard::MINE_NUMBER; i++) {
+        int rowRandomNumber = distribution(generator);
+        int colRandomNumber = distribution(generator);
+        if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
+            grid[rowRandomNumber][colRandomNumber]->setMine();
+            updateSurroundingSquares(rowRandomNumber, colRandomNumber);
+        } else
+            --i;
+    }
+}
 bool GameBoard::isValidBombPosition(int row, int col) {
     if (!grid[row][col]->getIsMine()) {
         return true;
@@ -50,7 +47,7 @@ bool GameBoard::isValidBombPosition(int row, int col) {
         return false;
     }
 }
-void GameBoard::updateSurroundingCells(int row, int col) {
+void GameBoard::updateSurroundingSquares(int row, int col) {
     int direction[8][2] = {
         {-1, -1},  // Up-Left
         {-1, 0},   // Up
@@ -67,9 +64,10 @@ void GameBoard::updateSurroundingCells(int row, int col) {
         if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
             newCol >= GameBoard::BOARD_SIZE || grid[newRow][newCol]->getIsMine())
             continue;
-        grid[newRow][newCol]->bombCount++;
+        grid[newRow][newCol]->surroundingMineCount++;
     }
 }
+
 void GameBoard::breakSurroundingCells(int row, int col) {
     if (row < 0 || row >= GameBoard::BOARD_SIZE || col < 0 ||
         col >= GameBoard::BOARD_SIZE || GameBoard::grid[row][col]->getIsRevealed()) {
@@ -77,7 +75,7 @@ void GameBoard::breakSurroundingCells(int row, int col) {
     }
     Square* square = GameBoard::grid[row][col];
     square->setAsRevealed();
-    if (GameBoard::grid[row][col]->bombCount != 0) {
+    if (GameBoard::grid[row][col]->surroundingMineCount != 0) {
         GameBoard::grid[row][col]->render_square(row, col);
         return;
     }
@@ -101,7 +99,7 @@ void GameBoard::breakSurroundingCells(int row, int col) {
 }
 
 void GameBoard::announcement(std::string message) {
-    QLabel* annoucement = new ("Label") QLabel();
+    QLabel* annoucement = new ("Label") QLabel;
 
     annoucement->setAlignment(Qt::AlignCenter);
     annoucement->setGeometry(GameBoard::BOARD_SIZE * Square::CELL_SIZE + 5, 10, 200, 200);
@@ -120,7 +118,7 @@ void GameBoard::revealAllBombs() {
                 square->setStyleSheet("background-color: red");
                 square->setIcon(QIcon("Pictures/bomb.png"));
             }
-            disconnect(square, &Square::clicked, nullptr, nullptr);
+            // disconnect(square, &Square::clicked, nullptr, nullptr);
         }
     }
     announcement("Game Over");

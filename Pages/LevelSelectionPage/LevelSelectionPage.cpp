@@ -9,12 +9,12 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     styleLabel(label, "DBD8AE");
     mainLayout->addWidget(label, 0, Qt::AlignCenter);
 
-    QVBoxLayout* buttonLayout = new ("Layout") QVBoxLayout();
+    QVBoxLayout* buttonLayout = new ("Layout") QVBoxLayout(this);
     mainLayout->addLayout(buttonLayout);
-    QPushButton* easy = new ("easy button") QPushButton("Easy");
-    QPushButton* medium = new ("medium button") QPushButton("Medium");
-    QPushButton* hard = new ("hard button") QPushButton("Hard");
-    QPushButton* back = new ("Back Button") QPushButton("Back");
+    QPushButton* easy = new ("easy button") QPushButton("Easy", this);
+    QPushButton* medium = new ("medium button") QPushButton("Medium", this);
+    QPushButton* hard = new ("hard button") QPushButton("Hard", this);
+    QPushButton* back = new ("Back Button") QPushButton("Back", this);
 
     styleButton(easy, "FFF6F6");
     styleButton(medium, "FFF6F6");
@@ -25,10 +25,8 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     buttonLayout->addWidget(medium, 0, Qt::AlignCenter);
     buttonLayout->addWidget(hard, 0, Qt::AlignCenter);
     buttonLayout->addWidget(back, 0, Qt::AlignCenter);
-    // connect(back, &QPushButton::clicked, this, [this]() {
-    //     stackedWidget->setCurrentWidget(homePage);
-    // });
-    // connect(easy, &QPushButton::clicked, this, [this]() { startGame(1); });
-    // connect(medium, &QPushButton::clicked, this, [this]() { startGame(2); });
-    // connect(hard, &QPushButton::clicked, this, [this]() { startGame(3); });
+
+    connect(easy, &QPushButton::clicked, this, &LevelSelectionPage::easyClicked);
+    connect(medium, &QPushButton::clicked, this, &LevelSelectionPage::mediumClicked);
+    connect(hard, &QPushButton::clicked, this, &LevelSelectionPage::hardClicked);
 }

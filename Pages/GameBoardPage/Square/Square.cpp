@@ -1,4 +1,7 @@
 #include "Square.h"
+
+#include "../GameBoard/GameBoard.h"
+
 void Square::setMine() { this->isMine = true; }
 bool Square::getIsMine() { return this->isMine; }
 bool Square::getIsRevealed() { return this->isRevealed; }
@@ -23,15 +26,15 @@ void Square::squareClicked(int row, int col) {
         GameBoard::revealAllBombs();
         return;
     }
-    this->setAsRevealed();
     this->render_square(row, col);
+    this->setAsRevealed();
     if (Square::squareRevealed ==
-        GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - Square::MINE_NUMBER) {
+        GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
         GameBoard::announcement("You Win!");
     }
 }
 void Square::render_square(int row, int col) {
-    switch (Square::bombCount) {
+    switch (Square::surroundingMineCount) {
         case 1:
             this->setIcon(QIcon("Pictures/number-1.png"));
             break;
@@ -56,8 +59,7 @@ void Square::render_square(int row, int col) {
         case 8:
             this->setIcon(QIcon("Pictures/number-8.png"));
             break;
-        default:
-            this->setAsNotRevealed();
-            GameBoard::breakSurroundingCells(row, col);
+            // default:
+            // GameBoard::breakSurroundingCells(row, col);
     }
 }

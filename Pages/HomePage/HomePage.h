@@ -14,9 +14,15 @@
 class HomePage : public QWidget {
     Q_OBJECT
    public:
-    HomePage(QWidget* parent = nullptr) { setupHomePage(); }
+    HomePage(QStackedWidget* parent = nullptr) { setupHomePage(); }
     ~HomePage() {}
-
     void setupHomePage();
+
+    //    public slots:
+    //     void newGameSlot();
+    // void resumeGameSlot();
+   signals:
+    void newGameClicked();
+    void resumeGameClicked();
 };
 #endif

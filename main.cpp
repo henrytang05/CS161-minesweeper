@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     outFile.close();
     QApplication app(argc, argv);
     
-    HomeWindow* Game = new ("Homewindow") HomeWindow();
+    HomeWindow* Game = new ("Homewindow") HomeWindow;
 
     Game->show();
     Memory::PrintMemory();

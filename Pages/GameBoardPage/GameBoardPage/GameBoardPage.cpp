@@ -1,9 +1,9 @@
 #include "GameBoardPage.h"
 void GameBoardPage::setupGameBoardPage() {
-    Board = new ("Game Board") GameBoard();
-    replayButton = new ("Replay Button") QPushButton("Replay");
-    QHBoxLayout* mainLayout = new ("layout") QHBoxLayout();
+    QHBoxLayout* mainLayout = new ("layout") QHBoxLayout(this);
     mainLayout->addWidget(Board);
+    mainLayout->addStretch();
     mainLayout->addWidget(replayButton);
+    mainLayout->addStretch();
     setLayout(mainLayout);
 }

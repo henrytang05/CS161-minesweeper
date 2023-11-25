@@ -20,7 +20,7 @@ include_directories(${QT6_DIR}/include)
 
 qt_standard_project_setup()
 set(CMAKE_AUTORCC ON)
-
+set(CMAKE_AUTOMOC ON)
 qt_add_executable(${TARGET_NAME} ${SOURCES})
 
 foreach(LIB ${QT_COMPONENTS})
