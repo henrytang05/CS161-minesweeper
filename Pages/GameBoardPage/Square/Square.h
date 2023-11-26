@@ -3,12 +3,14 @@
 #pragma once
 #include <QIcon>
 #include <QPushButton>
+#include <QSize>
 #include <QString>
 #include <QWidget>
 
 #include "../../../Memory/Memory.h"
 #include "../../../Style/Style.h"
-// class GameBoard;
+class GameBoard;
+class GameBoardPage;
 class Square : public QPushButton {
     friend class GameBoard;
     Q_OBJECT
@@ -18,7 +20,7 @@ class Square : public QPushButton {
         isFlagged = false;
         isRevealed = false;
         surroundingMineCount = 0;
-        setStyleSheet("background-color: #c0c0c0");
+        styleButton(this, "#EEA6B9", false, CELL_SIZE, CELL_SIZE);
     }
     ~Square() {
         qInstallMessageHandler(customMessageHandler);
@@ -30,15 +32,12 @@ class Square : public QPushButton {
     void setAsRevealed();
     void setAsNotRevealed();
 
-   public slots:
-    void squareClicked(int row, int col);
-
    public:
-    void setIcon(
+    void setSquareIcon(
         const QIcon& icon, int width = Square::CELL_SIZE / 2,
         int length = Square::CELL_SIZE / 2
     );
-    void render_square(int, int);
+    void render_square();
 
    public:
     inline static constexpr int CELL_SIZE = 50;
@@ -49,5 +48,9 @@ class Square : public QPushButton {
     bool isMine;
     bool isFlagged;
     bool isRevealed;
+   signals:
+    void result(bool);
+   public slots:
+    void squareClicked(int row, int col);
 };
 #endif

@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="/">
+    <file>Pages/GameBoardPage/Square/Pictures/number-1.png</file>
+    <file>Pages/GameBoardPage/Square/Pictures/number-2.png</file>
+    <file>Pages/GameBoardPage/Square/Pictures/number-3.png</file>
+    <file>Pages/GameBoardPage/Square/Pictures/number-4.png</file>
+    <file>Pages/GameBoardPage/Square/Pictures/number-5.png</file>
+    <file>Pages/GameBoardPage/Square/Pictures/number-6.png</file>
+    <file>Pages/GameBoardPage/Square/Pictures/number-7.png</file>
+    <file>Pages/GameBoardPage/Square/Pictures/number-8.png</file>
+    <!-- Add other files as needed -->
+  </qresource>
+</RCC>

@@ -21,39 +21,28 @@ class GameBoard : public QWidget {
         else if (level == 2)
             BOARD_SIZE = 10;
         else if (level == 3)
-            BOARD_SIZE = 15;
+            BOARD_SIZE = 11;
         else
             BOARD_SIZE = 8;
         MINE_NUMBER = BOARD_SIZE * BOARD_SIZE / 4;
         setupGameBoard();
     }
-    ~GameBoard() {
-        // delete replayButton;
-        // for (auto& row : grid)
-        //     for (auto& cell : row)
-        //         if (cell != nullptr) delete cell;
-        // delete mainGrid;
-    }
-    //    public slots:
-    // void restartClicked(GameBoard*);
-   public:
+    ~GameBoard() {}
     static void breakSurroundingCells(int row, int col);
+
+   public:
+    inline static int BOARD_SIZE = 8;
+    inline static int MINE_NUMBER = 0;
+    static void revealAllBombs();
+    void setupGameBoard();
+    inline static std::vector<std::vector<Square*>> grid;
 
    private:
     void initializeGameBoard();
     bool isValidBombPosition(int row, int col);
-    void updateSurroundingSquares(int row, int col);
+    void countMinesAround(int row, int col);
 
-   public:
-    inline static int BOARD_SIZE = 0;
-    inline static int MINE_NUMBER = 0;
-
-    static void announcement(std::string);
-    static void revealAllBombs();
-    void setupGameBoard();
-
-    inline static std::vector<std::vector<Square*>> grid;
-
-    void render_square(int row, int col);
+   signals:
+    void result(bool);
 };
 #endif

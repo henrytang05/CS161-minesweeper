@@ -220,7 +220,8 @@
 		"D:/Unsorted/QT/6.6.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets.cmake",
 		"D:/Unsorted/QT/6.6.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets-relwithdebinfo.cmake",
 		"D:/Unsorted/QT/6.6.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginAdditionalTargetInfo.cmake",
-		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/GNUInstallDirs.cmake"
+		"C:/Install/Programming Language/Cmake/share/cmake-3.28/Modules/GNUInstallDirs.cmake",
+		"D:/Files/VSCode/CS161-minesweeper/resources.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "D:/Files/VSCode/CS161-minesweeper",
 	"DEP_FILE" : "D:/Files/VSCode/CS161-minesweeper/build/Game_autogen/deps",

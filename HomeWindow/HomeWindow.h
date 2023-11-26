@@ -16,44 +16,27 @@
 #include "../Pages/HomePage/HomePage.h"
 #include "../Pages/LevelSelectionPage/LevelSelectionPage.h"
 #include "../Style/Style.h"
+class HomeWindow;
 class Pages : public QStackedWidget {
     Q_OBJECT
    public:
-    Pages(QWidget* parent = nullptr) : QStackedWidget(parent) {
-        homePage = new ("HomePage") HomePage(this);
-        levelSelectionPage = new ("Level Selection Page") LevelSelectionPage(this);
-        connect(homePage, &HomePage::newGameClicked, this, [this]() {
-            setCurrentWidget(levelSelectionPage);
-        });
-
-        connect(levelSelectionPage, &LevelSelectionPage::easyClicked, this, [this]() {
-            gameBoardPage = new ("Game Board Page") GameBoardPage(this, 1);
-            this->addWidget(gameBoardPage);
-            setCurrentWidget(gameBoardPage);
-        });
-        connect(levelSelectionPage, &LevelSelectionPage::mediumClicked, this, [this]() {
-            gameBoardPage = new ("Game Board Page") GameBoardPage(this, 2);
-            this->addWidget(gameBoardPage);
-            setCurrentWidget(gameBoardPage);
-        });
-        connect(levelSelectionPage, &LevelSelectionPage::hardClicked, this, [this]() {
-            gameBoardPage = new ("Game Board Page") GameBoardPage(this, 3);
-            this->addWidget(gameBoardPage);
-            setCurrentWidget(gameBoardPage);
-        });
-
-        this->addWidget(homePage);
-        this->addWidget(levelSelectionPage);
-        // this->addWidget(gameBoardPage);
-        this->setCurrentWidget(homePage);
-    }
-    //    public slots:
-    //     void resumeGameSlot();
+    Pages(QWidget* parent = nullptr) : QStackedWidget(parent) { setupPages(); }
+    void setupPages();
+    void createGameBoardPage(int difficulty);
+    void makeconnection();
 
    private:
     HomePage* homePage;
     LevelSelectionPage* levelSelectionPage;
     GameBoardPage* gameBoardPage;
+
+   signals:
+    void newGameSignal();
+    void replaySignal();
+
+   public slots:
+    void replayGameSlot();
+    void startNewGameSlot(int difficulty);
 };
 
 class HomeWindow : public QMainWindow {
@@ -61,37 +44,17 @@ class HomeWindow : public QMainWindow {
    public:
     HomeWindow(QMainWindow* parent = nullptr) : QMainWindow(parent) {
         stackedPages = new Pages(this);
-        styleWindow("Main Window", 800, 500, this, "245344");
+        styleWindow("Main Window", windowWidth, windowHeight, this, "E36387");
         setCentralWidget(stackedPages);
+        makeconnection();
     }
-    ~HomeWindow() { delete stackedPages; }
-
-    //     void setupLevelSelectionPage();
-    //     void setupGameBoardPage();
-    void resumeGame();
-    //     void startGame(int level);
-    //     void restartGame(GameBoard* gameBoard);
-    //    protected:
-    //     void resizeEvent(QResizeEvent* event) override {
-    //         // Desired aspect ratio
-    //         float aspectRatio = 4.0f / 3.0f;
-
-    //         // Current size
-    //         QSize size = event->size();
-
-    //         // Adjust width or height to maintain the aspect ratio
-    //         if (size.width() / (float)size.height() > aspectRatio) {
-    //             size.setWidth(size.height() * aspectRatio);
-    //         } else {
-    //             size.setHeight(size.width() / aspectRatio);
-    //         }
-
-    //         // Set the adjusted size
-    //         resize(size);
-    //     }
+    ~HomeWindow() {}
+    void makeconnection();
 
    private:
     Pages* stackedPages;
+    double windowWidth = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 200;
+    double windowHeight = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 100;
 };
 
 #endif

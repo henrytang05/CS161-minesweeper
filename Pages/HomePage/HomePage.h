@@ -18,9 +18,6 @@ class HomePage : public QWidget {
     ~HomePage() {}
     void setupHomePage();
 
-    //    public slots:
-    //     void newGameSlot();
-    // void resumeGameSlot();
    signals:
     void newGameClicked();
     void resumeGameClicked();

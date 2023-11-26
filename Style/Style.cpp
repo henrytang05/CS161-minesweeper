@@ -1,21 +1,24 @@
 #include "../Style/Style.h"
 
-void styleButton(QPushButton* b, std::string&& color, bool rounded) {
-    if (color[0] == '#') color.erase(0, 1);
-    b->setFixedSize(100, 50);
-    if (!rounded)
-        b->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
-    else
-        b->setStyleSheet(
-            QString(("background-color: #" + color + "; border-radius: 15px ;").c_str())
-        );
+void styleButton(
+    QPushButton* b, std::string&& background_color, bool rounded, int width, int height,
+    std::string&& text_color
+) {
+    if (background_color[0] == '#') background_color.erase(0, 1);
+    if (text_color[0] == '#') text_color.erase(0, 1);
+    b->setFixedSize(width, height);
+    b->setStyleSheet(QString::fromStdString(
+        "background-color: #" + background_color + "; " +
+        (rounded ? "border-radius: 15px; " : "") + "font-size: 0px;" + "color: #" +
+        text_color + ";"
+    ));
 }
-void styleLabel(QLabel* label, std::string&& color) {
+void styleLabel(QLabel* label, std::string&& color, double size) {
     if (color[0] == '#') color.erase(0, 1);
     QFont font = label->font();
-    font.setPointSize(30);
+    font.setPointSize(size);
     font.setBold(true);
-    font.setFamily("Arial");
+    font.setFamily("sans-serif");
 
     label->setFont(font);
     label->setFont(font);
@@ -27,7 +30,7 @@ void styleWindow(
     std::string&& title, int width, int height, QMainWindow* window, std::string&& color
 ) {
     window->setWindowTitle(QString::fromStdString(title));
-    window->setBaseSize(4, 3);
-    window->setMinimumWidth(width);
+    window->setFixedSize(width, height);
+    // window->setMinimumWidth(width);
     window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
 }

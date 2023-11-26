@@ -1,341 +1,1404 @@
-Info: Allocated  48  bytes for  Homewindow 
-Info: Memory used:  107 
+Info: Allocated  64  bytes for  Homewindow 
+Info: Memory used:  123 
 Info: Allocated  64  bytes
-Info: Memory used:  171 
+Info: Memory used:  187 
 Info: Allocated  40  bytes for  HomePage 
-Info: Memory used:  211 
+Info: Memory used:  227 
 Info: Allocated  32  bytes for  Layout 
-Info: Memory used:  243 
+Info: Memory used:  259 
 Info: Allocated  32  bytes for  Layout 
-Info: Memory used:  275 
+Info: Memory used:  291 
 Info: Allocated  40  bytes for  Label 
-Info: Memory used:  315 
+Info: Memory used:  331 
 Info: Allocated  40  bytes for  Label 
-Info: Memory used:  355 
+Info: Memory used:  371 
 Info: Allocated  32  bytes for  Layout 
-Info: Memory used:  387 
+Info: Memory used:  403 
 Info: Allocated  40  bytes for  New Game Button 
-Info: Memory used:  427 
+Info: Memory used:  443 
 Info: Allocated  40  bytes for  Resume Button 
-Info: Memory used:  467 
+Info: Memory used:  483 
 Info: Allocated  32  bytes
-Info: Memory used:  499 
+Info: Memory used:  515 
 Info: Allocated  40  bytes for  Level Selection Page 
-Info: Memory used:  539 
+Info: Memory used:  555 
 Info: Allocated  32  bytes for  Layout 
-Info: Memory used:  571 
+Info: Memory used:  587 
 Info: Allocated  40  bytes for  Label 
-Info: Memory used:  611 
+Info: Memory used:  627 
 Info: Allocated  32  bytes for  Layout 
-Info: Memory used:  643 
+Info: Memory used:  659 
 Info: Allocated  40  bytes for  easy button 
-Info: Memory used:  683 
+Info: Memory used:  699 
 Info: Allocated  40  bytes for  medium button 
-Info: Memory used:  723 
+Info: Memory used:  739 
 Info: Allocated  40  bytes for  hard button 
-Info: Memory used:  763 
+Info: Memory used:  779 
 Info: Allocated  40  bytes for  Back Button 
-Info: Memory used:  803 
-Info: Allocated  32  bytes
-Info: Memory used:  835 
-Info: Allocated  32  bytes
+Info: Memory used:  819 
+Info: Allocated  24  bytes
+Info: Memory used:  843 
+Info: Allocated  24  bytes
 Info: Memory used:  867 
+Info: Allocated  24  bytes
+Info: Memory used:  891 
+Info: Allocated  24  bytes
+Info: Memory used:  915 
+Info: Allocated  24  bytes
+Info: Memory used:  939 
 Info: Allocated  32  bytes
-Info: Memory used:  899 
-Info: Allocated  24  bytes
-Info: Memory used:  923 
-Info: Allocated  24  bytes
-Info: Memory used:  947 
-Info: Allocated  24  bytes
 Info: Memory used:  971 
 Info: Allocated  24  bytes
 Info: Memory used:  995 
-Info: Memory used:  995 
-Info: Allocated  56  bytes for  Game Board Page 
-Info: Memory used:  1051 
-Info: Allocated  40  bytes for  Game Board 
-Info: Memory used:  1091 
+Info: Allocated  24  bytes
+Info: Memory used:  1019 
+Info: Allocated  24  bytes
+Info: Memory used:  1043 
 Info: Allocated  64  bytes
-Info: Memory used:  1155 
-Info: Allocated  192  bytes
-Info: Memory used:  1347 
-Info: Allocated  64  bytes
-Info: Memory used:  1411 
-Info: Allocated  64  bytes
-Info: Memory used:  1475 
-Info: Allocated  64  bytes
-Info: Memory used:  1539 
-Info: Allocated  64  bytes
-Info: Memory used:  1603 
-Info: Allocated  64  bytes
-Info: Memory used:  1667 
-Info: Allocated  64  bytes
-Info: Memory used:  1731 
-Info: Allocated  64  bytes
-Info: Memory used:  1795 
-Info: Allocated  64  bytes
-Info: Memory used:  1859 
-Info: Freed  64  bytes
-Info: Memory used:  1795 
-Info: Allocated  32  bytes for  mainGridLayout 
-Info: Memory used:  1827 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  1875 
-Info: Allocated  32  bytes
-Info: Memory used:  1907 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  1955 
-Info: Allocated  32  bytes
-Info: Memory used:  1987 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2035 
-Info: Allocated  32  bytes
-Info: Memory used:  2067 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2115 
-Info: Allocated  32  bytes
-Info: Memory used:  2147 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2195 
-Info: Allocated  32  bytes
-Info: Memory used:  2227 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2275 
-Info: Allocated  32  bytes
-Info: Memory used:  2307 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2355 
-Info: Allocated  32  bytes
-Info: Memory used:  2387 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2435 
-Info: Allocated  32  bytes
-Info: Memory used:  2467 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2515 
-Info: Allocated  32  bytes
-Info: Memory used:  2547 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2595 
-Info: Allocated  32  bytes
-Info: Memory used:  2627 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2675 
-Info: Allocated  32  bytes
-Info: Memory used:  2707 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2755 
-Info: Allocated  32  bytes
-Info: Memory used:  2787 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2835 
-Info: Allocated  32  bytes
-Info: Memory used:  2867 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2915 
-Info: Allocated  32  bytes
-Info: Memory used:  2947 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  2995 
-Info: Allocated  32  bytes
-Info: Memory used:  3027 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3075 
-Info: Allocated  32  bytes
-Info: Memory used:  3107 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3155 
-Info: Allocated  32  bytes
-Info: Memory used:  3187 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3235 
-Info: Allocated  32  bytes
-Info: Memory used:  3267 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3315 
-Info: Allocated  32  bytes
-Info: Memory used:  3347 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3395 
-Info: Allocated  32  bytes
-Info: Memory used:  3427 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3475 
-Info: Allocated  32  bytes
-Info: Memory used:  3507 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3555 
-Info: Allocated  32  bytes
-Info: Memory used:  3587 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3635 
-Info: Allocated  32  bytes
-Info: Memory used:  3667 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3715 
-Info: Allocated  32  bytes
-Info: Memory used:  3747 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3795 
-Info: Allocated  32  bytes
-Info: Memory used:  3827 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3875 
-Info: Allocated  32  bytes
-Info: Memory used:  3907 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  3955 
-Info: Allocated  32  bytes
-Info: Memory used:  3987 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4035 
-Info: Allocated  32  bytes
-Info: Memory used:  4067 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4115 
-Info: Allocated  32  bytes
-Info: Memory used:  4147 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4195 
-Info: Allocated  32  bytes
-Info: Memory used:  4227 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4275 
-Info: Allocated  32  bytes
-Info: Memory used:  4307 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4355 
-Info: Allocated  32  bytes
-Info: Memory used:  4387 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4435 
-Info: Allocated  32  bytes
-Info: Memory used:  4467 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4515 
-Info: Allocated  32  bytes
-Info: Memory used:  4547 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4595 
-Info: Allocated  32  bytes
-Info: Memory used:  4627 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4675 
-Info: Allocated  32  bytes
-Info: Memory used:  4707 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4755 
-Info: Allocated  32  bytes
-Info: Memory used:  4787 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4835 
-Info: Allocated  32  bytes
-Info: Memory used:  4867 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4915 
-Info: Allocated  32  bytes
-Info: Memory used:  4947 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  4995 
-Info: Allocated  32  bytes
-Info: Memory used:  5027 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5075 
-Info: Allocated  32  bytes
-Info: Memory used:  5107 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5155 
-Info: Allocated  32  bytes
-Info: Memory used:  5187 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5235 
-Info: Allocated  32  bytes
-Info: Memory used:  5267 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5315 
-Info: Allocated  32  bytes
-Info: Memory used:  5347 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5395 
-Info: Allocated  32  bytes
-Info: Memory used:  5427 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5475 
-Info: Allocated  32  bytes
-Info: Memory used:  5507 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5555 
-Info: Allocated  32  bytes
-Info: Memory used:  5587 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5635 
-Info: Allocated  32  bytes
-Info: Memory used:  5667 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5715 
-Info: Allocated  32  bytes
-Info: Memory used:  5747 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5795 
-Info: Allocated  32  bytes
-Info: Memory used:  5827 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5875 
-Info: Allocated  32  bytes
-Info: Memory used:  5907 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  5955 
-Info: Allocated  32  bytes
-Info: Memory used:  5987 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6035 
-Info: Allocated  32  bytes
-Info: Memory used:  6067 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6115 
-Info: Allocated  32  bytes
-Info: Memory used:  6147 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6195 
-Info: Allocated  32  bytes
-Info: Memory used:  6227 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6275 
-Info: Allocated  32  bytes
-Info: Memory used:  6307 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6355 
-Info: Allocated  32  bytes
-Info: Memory used:  6387 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6435 
-Info: Allocated  32  bytes
-Info: Memory used:  6467 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6515 
-Info: Allocated  32  bytes
-Info: Memory used:  6547 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6595 
-Info: Allocated  32  bytes
-Info: Memory used:  6627 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6675 
-Info: Allocated  32  bytes
-Info: Memory used:  6707 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6755 
-Info: Allocated  32  bytes
-Info: Memory used:  6787 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6835 
-Info: Allocated  32  bytes
-Info: Memory used:  6867 
-Info: Allocated  48  bytes for  Square in grid 
-Info: Memory used:  6915 
-Info: Allocated  32  bytes
-Info: Memory used:  6947 
-Info: Allocated  40  bytes for  Replay Button 
-Info: Memory used:  6987 
+Info: Memory used:  1107 
 Info: Allocated  32  bytes for  layout 
+Info: Memory used:  1139 
+Info: Allocated  40  bytes for  Game Board 
+Info: Memory used:  1179 
+Info: Allocated  64  bytes
+Info: Memory used:  1243 
+Info: Allocated  192  bytes
+Info: Memory used:  1435 
+Info: Allocated  64  bytes
+Info: Memory used:  1499 
+Info: Allocated  64  bytes
+Info: Memory used:  1563 
+Info: Allocated  64  bytes
+Info: Memory used:  1627 
+Info: Allocated  64  bytes
+Info: Memory used:  1691 
+Info: Allocated  64  bytes
+Info: Memory used:  1755 
+Info: Allocated  64  bytes
+Info: Memory used:  1819 
+Info: Allocated  64  bytes
+Info: Memory used:  1883 
+Info: Allocated  64  bytes
+Info: Memory used:  1947 
+Info: Freed  64  bytes
+Info: Memory used:  1883 
+Info: Allocated  32  bytes for  mainGridLayout 
+Info: Memory used:  1915 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  1963 
+Info: Allocated  32  bytes
+Info: Memory used:  1995 
+Info: Allocated  32  bytes
+Info: Memory used:  2027 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2075 
+Info: Allocated  32  bytes
+Info: Memory used:  2107 
+Info: Allocated  32  bytes
+Info: Memory used:  2139 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2187 
+Info: Allocated  32  bytes
+Info: Memory used:  2219 
+Info: Allocated  32  bytes
+Info: Memory used:  2251 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2299 
+Info: Allocated  32  bytes
+Info: Memory used:  2331 
+Info: Allocated  32  bytes
+Info: Memory used:  2363 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2411 
+Info: Allocated  32  bytes
+Info: Memory used:  2443 
+Info: Allocated  32  bytes
+Info: Memory used:  2475 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2523 
+Info: Allocated  32  bytes
+Info: Memory used:  2555 
+Info: Allocated  32  bytes
+Info: Memory used:  2587 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2635 
+Info: Allocated  32  bytes
+Info: Memory used:  2667 
+Info: Allocated  32  bytes
+Info: Memory used:  2699 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2747 
+Info: Allocated  32  bytes
+Info: Memory used:  2779 
+Info: Allocated  32  bytes
+Info: Memory used:  2811 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2859 
+Info: Allocated  32  bytes
+Info: Memory used:  2891 
+Info: Allocated  32  bytes
+Info: Memory used:  2923 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2971 
+Info: Allocated  32  bytes
+Info: Memory used:  3003 
+Info: Allocated  32  bytes
+Info: Memory used:  3035 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3083 
+Info: Allocated  32  bytes
+Info: Memory used:  3115 
+Info: Allocated  32  bytes
+Info: Memory used:  3147 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3195 
+Info: Allocated  32  bytes
+Info: Memory used:  3227 
+Info: Allocated  32  bytes
+Info: Memory used:  3259 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3307 
+Info: Allocated  32  bytes
+Info: Memory used:  3339 
+Info: Allocated  32  bytes
+Info: Memory used:  3371 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3419 
+Info: Allocated  32  bytes
+Info: Memory used:  3451 
+Info: Allocated  32  bytes
+Info: Memory used:  3483 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3531 
+Info: Allocated  32  bytes
+Info: Memory used:  3563 
+Info: Allocated  32  bytes
+Info: Memory used:  3595 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3643 
+Info: Allocated  32  bytes
+Info: Memory used:  3675 
+Info: Allocated  32  bytes
+Info: Memory used:  3707 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3755 
+Info: Allocated  32  bytes
+Info: Memory used:  3787 
+Info: Allocated  32  bytes
+Info: Memory used:  3819 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3867 
+Info: Allocated  32  bytes
+Info: Memory used:  3899 
+Info: Allocated  32  bytes
+Info: Memory used:  3931 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3979 
+Info: Allocated  32  bytes
+Info: Memory used:  4011 
+Info: Allocated  32  bytes
+Info: Memory used:  4043 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4091 
+Info: Allocated  32  bytes
+Info: Memory used:  4123 
+Info: Allocated  32  bytes
+Info: Memory used:  4155 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4203 
+Info: Allocated  32  bytes
+Info: Memory used:  4235 
+Info: Allocated  32  bytes
+Info: Memory used:  4267 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4315 
+Info: Allocated  32  bytes
+Info: Memory used:  4347 
+Info: Allocated  32  bytes
+Info: Memory used:  4379 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4427 
+Info: Allocated  32  bytes
+Info: Memory used:  4459 
+Info: Allocated  32  bytes
+Info: Memory used:  4491 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4539 
+Info: Allocated  32  bytes
+Info: Memory used:  4571 
+Info: Allocated  32  bytes
+Info: Memory used:  4603 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4651 
+Info: Allocated  32  bytes
+Info: Memory used:  4683 
+Info: Allocated  32  bytes
+Info: Memory used:  4715 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4763 
+Info: Allocated  32  bytes
+Info: Memory used:  4795 
+Info: Allocated  32  bytes
+Info: Memory used:  4827 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4875 
+Info: Allocated  32  bytes
+Info: Memory used:  4907 
+Info: Allocated  32  bytes
+Info: Memory used:  4939 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4987 
+Info: Allocated  32  bytes
+Info: Memory used:  5019 
+Info: Allocated  32  bytes
+Info: Memory used:  5051 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5099 
+Info: Allocated  32  bytes
+Info: Memory used:  5131 
+Info: Allocated  32  bytes
+Info: Memory used:  5163 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5211 
+Info: Allocated  32  bytes
+Info: Memory used:  5243 
+Info: Allocated  32  bytes
+Info: Memory used:  5275 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5323 
+Info: Allocated  32  bytes
+Info: Memory used:  5355 
+Info: Allocated  32  bytes
+Info: Memory used:  5387 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5435 
+Info: Allocated  32  bytes
+Info: Memory used:  5467 
+Info: Allocated  32  bytes
+Info: Memory used:  5499 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5547 
+Info: Allocated  32  bytes
+Info: Memory used:  5579 
+Info: Allocated  32  bytes
+Info: Memory used:  5611 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5659 
+Info: Allocated  32  bytes
+Info: Memory used:  5691 
+Info: Allocated  32  bytes
+Info: Memory used:  5723 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5771 
+Info: Allocated  32  bytes
+Info: Memory used:  5803 
+Info: Allocated  32  bytes
+Info: Memory used:  5835 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5883 
+Info: Allocated  32  bytes
+Info: Memory used:  5915 
+Info: Allocated  32  bytes
+Info: Memory used:  5947 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5995 
+Info: Allocated  32  bytes
+Info: Memory used:  6027 
+Info: Allocated  32  bytes
+Info: Memory used:  6059 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6107 
+Info: Allocated  32  bytes
+Info: Memory used:  6139 
+Info: Allocated  32  bytes
+Info: Memory used:  6171 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6219 
+Info: Allocated  32  bytes
+Info: Memory used:  6251 
+Info: Allocated  32  bytes
+Info: Memory used:  6283 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6331 
+Info: Allocated  32  bytes
+Info: Memory used:  6363 
+Info: Allocated  32  bytes
+Info: Memory used:  6395 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6443 
+Info: Allocated  32  bytes
+Info: Memory used:  6475 
+Info: Allocated  32  bytes
+Info: Memory used:  6507 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6555 
+Info: Allocated  32  bytes
+Info: Memory used:  6587 
+Info: Allocated  32  bytes
+Info: Memory used:  6619 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6667 
+Info: Allocated  32  bytes
+Info: Memory used:  6699 
+Info: Allocated  32  bytes
+Info: Memory used:  6731 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6779 
+Info: Allocated  32  bytes
+Info: Memory used:  6811 
+Info: Allocated  32  bytes
+Info: Memory used:  6843 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6891 
+Info: Allocated  32  bytes
+Info: Memory used:  6923 
+Info: Allocated  32  bytes
+Info: Memory used:  6955 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7003 
+Info: Allocated  32  bytes
+Info: Memory used:  7035 
+Info: Allocated  32  bytes
+Info: Memory used:  7067 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7115 
+Info: Allocated  32  bytes
+Info: Memory used:  7147 
+Info: Allocated  32  bytes
+Info: Memory used:  7179 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7227 
+Info: Allocated  32  bytes
+Info: Memory used:  7259 
+Info: Allocated  32  bytes
+Info: Memory used:  7291 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7339 
+Info: Allocated  32  bytes
+Info: Memory used:  7371 
+Info: Allocated  32  bytes
+Info: Memory used:  7403 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7451 
+Info: Allocated  32  bytes
+Info: Memory used:  7483 
+Info: Allocated  32  bytes
+Info: Memory used:  7515 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7563 
+Info: Allocated  32  bytes
+Info: Memory used:  7595 
+Info: Allocated  32  bytes
+Info: Memory used:  7627 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7675 
+Info: Allocated  32  bytes
+Info: Memory used:  7707 
+Info: Allocated  32  bytes
+Info: Memory used:  7739 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7787 
+Info: Allocated  32  bytes
+Info: Memory used:  7819 
+Info: Allocated  32  bytes
+Info: Memory used:  7851 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7899 
+Info: Allocated  32  bytes
+Info: Memory used:  7931 
+Info: Allocated  32  bytes
+Info: Memory used:  7963 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8011 
+Info: Allocated  32  bytes
+Info: Memory used:  8043 
+Info: Allocated  32  bytes
+Info: Memory used:  8075 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8123 
+Info: Allocated  32  bytes
+Info: Memory used:  8155 
+Info: Allocated  32  bytes
+Info: Memory used:  8187 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8235 
+Info: Allocated  32  bytes
+Info: Memory used:  8267 
+Info: Allocated  32  bytes
+Info: Memory used:  8299 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8347 
+Info: Allocated  32  bytes
+Info: Memory used:  8379 
+Info: Allocated  32  bytes
+Info: Memory used:  8411 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8459 
+Info: Allocated  32  bytes
+Info: Memory used:  8491 
+Info: Allocated  32  bytes
+Info: Memory used:  8523 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8571 
+Info: Allocated  32  bytes
+Info: Memory used:  8603 
+Info: Allocated  32  bytes
+Info: Memory used:  8635 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8683 
+Info: Allocated  32  bytes
+Info: Memory used:  8715 
+Info: Allocated  32  bytes
+Info: Memory used:  8747 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8795 
+Info: Allocated  32  bytes
+Info: Memory used:  8827 
+Info: Allocated  32  bytes
+Info: Memory used:  8859 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8907 
+Info: Allocated  32  bytes
+Info: Memory used:  8939 
+Info: Allocated  32  bytes
+Info: Memory used:  8971 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  9019 
+Info: Allocated  32  bytes
+Info: Memory used:  9051 
+Info: Allocated  32  bytes
+Info: Memory used:  9083 
+Info: Allocated  40  bytes for  Replay Button 
+Info: Memory used:  9123 
+Info: Allocated  40  bytes for  Announcement Label 
+Info: Memory used:  9163 
+Info: Allocated  32  bytes for  rightLayout 
+Info: Memory used:  9195 
+Info: Allocated  32  bytes
+Info: Memory used:  9227 
+Info: Allocated  32  bytes
+Info: Memory used:  9259 
+Info: Allocated  32  bytes
+Info: Memory used:  9291 
+Info: Allocated  32  bytes
+Info: Memory used:  9323 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  9291 
+Info: Freed  32  bytes
+Info: Memory used:  9259 
+Info: Freed  48  bytes
+Info: Memory used:  9211 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  9179 
+Info: Freed  32  bytes
+Info: Memory used:  9147 
+Info: Freed  48  bytes
+Info: Memory used:  9099 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  9067 
+Info: Freed  32  bytes
+Info: Memory used:  9035 
+Info: Freed  48  bytes
+Info: Memory used:  8987 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8955 
+Info: Freed  32  bytes
+Info: Memory used:  8923 
+Info: Freed  48  bytes
+Info: Memory used:  8875 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8843 
+Info: Freed  32  bytes
+Info: Memory used:  8811 
+Info: Freed  48  bytes
+Info: Memory used:  8763 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8731 
+Info: Freed  32  bytes
+Info: Memory used:  8699 
+Info: Freed  48  bytes
+Info: Memory used:  8651 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8619 
+Info: Freed  32  bytes
+Info: Memory used:  8587 
+Info: Freed  48  bytes
+Info: Memory used:  8539 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8507 
+Info: Freed  32  bytes
+Info: Memory used:  8475 
+Info: Freed  48  bytes
+Info: Memory used:  8427 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8395 
+Info: Freed  32  bytes
+Info: Memory used:  8363 
+Info: Freed  48  bytes
+Info: Memory used:  8315 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8283 
+Info: Freed  32  bytes
+Info: Memory used:  8251 
+Info: Freed  48  bytes
+Info: Memory used:  8203 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8171 
+Info: Freed  32  bytes
+Info: Memory used:  8139 
+Info: Freed  48  bytes
+Info: Memory used:  8091 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  8059 
+Info: Freed  32  bytes
+Info: Memory used:  8027 
+Info: Freed  48  bytes
+Info: Memory used:  7979 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7947 
+Info: Freed  32  bytes
+Info: Memory used:  7915 
+Info: Freed  48  bytes
+Info: Memory used:  7867 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7835 
+Info: Freed  32  bytes
+Info: Memory used:  7803 
+Info: Freed  48  bytes
+Info: Memory used:  7755 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7723 
+Info: Freed  32  bytes
+Info: Memory used:  7691 
+Info: Freed  48  bytes
+Info: Memory used:  7643 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7611 
+Info: Freed  32  bytes
+Info: Memory used:  7579 
+Info: Freed  48  bytes
+Info: Memory used:  7531 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7499 
+Info: Freed  32  bytes
+Info: Memory used:  7467 
+Info: Freed  48  bytes
+Info: Memory used:  7419 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7387 
+Info: Freed  32  bytes
+Info: Memory used:  7355 
+Info: Freed  48  bytes
+Info: Memory used:  7307 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7275 
+Info: Freed  32  bytes
+Info: Memory used:  7243 
+Info: Freed  48  bytes
+Info: Memory used:  7195 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7163 
+Info: Freed  32  bytes
+Info: Memory used:  7131 
+Info: Freed  48  bytes
+Info: Memory used:  7083 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  7051 
+Info: Freed  32  bytes
 Info: Memory used:  7019 
+Info: Freed  48  bytes
+Info: Memory used:  6971 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6939 
+Info: Freed  32  bytes
+Info: Memory used:  6907 
+Info: Freed  48  bytes
+Info: Memory used:  6859 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6827 
+Info: Freed  32  bytes
+Info: Memory used:  6795 
+Info: Freed  48  bytes
+Info: Memory used:  6747 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6715 
+Info: Freed  32  bytes
+Info: Memory used:  6683 
+Info: Freed  48  bytes
+Info: Memory used:  6635 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6603 
+Info: Freed  32  bytes
+Info: Memory used:  6571 
+Info: Freed  48  bytes
+Info: Memory used:  6523 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6491 
+Info: Freed  32  bytes
+Info: Memory used:  6459 
+Info: Freed  48  bytes
+Info: Memory used:  6411 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6379 
+Info: Freed  32  bytes
+Info: Memory used:  6347 
+Info: Freed  48  bytes
+Info: Memory used:  6299 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6267 
+Info: Freed  32  bytes
+Info: Memory used:  6235 
+Info: Freed  48  bytes
+Info: Memory used:  6187 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6155 
+Info: Freed  32  bytes
+Info: Memory used:  6123 
+Info: Freed  48  bytes
+Info: Memory used:  6075 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  6043 
+Info: Freed  32  bytes
+Info: Memory used:  6011 
+Info: Freed  48  bytes
+Info: Memory used:  5963 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5931 
+Info: Freed  32  bytes
+Info: Memory used:  5899 
+Info: Freed  48  bytes
+Info: Memory used:  5851 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5819 
+Info: Freed  32  bytes
+Info: Memory used:  5787 
+Info: Freed  48  bytes
+Info: Memory used:  5739 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5707 
+Info: Freed  32  bytes
+Info: Memory used:  5675 
+Info: Freed  48  bytes
+Info: Memory used:  5627 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5595 
+Info: Freed  32  bytes
+Info: Memory used:  5563 
+Info: Freed  48  bytes
+Info: Memory used:  5515 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5483 
+Info: Freed  32  bytes
+Info: Memory used:  5451 
+Info: Freed  48  bytes
+Info: Memory used:  5403 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5371 
+Info: Freed  32  bytes
+Info: Memory used:  5339 
+Info: Freed  48  bytes
+Info: Memory used:  5291 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5259 
+Info: Freed  32  bytes
+Info: Memory used:  5227 
+Info: Freed  48  bytes
+Info: Memory used:  5179 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5147 
+Info: Freed  32  bytes
+Info: Memory used:  5115 
+Info: Freed  48  bytes
+Info: Memory used:  5067 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  5035 
+Info: Freed  32  bytes
+Info: Memory used:  5003 
+Info: Freed  48  bytes
+Info: Memory used:  4955 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4923 
+Info: Freed  32  bytes
+Info: Memory used:  4891 
+Info: Freed  48  bytes
+Info: Memory used:  4843 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4811 
+Info: Freed  32  bytes
+Info: Memory used:  4779 
+Info: Freed  48  bytes
+Info: Memory used:  4731 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4699 
+Info: Freed  32  bytes
+Info: Memory used:  4667 
+Info: Freed  48  bytes
+Info: Memory used:  4619 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4587 
+Info: Freed  32  bytes
+Info: Memory used:  4555 
+Info: Freed  48  bytes
+Info: Memory used:  4507 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4475 
+Info: Freed  32  bytes
+Info: Memory used:  4443 
+Info: Freed  48  bytes
+Info: Memory used:  4395 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4363 
+Info: Freed  32  bytes
+Info: Memory used:  4331 
+Info: Freed  48  bytes
+Info: Memory used:  4283 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4251 
+Info: Freed  32  bytes
+Info: Memory used:  4219 
+Info: Freed  48  bytes
+Info: Memory used:  4171 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4139 
+Info: Freed  32  bytes
+Info: Memory used:  4107 
+Info: Freed  48  bytes
+Info: Memory used:  4059 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  4027 
+Info: Freed  32  bytes
+Info: Memory used:  3995 
+Info: Freed  48  bytes
+Info: Memory used:  3947 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3915 
+Info: Freed  32  bytes
+Info: Memory used:  3883 
+Info: Freed  48  bytes
+Info: Memory used:  3835 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3803 
+Info: Freed  32  bytes
+Info: Memory used:  3771 
+Info: Freed  48  bytes
+Info: Memory used:  3723 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3691 
+Info: Freed  32  bytes
+Info: Memory used:  3659 
+Info: Freed  48  bytes
+Info: Memory used:  3611 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3579 
+Info: Freed  32  bytes
+Info: Memory used:  3547 
+Info: Freed  48  bytes
+Info: Memory used:  3499 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3467 
+Info: Freed  32  bytes
+Info: Memory used:  3435 
+Info: Freed  48  bytes
+Info: Memory used:  3387 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3355 
+Info: Freed  32  bytes
+Info: Memory used:  3323 
+Info: Freed  48  bytes
+Info: Memory used:  3275 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3243 
+Info: Freed  32  bytes
+Info: Memory used:  3211 
+Info: Freed  48  bytes
+Info: Memory used:  3163 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3131 
+Info: Freed  32  bytes
+Info: Memory used:  3099 
+Info: Freed  48  bytes
+Info: Memory used:  3051 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  3019 
+Info: Freed  32  bytes
+Info: Memory used:  2987 
+Info: Freed  48  bytes
+Info: Memory used:  2939 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  2907 
+Info: Freed  32  bytes
+Info: Memory used:  2875 
+Info: Freed  48  bytes
+Info: Memory used:  2827 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  2795 
+Info: Freed  32  bytes
+Info: Memory used:  2763 
+Info: Freed  48  bytes
+Info: Memory used:  2715 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  2683 
+Info: Freed  32  bytes
+Info: Memory used:  2651 
+Info: Freed  48  bytes
+Info: Memory used:  2603 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  2571 
+Info: Freed  32  bytes
+Info: Memory used:  2539 
+Info: Freed  48  bytes
+Info: Memory used:  2491 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  2459 
+Info: Freed  32  bytes
+Info: Memory used:  2427 
+Info: Freed  48  bytes
+Info: Memory used:  2379 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  2347 
+Info: Freed  32  bytes
+Info: Memory used:  2315 
+Info: Freed  48  bytes
+Info: Memory used:  2267 
+Info: --------Square deleted
+Info: Freed  32  bytes
+Info: Memory used:  2235 
+Info: Freed  32  bytes
+Info: Memory used:  2203 
+Info: Freed  48  bytes
+Info: Memory used:  2155 
+Info: Freed  32  bytes
+Info: Memory used:  2123 
+Info: Freed  40  bytes
+Info: Memory used:  2083 
+Info: Freed  64  bytes
+Info: Memory used:  2019 
+Info: Freed  32  bytes
+Info: Memory used:  1987 
+Info: Freed  32  bytes
+Info: Memory used:  1955 
+Info: Freed  32  bytes
+Info: Memory used:  1923 
+Info: Allocated  64  bytes
+Info: Memory used:  1987 
+Info: Allocated  32  bytes for  layout 
+Info: Memory used:  2019 
+Info: Allocated  40  bytes for  Game Board 
+Info: Memory used:  2059 
+Info: Allocated  64  bytes
+Info: Memory used:  2123 
+Info: Freed  64  bytes
+Info: Memory used:  2059 
+Info: Allocated  32  bytes for  mainGridLayout 
+Info: Memory used:  2091 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2139 
+Info: Allocated  32  bytes
+Info: Memory used:  2171 
+Info: Allocated  32  bytes
+Info: Memory used:  2203 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2251 
+Info: Allocated  32  bytes
+Info: Memory used:  2283 
+Info: Allocated  32  bytes
+Info: Memory used:  2315 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2363 
+Info: Allocated  32  bytes
+Info: Memory used:  2395 
+Info: Allocated  32  bytes
+Info: Memory used:  2427 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2475 
+Info: Allocated  32  bytes
+Info: Memory used:  2507 
+Info: Allocated  32  bytes
+Info: Memory used:  2539 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2587 
+Info: Allocated  32  bytes
+Info: Memory used:  2619 
+Info: Allocated  32  bytes
+Info: Memory used:  2651 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2699 
+Info: Allocated  32  bytes
+Info: Memory used:  2731 
+Info: Allocated  32  bytes
+Info: Memory used:  2763 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2811 
+Info: Allocated  32  bytes
+Info: Memory used:  2843 
+Info: Allocated  32  bytes
+Info: Memory used:  2875 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  2923 
+Info: Allocated  32  bytes
+Info: Memory used:  2955 
+Info: Allocated  32  bytes
+Info: Memory used:  2987 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3035 
+Info: Allocated  32  bytes
+Info: Memory used:  3067 
+Info: Allocated  32  bytes
+Info: Memory used:  3099 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3147 
+Info: Allocated  32  bytes
+Info: Memory used:  3179 
+Info: Allocated  32  bytes
+Info: Memory used:  3211 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3259 
+Info: Allocated  32  bytes
+Info: Memory used:  3291 
+Info: Allocated  32  bytes
+Info: Memory used:  3323 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3371 
+Info: Allocated  32  bytes
+Info: Memory used:  3403 
+Info: Allocated  32  bytes
+Info: Memory used:  3435 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3483 
+Info: Allocated  32  bytes
+Info: Memory used:  3515 
+Info: Allocated  32  bytes
+Info: Memory used:  3547 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3595 
+Info: Allocated  32  bytes
+Info: Memory used:  3627 
+Info: Allocated  32  bytes
+Info: Memory used:  3659 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3707 
+Info: Allocated  32  bytes
+Info: Memory used:  3739 
+Info: Allocated  32  bytes
+Info: Memory used:  3771 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3819 
+Info: Allocated  32  bytes
+Info: Memory used:  3851 
+Info: Allocated  32  bytes
+Info: Memory used:  3883 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  3931 
+Info: Allocated  32  bytes
+Info: Memory used:  3963 
+Info: Allocated  32  bytes
+Info: Memory used:  3995 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4043 
+Info: Allocated  32  bytes
+Info: Memory used:  4075 
+Info: Allocated  32  bytes
+Info: Memory used:  4107 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4155 
+Info: Allocated  32  bytes
+Info: Memory used:  4187 
+Info: Allocated  32  bytes
+Info: Memory used:  4219 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4267 
+Info: Allocated  32  bytes
+Info: Memory used:  4299 
+Info: Allocated  32  bytes
+Info: Memory used:  4331 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4379 
+Info: Allocated  32  bytes
+Info: Memory used:  4411 
+Info: Allocated  32  bytes
+Info: Memory used:  4443 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4491 
+Info: Allocated  32  bytes
+Info: Memory used:  4523 
+Info: Allocated  32  bytes
+Info: Memory used:  4555 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4603 
+Info: Allocated  32  bytes
+Info: Memory used:  4635 
+Info: Allocated  32  bytes
+Info: Memory used:  4667 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4715 
+Info: Allocated  32  bytes
+Info: Memory used:  4747 
+Info: Allocated  32  bytes
+Info: Memory used:  4779 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4827 
+Info: Allocated  32  bytes
+Info: Memory used:  4859 
+Info: Allocated  32  bytes
+Info: Memory used:  4891 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  4939 
+Info: Allocated  32  bytes
+Info: Memory used:  4971 
+Info: Allocated  32  bytes
+Info: Memory used:  5003 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5051 
+Info: Allocated  32  bytes
+Info: Memory used:  5083 
+Info: Allocated  32  bytes
+Info: Memory used:  5115 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5163 
+Info: Allocated  32  bytes
+Info: Memory used:  5195 
+Info: Allocated  32  bytes
+Info: Memory used:  5227 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5275 
+Info: Allocated  32  bytes
+Info: Memory used:  5307 
+Info: Allocated  32  bytes
+Info: Memory used:  5339 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5387 
+Info: Allocated  32  bytes
+Info: Memory used:  5419 
+Info: Allocated  32  bytes
+Info: Memory used:  5451 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5499 
+Info: Allocated  32  bytes
+Info: Memory used:  5531 
+Info: Allocated  32  bytes
+Info: Memory used:  5563 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5611 
+Info: Allocated  32  bytes
+Info: Memory used:  5643 
+Info: Allocated  32  bytes
+Info: Memory used:  5675 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5723 
+Info: Allocated  32  bytes
+Info: Memory used:  5755 
+Info: Allocated  32  bytes
+Info: Memory used:  5787 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5835 
+Info: Allocated  32  bytes
+Info: Memory used:  5867 
+Info: Allocated  32  bytes
+Info: Memory used:  5899 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  5947 
+Info: Allocated  32  bytes
+Info: Memory used:  5979 
+Info: Allocated  32  bytes
+Info: Memory used:  6011 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6059 
+Info: Allocated  32  bytes
+Info: Memory used:  6091 
+Info: Allocated  32  bytes
+Info: Memory used:  6123 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6171 
+Info: Allocated  32  bytes
+Info: Memory used:  6203 
+Info: Allocated  32  bytes
+Info: Memory used:  6235 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6283 
+Info: Allocated  32  bytes
+Info: Memory used:  6315 
+Info: Allocated  32  bytes
+Info: Memory used:  6347 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6395 
+Info: Allocated  32  bytes
+Info: Memory used:  6427 
+Info: Allocated  32  bytes
+Info: Memory used:  6459 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6507 
+Info: Allocated  32  bytes
+Info: Memory used:  6539 
+Info: Allocated  32  bytes
+Info: Memory used:  6571 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6619 
+Info: Allocated  32  bytes
+Info: Memory used:  6651 
+Info: Allocated  32  bytes
+Info: Memory used:  6683 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6731 
+Info: Allocated  32  bytes
+Info: Memory used:  6763 
+Info: Allocated  32  bytes
+Info: Memory used:  6795 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6843 
+Info: Allocated  32  bytes
+Info: Memory used:  6875 
+Info: Allocated  32  bytes
+Info: Memory used:  6907 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  6955 
+Info: Allocated  32  bytes
+Info: Memory used:  6987 
+Info: Allocated  32  bytes
+Info: Memory used:  7019 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7067 
+Info: Allocated  32  bytes
+Info: Memory used:  7099 
+Info: Allocated  32  bytes
+Info: Memory used:  7131 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7179 
+Info: Allocated  32  bytes
+Info: Memory used:  7211 
+Info: Allocated  32  bytes
+Info: Memory used:  7243 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7291 
+Info: Allocated  32  bytes
+Info: Memory used:  7323 
+Info: Allocated  32  bytes
+Info: Memory used:  7355 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7403 
+Info: Allocated  32  bytes
+Info: Memory used:  7435 
+Info: Allocated  32  bytes
+Info: Memory used:  7467 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7515 
+Info: Allocated  32  bytes
+Info: Memory used:  7547 
+Info: Allocated  32  bytes
+Info: Memory used:  7579 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7627 
+Info: Allocated  32  bytes
+Info: Memory used:  7659 
+Info: Allocated  32  bytes
+Info: Memory used:  7691 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7739 
+Info: Allocated  32  bytes
+Info: Memory used:  7771 
+Info: Allocated  32  bytes
+Info: Memory used:  7803 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7851 
+Info: Allocated  32  bytes
+Info: Memory used:  7883 
+Info: Allocated  32  bytes
+Info: Memory used:  7915 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  7963 
+Info: Allocated  32  bytes
+Info: Memory used:  7995 
+Info: Allocated  32  bytes
+Info: Memory used:  8027 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8075 
+Info: Allocated  32  bytes
+Info: Memory used:  8107 
+Info: Allocated  32  bytes
+Info: Memory used:  8139 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8187 
+Info: Allocated  32  bytes
+Info: Memory used:  8219 
+Info: Allocated  32  bytes
+Info: Memory used:  8251 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8299 
+Info: Allocated  32  bytes
+Info: Memory used:  8331 
+Info: Allocated  32  bytes
+Info: Memory used:  8363 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8411 
+Info: Allocated  32  bytes
+Info: Memory used:  8443 
+Info: Allocated  32  bytes
+Info: Memory used:  8475 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8523 
+Info: Allocated  32  bytes
+Info: Memory used:  8555 
+Info: Allocated  32  bytes
+Info: Memory used:  8587 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8635 
+Info: Allocated  32  bytes
+Info: Memory used:  8667 
+Info: Allocated  32  bytes
+Info: Memory used:  8699 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8747 
+Info: Allocated  32  bytes
+Info: Memory used:  8779 
+Info: Allocated  32  bytes
+Info: Memory used:  8811 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8859 
+Info: Allocated  32  bytes
+Info: Memory used:  8891 
+Info: Allocated  32  bytes
+Info: Memory used:  8923 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  8971 
+Info: Allocated  32  bytes
+Info: Memory used:  9003 
+Info: Allocated  32  bytes
+Info: Memory used:  9035 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  9083 
+Info: Allocated  32  bytes
+Info: Memory used:  9115 
+Info: Allocated  32  bytes
+Info: Memory used:  9147 
+Info: Allocated  48  bytes for  Square in grid 
+Info: Memory used:  9195 
+Info: Allocated  32  bytes
+Info: Memory used:  9227 
+Info: Allocated  32  bytes
+Info: Memory used:  9259 
+Info: Allocated  40  bytes for  Replay Button 
+Info: Memory used:  9299 
+Info: Allocated  40  bytes for  Announcement Label 
+Info: Memory used:  9339 
+Info: Allocated  32  bytes for  rightLayout 
+Info: Memory used:  9371 
+Info: Allocated  32  bytes
+Info: Memory used:  9403 
+Info: Allocated  32  bytes
+Info: Memory used:  9435 
+Info: Allocated  32  bytes
+Info: Memory used:  9467 
+Info: Allocated  32  bytes
+Info: Memory used:  9499 
+Info: Allocated  64  bytes
+Info: Memory used:  9563 
+Info: Freed  64  bytes
+Info: Memory used:  9499 
+Info: Allocated  64  bytes
+Info: Memory used:  9563 
+Info: Freed  64  bytes
+Info: Memory used:  9499 
+Info: Allocated  64  bytes
+Info: Memory used:  9563 
+Info: Freed  64  bytes
+Info: Memory used:  9499 
+Info: Allocated  64  bytes
+Info: Memory used:  9563 
+Info: Freed  64  bytes
+Info: Memory used:  9499 
+Info: Allocated  64  bytes
+Info: Memory used:  9563 
+Info: Freed  64  bytes
+Info: Memory used:  9499 
+Info: Allocated  64  bytes
+Info: Memory used:  9563 
+Info: Freed  64  bytes
+Info: Memory used:  9499 
+Info: Allocated  64  bytes
+Info: Memory used:  9563 
+Info: Freed  64  bytes
+Info: Memory used:  9499 
+Info: Allocated  64  bytes
+Info: Memory used:  9563 
+Info: Freed  64  bytes
+Info: Memory used:  9499 
+Info: Freed  64  bytes
+Info: Memory used:  9435 
+Info: Freed  64  bytes
+Info: Memory used:  9371 
+Info: Freed  64  bytes
+Info: Memory used:  9307 
+Info: Freed  64  bytes
+Info: Memory used:  9243 
+Info: Freed  64  bytes
+Info: Memory used:  9179 
+Info: Freed  64  bytes
+Info: Memory used:  9115 
+Info: Freed  64  bytes
+Info: Memory used:  9051 
+Info: Freed  64  bytes
+Info: Memory used:  8987 
+Info: Freed  192  bytes
+Info: Memory used:  8795 

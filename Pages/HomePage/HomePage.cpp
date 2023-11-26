@@ -1,8 +1,5 @@
 #include "HomePage.h"
 void HomePage::setupHomePage() {
-    // Create the layout button and label of the home page
-    // connect the button to the level selection page
-    // this = new ("Home Page") QWidget;
     QVBoxLayout* mainLayout = new ("Layout") QVBoxLayout;
     this->setLayout(mainLayout);
 
@@ -20,8 +17,8 @@ void HomePage::setupHomePage() {
     QPushButton* Resume = new ("Resume Button") QPushButton("Resume Game");
     buttonLayout->addWidget(newGame, 0, Qt::AlignCenter);
     buttonLayout->addWidget(Resume, 0, Qt::AlignCenter);
-    styleButton(newGame, "FFF6F6");
-    styleButton(Resume, "EAF4D3");
+    styleButton(newGame, "A6DCEF");
+    styleButton(Resume, "A6DCEF");
 
     connect(newGame, &QPushButton::clicked, this, &HomePage::newGameClicked);
     // connect(Resume, &QPushButton::clicked, this, &HomePage::resumeGameClicked);

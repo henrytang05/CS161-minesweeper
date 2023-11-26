@@ -16,18 +16,21 @@ class GameBoardPage : public QWidget {
     Q_OBJECT
    public:
     GameBoardPage(QStackedWidget* parent = nullptr, int level = 0) : QWidget(parent) {
-        Board = new ("Game Board") GameBoard(this, level);
-        replayButton = new ("Replay Button") QPushButton("Replay", this);
-        styleButton(replayButton, "12D9C4", true);
-        setupGameBoardPage();
+        setupGameBoardPage(level);
     }
-    ~GameBoardPage() { delete replayButton; }
+    ~GameBoardPage() {}
+    void setupGameBoardPage(int);
 
-    void setupGameBoardPage();
-
-   public:
+   private:
     GameBoard* Board;
     QPushButton* replayButton;
+    QLabel* announcementLabel;
+
+   signals:
+    void replayClicked();
+
+   public slots:
+    void victoryAnnoucement(bool);
 };
 
 #endif

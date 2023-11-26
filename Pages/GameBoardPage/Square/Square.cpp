@@ -8,12 +8,13 @@ bool Square::getIsRevealed() { return this->isRevealed; }
 void Square::setAsRevealed() {
     squareRevealed++;
     this->isRevealed = true;
+    this->render_square();
 }
 void Square::setAsNotRevealed() {
     squareRevealed--;
     this->isRevealed = false;
 }
-void Square::setIcon(const QIcon& icon, int width, int length) {
+void Square::setSquareIcon(const QIcon& icon, int width, int length) {
     QSize iconSize(width, length);
     QPixmap pixmap = icon.pixmap(iconSize);
     if (this) {
@@ -24,42 +25,28 @@ void Square::setIcon(const QIcon& icon, int width, int length) {
 void Square::squareClicked(int row, int col) {
     if (this->isMine) {
         GameBoard::revealAllBombs();
+        emit result(false);
         return;
     }
-    this->render_square(row, col);
+    this->render_square();
+    GameBoard::breakSurroundingCells(row, col);
     this->setAsRevealed();
     if (Square::squareRevealed ==
         GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
-        GameBoard::announcement("You Win!");
+        emit result(true);
     }
 }
-void Square::render_square(int row, int col) {
-    switch (Square::surroundingMineCount) {
-        case 1:
-            this->setIcon(QIcon("Pictures/number-1.png"));
-            break;
-        case 2:
-            this->setIcon(QIcon("Pictures/number-2.png"));
-            break;
-        case 3:
-            this->setIcon(QIcon("Pictures/number-3.png"));
-            break;
-        case 4:
-            this->setIcon(QIcon("Pictures/number-4.png"));
-            break;
-        case 5:
-            this->setIcon(QIcon("Pictures/number-5.png"));
-            break;
-        case 6:
-            this->setIcon(QIcon("Pictures/number-6.png"));
-            break;
-        case 7:
-            this->setIcon(QIcon("Pictures/number-7.png"));
-            break;
-        case 8:
-            this->setIcon(QIcon("Pictures/number-8.png"));
-            break;
-            // default:
-            // GameBoard::breakSurroundingCells(row, col);
+void Square::render_square() {
+    QString iconPath;
+    if (this->isMine) {
+        iconPath = QString("Pages/GameBoardPage/Square/Pictures/bomb.png");
+        QIcon icon(iconPath);
+        this->setStyleSheet("background-color: red");
+    } else {
+        iconPath = QString(":/Pages/GameBoardPage/Square/Pictures/number-%1.png")
+                       .arg(Square::surroundingMineCount);
+        this->setStyleSheet("background-color: green");
     }
+    QIcon icon(iconPath);
+    this->setSquareIcon(icon);
 }

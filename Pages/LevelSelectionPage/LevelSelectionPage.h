@@ -17,10 +17,8 @@ class LevelSelectionPage : public QWidget {
     LevelSelectionPage(QStackedWidget* parent = nullptr) { setupLevelSelectionPage(); }
     ~LevelSelectionPage() {}
     void setupLevelSelectionPage();
-
    signals:
-    void easyClicked();
-    void mediumClicked();
-    void hardClicked();
+    void backClicked();
+    void levelSelected(int difficulty);
 };
 #endif

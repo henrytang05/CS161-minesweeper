@@ -297,6 +297,7 @@ Game_autogen/timestamp: \
   CMakeFiles/3.28.0-rc2/CMakeSystem.cmake \
   Game_autogen/moc_predefs.h \
   D:/Files/VSCode/CS161-minesweeper/main.cpp \
+  D:/Files/VSCode/CS161-minesweeper/resources.qrc \
   D:/Unsorted/QT/6.6.0/mingw_64/include/QtCore/QDebug \
   D:/Unsorted/QT/6.6.0/mingw_64/include/QtCore/QFile \
   D:/Unsorted/QT/6.6.0/mingw_64/include/QtCore/QList \
