@@ -2,14 +2,11 @@
 #define GAME_BOARD_H
 
 #include <QGridLayout>
-#include <QLabel>
-#include <QMainWindow>
-#include <QPushButton>
 #include <QWidget>
 #include <random>
 #include <vector>
 
-#include "../../../Memory/Memory.h"
+// #include "../../../Memory/Memory.h"
 #include "../../../Style/Style.h"
 #include "../Square/Square.h"
 class GameBoard : public QWidget {
@@ -17,13 +14,13 @@ class GameBoard : public QWidget {
    public:
     GameBoard(QWidget* parent = nullptr, int level = 0) : QWidget(parent) {
         if (level == 1)
-            BOARD_SIZE = 8;
+            BOARD_SIZE = 9;
         else if (level == 2)
-            BOARD_SIZE = 10;
+            BOARD_SIZE = 16;
         else if (level == 3)
-            BOARD_SIZE = 11;
+            BOARD_SIZE = 30;
         else
-            BOARD_SIZE = 8;
+            BOARD_SIZE = 9;
         MINE_NUMBER = BOARD_SIZE * BOARD_SIZE / 4;
         setupGameBoard();
     }
@@ -33,6 +30,7 @@ class GameBoard : public QWidget {
    public:
     inline static int BOARD_SIZE = 8;
     inline static int MINE_NUMBER = 0;
+    inline static int FLAG_NUMBER = MINE_NUMBER;
     static void revealAllBombs();
     void setupGameBoard();
     inline static std::vector<std::vector<Square*>> grid;
@@ -40,7 +38,7 @@ class GameBoard : public QWidget {
    private:
     void initializeGameBoard();
     bool isValidBombPosition(int row, int col);
-    void countMinesAround(int row, int col);
+    void updateSurrounding(int row, int col, char mode = 'm');
 
    signals:
     void result(bool);

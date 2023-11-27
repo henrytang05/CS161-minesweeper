@@ -1,21 +1,11 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <QBoxLayout>
-#include <QLabel>
-#include <QMainWindow>
-#include <QPushButton>
-#include <QResizeEvent>
-#include <QStackedWidget>
-#include <QWidget>
-#include <iostream>
-#include <string>
-
-#include "../Memory/Memory.h"
 #include "../Pages/GameBoardPage/GameBoardPage/GameBoardPage.h"
 #include "../Pages/HomePage/HomePage.h"
 #include "../Pages/LevelSelectionPage/LevelSelectionPage.h"
 #include "../Style/Style.h"
+
 class HomeWindow;
 class Pages : public QStackedWidget {
     Q_OBJECT
@@ -53,8 +43,8 @@ class HomeWindow : public QMainWindow {
 
    private:
     Pages* stackedPages;
-    double windowWidth = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 200;
-    double windowHeight = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 100;
+    double windowWidth = 520;
+    double windowHeight = 420;
 };
 
 #endif

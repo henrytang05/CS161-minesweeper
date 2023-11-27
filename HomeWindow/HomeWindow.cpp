@@ -7,7 +7,7 @@ void HomeWindow::makeconnection() {
         this->setFixedSize(windowWidth, windowHeight);
     });
     QObject::connect(stackedPages, Pages::replaySignal, this, [this]() {
-        this->setFixedSize(600, 500);
+        this->setFixedSize(520, 420);
     });
 }
 void Pages::makeconnection() {
@@ -21,6 +21,7 @@ void Pages::makeconnection() {
     );
     QObject::connect(levelSelectionPage, LevelSelectionPage::backClicked, this, [this]() {
         setCurrentWidget(homePage);
+        emit replaySignal();
     });
 }
 
@@ -43,8 +44,8 @@ void Pages::createGameBoardPage(int difficulty) {
     connect(gameBoardPage, &GameBoardPage::replayClicked, this, &Pages::replayGameSlot);
 }
 void Pages::setupPages() {
-    homePage = new ("HomePage") HomePage(this);
-    levelSelectionPage = new ("Level Selection Page") LevelSelectionPage(this);
+    homePage = new HomePage(this);
+    levelSelectionPage = new LevelSelectionPage(this);
     makeconnection();
     this->addWidget(homePage);
     this->addWidget(levelSelectionPage);

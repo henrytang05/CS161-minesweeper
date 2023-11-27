@@ -2,19 +2,19 @@
 void LevelSelectionPage::setupLevelSelectionPage() {
     // Create the layout button and label of the level selection page
     // connect the button to the game board
-    QVBoxLayout* mainLayout = new ("Layout") QVBoxLayout();
+    QVBoxLayout* mainLayout = new QVBoxLayout();
     this->setLayout(mainLayout);
 
-    QLabel* label = new ("Label") QLabel("Choose a level");
+    QLabel* label = new QLabel("Choose a level");
     styleLabel(label, "DBD8AE");
     mainLayout->addWidget(label, 0, Qt::AlignCenter);
     mainLayout->addSpacing(-50);
-    QVBoxLayout* buttonLayout = new ("Layout") QVBoxLayout(this);
+    QVBoxLayout* buttonLayout = new QVBoxLayout(this);
     mainLayout->addLayout(buttonLayout);
-    QPushButton* easy = new ("easy button") QPushButton("Easy", this);
-    QPushButton* medium = new ("medium button") QPushButton("Medium", this);
-    QPushButton* hard = new ("hard button") QPushButton("Hard", this);
-    QPushButton* back = new ("Back Button") QPushButton("Back", this);
+    QPushButton* easy = new QPushButton("Easy", this);
+    QPushButton* medium = new QPushButton("Medium", this);
+    QPushButton* hard = new QPushButton("Hard", this);
+    QPushButton* back = new QPushButton("Back", this);
 
     styleButton(easy, "FFF6F6");
     styleButton(medium, "FFF6F6");

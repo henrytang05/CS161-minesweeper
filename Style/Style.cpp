@@ -34,3 +34,10 @@ void styleWindow(
     // window->setMinimumWidth(width);
     window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
 }
+void styleSquare(QPushButton* square, int row, int col) {
+    if (row % 2 == col % 2) {
+        square->setStyleSheet("background-color: #C7DCA7");
+    } else {
+        square->setStyleSheet("background-color: #89B9AD");
+    }
+}

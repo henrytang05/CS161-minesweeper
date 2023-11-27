@@ -1,9 +1,0 @@
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/Game.dir
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/edit_cache.dir
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/rebuild_cache.dir
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/list_install_components.dir
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/install.dir
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/install/local.dir
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/install/strip.dir
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/Game_autogen_timestamp_deps.dir
-D:/Files/VSCode/CS161-minesweeper/build/CMakeFiles/Game_autogen.dir

@@ -2,11 +2,7 @@
 #define GAME_BOARD_PAGE_H
 
 #include <QBoxLayout>
-#include <QLabel>
-#include <QMainWindow>
-#include <QPushButton>
 #include <QStackedWidget>
-#include <QWidget>
 #include <string>
 
 #include "../../../Style/Style.h"

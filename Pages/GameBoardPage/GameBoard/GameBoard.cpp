@@ -7,15 +7,19 @@ void GameBoard::setupGameBoard() {
     grid.resize(
         GameBoard::BOARD_SIZE, std::vector<Square*>(GameBoard::BOARD_SIZE, nullptr)
     );
-    QGridLayout* mainGridLayout = new ("mainGridLayout") QGridLayout(this);
+    QGridLayout* mainGridLayout = new QGridLayout(this);
 
     for (int row = 0; row < GameBoard::BOARD_SIZE; row++) {
         for (int col = 0; col < GameBoard::BOARD_SIZE; col++) {
-            Square* square = new ("Square in grid") Square(this);
+            Square* square = new Square(this);
+            styleSquare(square, row, col);
             QObject::connect(square, &QPushButton::clicked, square, [square, row, col]() {
-                square->squareClicked(row, col);
+                square->squareLeftClicked(row, col);
             });
             QObject::connect(square, &Square::result, this, &GameBoard::result);
+            QObject::connect(square, &Square::rightClicked, this, [square, row, col]() {
+                square->squareRightClicked(row, col);
+            });
             grid[row][col] = square;
             mainGridLayout->addWidget(square, row, col);
         }
@@ -32,20 +36,20 @@ void GameBoard::initializeGameBoard() {
         int rowRandomNumber = distribution(generator);
         int colRandomNumber = distribution(generator);
         if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
-            grid[rowRandomNumber][colRandomNumber]->setMine();
-            countMinesAround(rowRandomNumber, colRandomNumber);
+            grid[rowRandomNumber][colRandomNumber]->isMine = true;
+            updateSurrounding(rowRandomNumber, colRandomNumber, 'm');
         } else
             --i;
     }
 }
 bool GameBoard::isValidBombPosition(int row, int col) {
-    if (!grid[row][col]->getIsMine()) {
+    if (!grid[row][col]->isMine) {
         return true;
     } else {
         return false;
     }
 }
-void GameBoard::countMinesAround(int row, int col) {
+void GameBoard::updateSurrounding(int row, int col, char mode) {
     int direction[8][2] = {
         {-1, -1},  // Up-Left
         {-1, 0},   // Up
@@ -60,15 +64,20 @@ void GameBoard::countMinesAround(int row, int col) {
         int newRow = row + move[0];
         int newCol = col + move[1];
         if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
-            newCol >= GameBoard::BOARD_SIZE || grid[newRow][newCol]->getIsMine())
+            newCol >= GameBoard::BOARD_SIZE || grid[newRow][newCol]->isMine)
             continue;
-        grid[newRow][newCol]->surroundingMineCount++;
+        if (mode == 'm')
+            grid[newRow][newCol]->surroundingMineCount++;
+        else if (mode == 'f')
+            grid[newRow][newCol]->surroundingFlagCount++;
+        else if (mode == 'u')
+            grid[newRow][newCol]->surroundingFlagCount--;
     }
 }
 
 void GameBoard::breakSurroundingCells(int row, int col) {
     if (row < 0 || row >= GameBoard::BOARD_SIZE || col < 0 ||
-        col >= GameBoard::BOARD_SIZE || GameBoard::grid[row][col]->getIsRevealed()) {
+        col >= GameBoard::BOARD_SIZE || GameBoard::grid[row][col]->isRevealed) {
         return;
     }
     Square* square = GameBoard::grid[row][col];
@@ -96,7 +105,7 @@ void GameBoard::breakSurroundingCells(int row, int col) {
 void GameBoard::revealAllBombs() {
     for (auto row : grid) {
         for (auto square : row) {
-            if (square->getIsMine() && !square->getIsRevealed()) {
+            if (square->isMine && !square->isRevealed) {
                 square->setAsRevealed();
             }
         }

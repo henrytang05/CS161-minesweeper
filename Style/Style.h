@@ -1,10 +1,8 @@
 #pragma once
-#include <QBoxLayout>
+
 #include <QLabel>
 #include <QMainWindow>
 #include <QPushButton>
-#include <QStackedWidget>
-#include <QWidget>
 #include <string>
 
 void styleButton(
@@ -17,3 +15,4 @@ void styleWindow(
     std::string&& title, int width, int height, QMainWindow* window,
     std::string&& color = "FF00000"
 );
+void styleSquare(QPushButton* square, int row, int col);
