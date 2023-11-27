@@ -2,6 +2,14 @@
 
 #include "../GameBoard/GameBoard.h"
 
+Square::Square(QWidget* parent) : QPushButton(parent) {
+    isMine = false;
+    isFlagged = false;
+    isRevealed = false;
+    surroundingMineCount = 0;
+    styleButton(this, "#EEA6B9", false, CELL_SIZE, CELL_SIZE);
+}
+Square::~Square() {}
 void Square::setAsRevealed() {
     SQUARE_REVEALED++;
     this->isRevealed = true;

@@ -1,4 +1,11 @@
 #include "GameBoardPage.h"
+
+#include "../GameBoard/GameBoard.h"
+#include "../Square/Square.h"
+GameBoardPage::GameBoardPage(QStackedWidget* parent, int level) : QWidget(parent) {
+    setupGameBoardPage(level);
+}
+GameBoardPage::~GameBoardPage() {}
 void GameBoardPage::setupGameBoardPage(int level) {
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
     Board = new GameBoard(this, level);

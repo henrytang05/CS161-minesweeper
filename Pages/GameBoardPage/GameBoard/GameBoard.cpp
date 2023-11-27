@@ -1,4 +1,29 @@
 #include "GameBoard.h"
+
+#include "../Square/Square.h"
+std::vector<std::vector<Square*>> GameBoard::grid;
+GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
+    if (level == 1)
+        BOARD_SIZE = 9;
+    else if (level == 2)
+        BOARD_SIZE = 16;
+    else if (level == 3)
+        BOARD_SIZE = 30;
+    else
+        BOARD_SIZE = 9;
+    MINE_NUMBER = BOARD_SIZE * BOARD_SIZE / 4;
+    FLAG_NUMBER = MINE_NUMBER;
+    setupGameBoard();
+}
+GameBoard::~GameBoard() {
+    for (auto& row : grid) {
+        for (auto& square : row) {
+            delete square;
+            square = nullptr;
+        }
+    }
+    grid.clear();
+}
 void GameBoard::setupGameBoard() {
     this->setFixedSize(
         Square::CELL_SIZE * GameBoard::BOARD_SIZE,

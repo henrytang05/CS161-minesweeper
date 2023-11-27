@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STYLE_H
+#define STYLE_H
 
 #include <QLabel>
 #include <QMainWindow>
@@ -16,3 +17,4 @@ void styleWindow(
     std::string&& color = "FF00000"
 );
 void styleSquare(QPushButton* square, int row, int col, std::string&& color = "");
+#endif

@@ -1,4 +1,23 @@
 #include "HomeWindow.h"
+HomeWindow::HomeWindow(QMainWindow* parent) : QMainWindow(parent) {
+    stackedPages = new Pages(this);
+    styleWindow("Main Window", windowWidth, windowHeight, this, "E36387");
+    setCentralWidget(stackedPages);
+    makeconnection();
+}
+HomeWindow::~HomeWindow() {
+    delete stackedPages;
+    stackedPages = nullptr;
+}
+Pages::Pages(QWidget* parent) : QStackedWidget(parent) { setupPages(); }
+Pages::~Pages() {
+    delete homePage;
+    delete levelSelectionPage;
+    delete gameBoardPage;
+    homePage = nullptr;
+    levelSelectionPage = nullptr;
+    gameBoardPage = nullptr;
+}
 
 void HomeWindow::makeconnection() {
     QObject::connect(stackedPages, Pages::newGameSignal, this, [this]() {

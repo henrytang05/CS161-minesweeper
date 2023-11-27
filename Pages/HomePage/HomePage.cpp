@@ -1,4 +1,6 @@
 #include "HomePage.h"
+HomePage::HomePage(QStackedWidget* parent) { setupHomePage(); }
+HomePage::~HomePage() {}
 void HomePage::setupHomePage() {
     QVBoxLayout* mainLayout = new QVBoxLayout;
     this->setLayout(mainLayout);

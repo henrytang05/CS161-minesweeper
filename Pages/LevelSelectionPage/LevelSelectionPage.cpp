@@ -1,7 +1,8 @@
 #include "LevelSelectionPage.h"
+LevelSelectionPage::LevelSelectionPage(QStackedWidget* parent) { setupLevelSelectionPage(); }
+LevelSelectionPage::~LevelSelectionPage() {}
 void LevelSelectionPage::setupLevelSelectionPage() {
-    // Create the layout button and label of the level selection page
-    // connect the button to the game board
+
     QVBoxLayout* mainLayout = new QVBoxLayout();
     this->setLayout(mainLayout);
 

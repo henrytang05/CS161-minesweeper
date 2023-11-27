@@ -1,7 +1,9 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include "../Pages/GameBoardPage/GameBoard/GameBoard.h"
 #include "../Pages/GameBoardPage/GameBoardPage/GameBoardPage.h"
+#include "../Pages/GameBoardPage/Square/Square.h"
 #include "../Pages/HomePage/HomePage.h"
 #include "../Pages/LevelSelectionPage/LevelSelectionPage.h"
 #include "../Style/Style.h"
@@ -10,7 +12,8 @@ class HomeWindow;
 class Pages : public QStackedWidget {
     Q_OBJECT
    public:
-    Pages(QWidget* parent = nullptr) : QStackedWidget(parent) { setupPages(); }
+    Pages(QWidget* parent = nullptr);
+    ~Pages();
     void setupPages();
     void createGameBoardPage(int difficulty);
     void makeconnection();
@@ -32,13 +35,8 @@ class Pages : public QStackedWidget {
 class HomeWindow : public QMainWindow {
     Q_OBJECT
    public:
-    HomeWindow(QMainWindow* parent = nullptr) : QMainWindow(parent) {
-        stackedPages = new Pages(this);
-        styleWindow("Main Window", windowWidth, windowHeight, this, "E36387");
-        setCentralWidget(stackedPages);
-        makeconnection();
-    }
-    ~HomeWindow() {}
+    HomeWindow(QMainWindow* parent = nullptr);
+    ~HomeWindow();
     void makeconnection();
 
    private:

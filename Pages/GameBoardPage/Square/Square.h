@@ -8,19 +8,14 @@
 #include <QWidget>
 // #include "../../../Memory/Memory.h"
 #include "../../../Style/Style.h"
+#include "../GameBoard/GameBoard.h"
 
 class Square : public QPushButton {
     friend class GameBoard;
     Q_OBJECT
    public:
-    Square(QWidget* parent = nullptr) : QPushButton(parent) {
-        isMine = false;
-        isFlagged = false;
-        isRevealed = false;
-        surroundingMineCount = 0;
-        styleButton(this, "#EEA6B9", false, CELL_SIZE, CELL_SIZE);
-    }
-    ~Square() {}
+    Square(QWidget* parent = nullptr);
+    ~Square();
     void setAsRevealed();
     enum { LOSE, WIN };
 
@@ -55,9 +50,10 @@ class Square : public QPushButton {
         else if (e->button() == Qt::LeftButton)
             emit clicked();
     }
-    void mouseDoubleClickEvent(QMouseEvent* e) override {
+    void mouseDoubleClickEvent(QMouseEvent* e) {
         if (e->button() == Qt::LeftButton) emit doubleClicked();
     }
+
    public slots:
     void squareLeftClickedSlot(int row, int col);
     void squareRightClickedSlot(int row, int col);

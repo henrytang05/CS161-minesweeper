@@ -7,14 +7,15 @@
 
 #include "../../../Style/Style.h"
 #include "../GameBoard/GameBoard.h"
+#include "../Square/Square.h"
+class GameBoard;
+class Square;
 
 class GameBoardPage : public QWidget {
     Q_OBJECT
    public:
-    GameBoardPage(QStackedWidget* parent = nullptr, int level = 0) : QWidget(parent) {
-        setupGameBoardPage(level);
-    }
-    ~GameBoardPage() {}
+    GameBoardPage(QStackedWidget* parent = nullptr, int level = 0);
+    ~GameBoardPage();
     void setupGameBoardPage(int);
 
    private:

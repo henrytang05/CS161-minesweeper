@@ -5,13 +5,12 @@
 #include <QPushButton>
 #include <QStackedWidget>
 
-// #include "../../Memory/Memory.h"
 #include "../../Style/Style.h"
 class LevelSelectionPage : public QWidget {
     Q_OBJECT
    public:
-    LevelSelectionPage(QStackedWidget* parent = nullptr) { setupLevelSelectionPage(); }
-    ~LevelSelectionPage() {}
+    LevelSelectionPage(QStackedWidget* parent = nullptr);
+    ~LevelSelectionPage();
     void setupLevelSelectionPage();
    signals:
     void backClicked();

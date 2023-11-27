@@ -11,8 +11,8 @@
 class HomePage : public QWidget {
     Q_OBJECT
    public:
-    HomePage(QStackedWidget* parent = nullptr) { setupHomePage(); }
-    ~HomePage() {}
+    HomePage(QStackedWidget* parent = nullptr);
+    ~HomePage();
     void setupHomePage();
 
    signals:
