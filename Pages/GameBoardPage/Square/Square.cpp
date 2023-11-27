@@ -91,13 +91,13 @@ void Square::squareDoubleClickedSlot(int row, int col) {
 void Square::render_square() {
     QString iconPath;
     if (this->isFlagged) {
-        iconPath = QString("Images/flag.png");
+        iconPath = QString(":/Images/flag.png");
         this->setStyleSheet("background-color: yellow");
     } else if (this->isMine) {
-        iconPath = QString("Images/bomb.png");
+        iconPath = QString(":/Images/bomb.png");
         this->setStyleSheet("background-color: red");
     } else {
-        iconPath = QString("Images/number-%1.png").arg(Square::surroundingMineCount);
+        iconPath = QString(":/Images/number-%1.png").arg(Square::surroundingMineCount);
         this->setStyleSheet("background-color: green");
     }
     QIcon icon(iconPath);
