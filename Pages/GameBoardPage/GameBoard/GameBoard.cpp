@@ -11,7 +11,7 @@ GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
         BOARD_SIZE = 30;
     else
         BOARD_SIZE = 9;
-    MINE_NUMBER = BOARD_SIZE * BOARD_SIZE / 4;
+    MINE_NUMBER = 2;
     FLAG_NUMBER = MINE_NUMBER;
     setupGameBoard();
 }
@@ -36,17 +36,17 @@ void GameBoard::setupGameBoard() {
 
     for (int row = 0; row < GameBoard::BOARD_SIZE; row++) {
         for (int col = 0; col < GameBoard::BOARD_SIZE; col++) {
-            Square* square = new Square(this);
-            styleSquare(square, row, col);
-            QObject::connect(square, &QPushButton::clicked, square, [square, row, col]() {
-                square->squareLeftClickedSlot(row, col);
-            });
-            QObject::connect(square, &Square::rightClicked, this, [square, row, col]() {
-                square->squareRightClickedSlot(row, col);
-            });
-            QObject::connect(square, &Square::doubleClicked, this, [square, row, col]() {
-                square->squareDoubleClickedSlot(row, col);
-            });
+            Square* square = new Square(row, col, this);
+            styleSquare(square);
+            QObject::connect(
+                square, &QPushButton::clicked, square, &Square::squareLeftClickedSlot
+            );
+            QObject::connect(
+                square, &Square::rightClicked, square, &Square::squareRightClickedSlot
+            );
+            QObject::connect(
+                square, &Square::doubleClicked, square, &Square::squareDoubleClickedSlot
+            );
             QObject::connect(square, &Square::result, this, &GameBoard::result);
             grid[row][col] = square;
             mainGridLayout->addWidget(square, row, col);
@@ -63,49 +63,15 @@ void GameBoard::initializeGameBoard() {
     for (int i = 0; i < GameBoard::MINE_NUMBER; i++) {
         int rowRandomNumber = distribution(generator);
         int colRandomNumber = distribution(generator);
-        if (isValidBombPosition(rowRandomNumber, colRandomNumber)) {
-            Square* square = grid[rowRandomNumber][colRandomNumber];
+        Square* square = grid[rowRandomNumber][colRandomNumber];
+        if (!square->isMine) {
             square->isMine = true;
-            square->updateSurrounding(rowRandomNumber, colRandomNumber, 'm');
+            square->updateSurrounding('m');
         } else
             --i;
     }
 }
-bool GameBoard::isValidBombPosition(int row, int col) {
-    if (!grid[row][col]->isMine) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
-void GameBoard::breakSurroundingCells(int row, int col) {
-    if (row < 0 || row >= GameBoard::BOARD_SIZE || col < 0 ||
-        col >= GameBoard::BOARD_SIZE || GameBoard::grid[row][col]->isRevealed) {
-        return;
-    }
-    Square* square = GameBoard::grid[row][col];
-    square->setAsRevealed();
-    if (square->surroundingMineCount != 0) {
-        return;
-    }
-
-    int direction[8][2] = {
-        {-1, -1},  // Up-Left
-        {-1, 0},   // Up
-        {-1, 1},   // Up-Right
-        {0, -1},   // Left
-        {0, 1},    // Right
-        {1, -1},   // Down-Left
-        {1, 0},    // Down
-        {1, 1}     // Down-Right
-    };
-    for (auto& move : direction) {
-        int newRow = row + move[0];
-        int newCol = col + move[1];
-        breakSurroundingCells(newRow, newCol);
-    }
-}
 void GameBoard::revealAllBombs() {
     for (auto row : grid) {
         for (auto square : row) {
@@ -113,7 +79,7 @@ void GameBoard::revealAllBombs() {
                 if (!square->isFlagged)
                     square->render_square();
                 else
-                    styleSquare(square, 0, 0, "red");
+                    styleSquare(square, "red");
             }
         }
     }

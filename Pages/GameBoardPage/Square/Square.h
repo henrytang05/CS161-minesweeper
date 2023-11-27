@@ -14,9 +14,10 @@ class Square : public QPushButton {
     friend class GameBoard;
     Q_OBJECT
    public:
-    Square(QWidget* parent = nullptr);
+    Square(int row, int col, QWidget* parent = nullptr);
     ~Square();
     void setAsRevealed();
+    void breakSurroundingCells();
     enum { LOSE, WIN };
 
    public:
@@ -28,7 +29,11 @@ class Square : public QPushButton {
         int length = Square::CELL_SIZE / 2
     );
     void render_square();
-    void updateSurrounding(int row, int col, char mode);
+    void updateSurrounding(char mode);
+
+   public:
+    int row;
+    int col;
 
    private:
     bool isMine;
@@ -50,13 +55,13 @@ class Square : public QPushButton {
         else if (e->button() == Qt::LeftButton)
             emit clicked();
     }
-    void mouseDoubleClickEvent(QMouseEvent* e) {
+    void mouseDoubleClickEvent(QMouseEvent* e) override {
         if (e->button() == Qt::LeftButton) emit doubleClicked();
     }
 
    public slots:
-    void squareLeftClickedSlot(int row, int col);
-    void squareRightClickedSlot(int row, int col);
-    void squareDoubleClickedSlot(int row, int col);
+    void squareLeftClickedSlot();
+    void squareRightClickedSlot();
+    void squareDoubleClickedSlot();
 };
 #endif

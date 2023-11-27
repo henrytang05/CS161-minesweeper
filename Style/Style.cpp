@@ -33,7 +33,7 @@ void styleWindow(
     window->setFixedSize(width, height);
     window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
 }
-void styleSquare(QPushButton* square, int row, int col, std::string&& color) {
+void styleSquare(Square* square, std::string&& color) {
     if (!color.empty()) {
         if (std::isdigit(color[1])) {
             if (color[0] == '#') color.erase(0, 1);
@@ -45,7 +45,7 @@ void styleSquare(QPushButton* square, int row, int col, std::string&& color) {
         }
         return;
     }
-    if (row % 2 == col % 2) {
+    if (square->row % 2 == square->col % 2) {
         square->setStyleSheet("background-color: #C7DCA7");
     } else {
         square->setStyleSheet("background-color: #89B9AD");

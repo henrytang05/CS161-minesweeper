@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <random>
 #include <vector>
+
 #include "../Square/Square.h"
 // #include "../../../Memory/Memory.h"
 #include "../../../Style/Style.h"
@@ -14,7 +15,7 @@ class GameBoard : public QWidget {
    public:
     GameBoard(QWidget* parent = nullptr, int level = 0);
     ~GameBoard();
-    static void breakSurroundingCells(int row, int col);
+
     static void revealAllBombs();
     void setupGameBoard();
 
@@ -26,7 +27,6 @@ class GameBoard : public QWidget {
 
    private:
     void initializeGameBoard();
-    bool isValidBombPosition(int row, int col);
 
    signals:
     void result(bool);
