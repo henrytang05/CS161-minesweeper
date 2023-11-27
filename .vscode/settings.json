@@ -103,5 +103,8 @@
     "format": "cpp",
     "stdfloat": "cpp",
     "qicon": "cpp"
+  },
+  "cmake.configureSettings": {
+    "CMAKE_BUILD_TYPE": "Release"
   }
 }
