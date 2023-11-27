@@ -2,12 +2,14 @@
 #define GAME_BOARD_PAGE_H
 
 #include <QBoxLayout>
+#include <QLabel>
 #include <QStackedWidget>
 #include <string>
 
 #include "../../../Style/Style.h"
 #include "../GameBoard/GameBoard.h"
 #include "../Square/Square.h"
+#include "../Timer/Timer.h"
 class GameBoard;
 class Square;
 
@@ -22,6 +24,7 @@ class GameBoardPage : public QWidget {
     GameBoard* Board;
     QPushButton* replayButton;
     QLabel* announcementLabel;
+    Timer* timer;
 
    signals:
     void replayClicked();

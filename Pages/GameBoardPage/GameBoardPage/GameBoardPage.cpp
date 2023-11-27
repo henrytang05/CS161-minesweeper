@@ -2,6 +2,7 @@
 
 #include "../GameBoard/GameBoard.h"
 #include "../Square/Square.h"
+
 GameBoardPage::GameBoardPage(QStackedWidget* parent, int level) : QWidget(parent) {
     setupGameBoardPage(level);
 }
@@ -10,6 +11,7 @@ void GameBoardPage::setupGameBoardPage(int level) {
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
     Board = new GameBoard(this, level);
     replayButton = new QPushButton("Replay", this);
+    timer = new Timer(this);
     styleButton(replayButton, "12D9C4", true);
 
     announcementLabel = new QLabel("Announcement", this);
@@ -18,10 +20,12 @@ void GameBoardPage::setupGameBoardPage(int level) {
     announcementLabel->hide();
 
     QVBoxLayout* rightLayout = new QVBoxLayout(this);
-    QHBoxLayout* labelButtonLayout = new QHBoxLayout(this);
-    labelButtonLayout->addWidget(announcementLabel);
-    labelButtonLayout->addWidget(replayButton);
-    rightLayout->addLayout(labelButtonLayout);
+    rightLayout->addWidget(announcementLabel);
+    rightLayout->addStretch();
+    rightLayout->addWidget(timer);
+    rightLayout->addStretch();
+    rightLayout->addWidget(replayButton);
+
     rightLayout->addSpacing(10);
 
     mainLayout->addWidget(Board);
@@ -37,14 +41,12 @@ void GameBoardPage::setupGameBoardPage(int level) {
     setLayout(mainLayout);
 }
 void GameBoardPage::victoryAnnoucement(bool won) {
+    timer->stopTimer();
     if (won) {
         announcementLabel->setText("You won!");
     } else {
         announcementLabel->setText("You lost!");
     }
-
-    // announcementLabel->setStyleSheet("background-color: #12D9C4; border-radius: 15px
-    // ;"); announcementLabel->setFixedHeight(50);
     announcementLabel->show();
     for (auto& squareRow : Board->grid) {
         for (auto& square : squareRow) {

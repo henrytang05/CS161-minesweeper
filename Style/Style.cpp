@@ -51,3 +51,17 @@ void styleSquare(QPushButton* square, int row, int col, std::string&& color) {
         square->setStyleSheet("background-color: #89B9AD");
     }
 }
+void styleTimer(QLabel* timer, std::string&& color, double size) {
+    if (color[0] == '#') color.erase(0, 1);
+    QFont font = timer->font();
+    font.setPointSize(size);
+    font.setBold(true);
+    font.setFamily("sans-serif");
+
+    timer->setFont(font);
+    timer->setFont(font);
+    timer->setStyleSheet(
+        QString::fromStdString("color: #" + color + "; background-color: #purple;")
+    );
+    timer->setAlignment(Qt::AlignCenter);
+}

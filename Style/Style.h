@@ -17,4 +17,5 @@ void styleWindow(
     std::string&& color = "FF00000"
 );
 void styleSquare(QPushButton* square, int row, int col, std::string&& color = "");
+void styleTimer(QLabel* timer, std::string&& color = "FF00000", double size = 40);
 #endif
