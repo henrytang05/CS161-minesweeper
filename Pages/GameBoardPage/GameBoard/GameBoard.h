@@ -22,6 +22,7 @@ class GameBoard : public QWidget {
         else
             BOARD_SIZE = 9;
         MINE_NUMBER = BOARD_SIZE * BOARD_SIZE / 4;
+        FLAG_NUMBER = MINE_NUMBER;
         setupGameBoard();
     }
     ~GameBoard() {}
@@ -30,7 +31,7 @@ class GameBoard : public QWidget {
    public:
     inline static int BOARD_SIZE = 8;
     inline static int MINE_NUMBER = 0;
-    inline static int FLAG_NUMBER = MINE_NUMBER;
+    inline static int FLAG_NUMBER = 0;
     static void revealAllBombs();
     void setupGameBoard();
     inline static std::vector<std::vector<Square*>> grid;
@@ -38,7 +39,6 @@ class GameBoard : public QWidget {
    private:
     void initializeGameBoard();
     bool isValidBombPosition(int row, int col);
-    void updateSurrounding(int row, int col, char mode = 'm');
 
    signals:
     void result(bool);

@@ -22,6 +22,7 @@ class Square : public QPushButton {
     }
     ~Square() {}
     void setAsRevealed();
+    enum { LOSE, WIN };
 
    public:
     inline static constexpr int CELL_SIZE = 35;
@@ -32,6 +33,7 @@ class Square : public QPushButton {
         int length = Square::CELL_SIZE / 2
     );
     void render_square();
+    void updateSurrounding(int row, int col, char mode);
 
    private:
     bool isMine;
@@ -39,11 +41,12 @@ class Square : public QPushButton {
     bool isRevealed;
     int surroundingMineCount = 0;
     int surroundingFlagCount = 0;
-    inline static int squareRevealed = 0;
-
+    inline static int FLAG_SET = 0;
+    inline static int SQUARE_REVEALED = 0;
    signals:
     void result(bool);
     void rightClicked();
+    void doubleClicked();
 
    protected:
     void mouseReleaseEvent(QMouseEvent* e) {
@@ -52,8 +55,12 @@ class Square : public QPushButton {
         else if (e->button() == Qt::LeftButton)
             emit clicked();
     }
+    void mouseDoubleClickEvent(QMouseEvent* e) override {
+        if (e->button() == Qt::LeftButton) emit doubleClicked();
+    }
    public slots:
-    void squareLeftClicked(int row, int col);
-    void squareRightClicked(int row, int col);
+    void squareLeftClickedSlot(int row, int col);
+    void squareRightClickedSlot(int row, int col);
+    void squareDoubleClickedSlot(int row, int col);
 };
 #endif

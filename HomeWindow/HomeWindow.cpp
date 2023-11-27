@@ -34,6 +34,7 @@ void Pages::startNewGameSlot(int difficulty) {
 }
 void Pages::replayGameSlot() {
     delete gameBoardPage;
+    gameBoardPage = nullptr;
     emit replaySignal();
     this->setCurrentWidget(levelSelectionPage);
 }
