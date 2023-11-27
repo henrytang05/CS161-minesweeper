@@ -85,7 +85,10 @@ void GameBoard::revealAllBombs() {
     for (auto row : grid) {
         for (auto square : row) {
             if (square->isMine && !square->isRevealed) {
-                square->setAsRevealed();
+                if (!square->isFlagged)
+                    square->render_square();
+                else
+                    styleSquare(square, 0, 0, "red");
             }
         }
     }

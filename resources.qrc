@@ -1,13 +1,13 @@
 <RCC>
-  <qresource prefix="/images">
-    <file>Images/number-1.png</file>
-    <file>Images/number-2.png</file>
-    <file>Images/number-3.png</file>
-    <file>Images/number-4.png</file>
-    <file>Images/number-5.png</file>
-    <file>Images/number-6.png</file>
-    <file>Images/number-7.png</file>
-    <file>Images/number-8.png</file>
+  <qresource>
+    <file>Images/1.png</file>
+    <file>Images/2.png</file>
+    <file>Images/3.png</file>
+    <file>Images/4.png</file>
+    <file>Images/5.png</file>
+    <file>Images/6.png</file>
+    <file>Images/7.png</file>
+    <file>Images/8.png</file>
     <file>Images/bomb.png</file>
     <file>Images/flag.png</file>
     <!-- Add more files as needed -->

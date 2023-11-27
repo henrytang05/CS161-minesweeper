@@ -51,6 +51,21 @@ void Square::setSquareIcon(const QIcon& icon, int width, int length) {
         this->setIconSize(iconSize);
     }
 }
+void Square::render_square() {
+    QString iconPath;
+    if (this->isFlagged) {
+        iconPath = QString(":/Images/flag.png");
+        styleSquare(this, 0, 0, "yellow");
+    } else if (this->isMine) {
+        iconPath = QString(":/Images/bomb.png");
+        styleSquare(this, 0, 0, "red");
+    } else {
+        iconPath = QString(":/Images/%1.png").arg(Square::surroundingMineCount);
+        styleSquare(this, 0, 0, "green");
+    }
+    QIcon icon(iconPath);
+    this->setSquareIcon(icon);
+}
 void Square::squareLeftClickedSlot(int row, int col) {
     if (this->isFlagged) return;
     if (this->isMine) {
@@ -87,19 +102,4 @@ void Square::squareDoubleClickedSlot(int row, int col) {
     if (this->isRevealed && this->surroundingMineCount == this->surroundingFlagCount) {
         this->updateSurrounding(row, col, 'd');
     }
-}
-void Square::render_square() {
-    QString iconPath;
-    if (this->isFlagged) {
-        iconPath = QString(":/Images/flag.png");
-        this->setStyleSheet("background-color: yellow");
-    } else if (this->isMine) {
-        iconPath = QString(":/Images/bomb.png");
-        this->setStyleSheet("background-color: red");
-    } else {
-        iconPath = QString(":/Images/number-%1.png").arg(Square::surroundingMineCount);
-        this->setStyleSheet("background-color: green");
-    }
-    QIcon icon(iconPath);
-    this->setSquareIcon(icon);
 }

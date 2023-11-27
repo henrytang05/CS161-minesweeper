@@ -25,15 +25,23 @@ class GameBoard : public QWidget {
         FLAG_NUMBER = MINE_NUMBER;
         setupGameBoard();
     }
-    ~GameBoard() {}
+    ~GameBoard() {
+        for (auto& row : grid) {
+            for (auto& square : row) {
+                delete square;
+                square = nullptr;
+            }
+        }
+        grid.clear();
+    }
     static void breakSurroundingCells(int row, int col);
+    static void revealAllBombs();
+    void setupGameBoard();
 
    public:
     inline static int BOARD_SIZE = 8;
     inline static int MINE_NUMBER = 0;
     inline static int FLAG_NUMBER = 0;
-    static void revealAllBombs();
-    void setupGameBoard();
     inline static std::vector<std::vector<Square*>> grid;
 
    private:

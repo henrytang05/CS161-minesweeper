@@ -31,10 +31,20 @@ void styleWindow(
 ) {
     window->setWindowTitle(QString::fromStdString(title));
     window->setFixedSize(width, height);
-    // window->setMinimumWidth(width);
     window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
 }
-void styleSquare(QPushButton* square, int row, int col) {
+void styleSquare(QPushButton* square, int row, int col, std::string&& color) {
+    if (!color.empty()) {
+        if (std::isdigit(color[1])) {
+            if (color[0] == '#') color.erase(0, 1);
+            square->setStyleSheet(
+                QString::fromStdString("background-color: #" + color + ";")
+            );
+        } else {
+            square->setStyleSheet(QString::fromStdString("background-color: " + color));
+        }
+        return;
+    }
     if (row % 2 == col % 2) {
         square->setStyleSheet("background-color: #C7DCA7");
     } else {
