@@ -6,9 +6,9 @@
 #include <QSize>
 #include <QString>
 #include <QWidget>
-// #include "../../../Memory/Memory.h"
-#include "../../../Style/Style.h"
-#include "../GameBoard/GameBoard.h"
+
+#include "Style/Style.h"
+#include "GameBoard/GameBoard.h"
 
 class Square : public QPushButton {
     friend class GameBoard;

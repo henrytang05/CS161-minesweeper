@@ -1,14 +1,14 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "../Pages/GameBoardPage/GameBoard/GameBoard.h"
-#include "../Pages/GameBoardPage/GameBoardPage/GameBoardPage.h"
-#include "../Pages/GameBoardPage/Square/Square.h"
-#include "../Pages/HomePage/HomePage.h"
-#include "../Pages/LevelSelectionPage/LevelSelectionPage.h"
-#include "../Style/Style.h"
+#include "GameBoard/GameBoard.h"
+#include "GameBoardPage/GameBoardPage.h"
+#include "HomePage/HomePage.h"
+#include "LevelSelectionPage/LevelSelectionPage.h"
+#include "Square/Square.h"
+#include "Style/Style.h"
 
-class HomeWindow;
+class MainWindow;
 class Pages : public QStackedWidget {
     Q_OBJECT
    public:
@@ -32,11 +32,11 @@ class Pages : public QStackedWidget {
     void startNewGameSlot(int difficulty);
 };
 
-class HomeWindow : public QMainWindow {
+class MainWindow : public QMainWindow {
     Q_OBJECT
    public:
-    HomeWindow(QMainWindow* parent = nullptr);
-    ~HomeWindow();
+    MainWindow(QMainWindow* parent = nullptr);
+    ~MainWindow();
     void makeconnection();
 
    private:

@@ -6,10 +6,10 @@
 #include <QStackedWidget>
 #include <string>
 
-#include "../../../Style/Style.h"
-#include "../GameBoard/GameBoard.h"
-#include "../Square/Square.h"
-#include "../Timer/Timer.h"
+#include "GameBoard/GameBoard.h"
+#include "Square/Square.h"
+#include "Style/Style.h"
+#include "Timer/Timer.h"
 class GameBoard;
 class Square;
 

@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-#include "../../../Style/Style.h"
+#include "Style/Style.h"
 Timer::Timer(QWidget* parent) : QLabel(parent) {
     timerObject = new QTimer(this);
     elapsedTime = QTime(0, 0);

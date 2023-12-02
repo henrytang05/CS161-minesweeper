@@ -6,8 +6,8 @@
 #include <QStackedWidget>
 #include <QWidget>
 
-// #include "../../Memory/Memory.h"
-#include "../../Style/Style.h"
+
+#include "Style/Style.h"
 class HomePage : public QWidget {
     Q_OBJECT
    public:

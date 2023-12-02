@@ -6,9 +6,8 @@
 #include <random>
 #include <vector>
 
-#include "../Square/Square.h"
-// #include "../../../Memory/Memory.h"
-#include "../../../Style/Style.h"
+#include "Square/Square.h"
+#include "Style/Style.h"
 class Square;
 class GameBoard : public QWidget {
     Q_OBJECT
