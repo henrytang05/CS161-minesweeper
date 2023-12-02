@@ -1,8 +1,10 @@
 #include "GameBoardPage.h"
 
-#include "../GameBoard/GameBoard.h"
-#include "../Square/Square.h"
 
+#include "GameBoard/GameBoard.h"
+#include "Square/Square.h"
+#include "Style/Style.h"
+#include "Timer/Timer.h"
 GameBoardPage::GameBoardPage(QStackedWidget* parent, int level) : QWidget(parent) {
     setupGameBoardPage(level);
 }

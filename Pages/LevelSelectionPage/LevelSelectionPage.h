@@ -5,7 +5,7 @@
 #include <QPushButton>
 #include <QStackedWidget>
 
-#include "Style/Style.h"
+
 class LevelSelectionPage : public QWidget {
     Q_OBJECT
    public:

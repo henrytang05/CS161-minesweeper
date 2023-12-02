@@ -7,7 +7,7 @@
 #include <QWidget>
 
 
-#include "Style/Style.h"
+
 class HomePage : public QWidget {
     Q_OBJECT
    public:

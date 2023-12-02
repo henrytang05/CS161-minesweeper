@@ -102,6 +102,7 @@
     "qdebug": "cpp",
     "format": "cpp",
     "stdfloat": "cpp",
-    "qicon": "cpp"
+    "qicon": "cpp",
+    "qwidget": "cpp"
   }
 }

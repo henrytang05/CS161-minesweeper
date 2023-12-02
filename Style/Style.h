@@ -7,7 +7,7 @@
 #include <cctype>
 #include <string>
 
-#include "Square/Square.h"
+
 class Square;
 void styleButton(
     QPushButton* b, std::string&& background_color = "FF00000", bool rounded = true,

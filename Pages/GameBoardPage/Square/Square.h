@@ -7,9 +7,8 @@
 #include <QString>
 #include <QWidget>
 
-#include "Style/Style.h"
-#include "GameBoard/GameBoard.h"
 
+class GameBoard;
 class Square : public QPushButton {
     friend class GameBoard;
     Q_OBJECT
@@ -64,4 +63,5 @@ class Square : public QPushButton {
     void squareRightClickedSlot();
     void squareDoubleClickedSlot();
 };
+
 #endif

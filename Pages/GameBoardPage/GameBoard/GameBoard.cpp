@@ -1,6 +1,7 @@
 #include "GameBoard.h"
 
-#include "../Square/Square.h"
+#include "Square/Square.h"
+#include "Style/Style.h"
 std::vector<std::vector<Square*>> GameBoard::grid;
 GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
     if (level == 1)

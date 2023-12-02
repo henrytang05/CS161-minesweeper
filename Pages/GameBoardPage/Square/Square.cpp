@@ -1,6 +1,7 @@
 #include "Square.h"
 
-#include "../GameBoard/GameBoard.h"
+#include "GameBoard/GameBoard.h"
+#include "Style/Style.h"
 
 Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
     isMine = false;

@@ -5,14 +5,11 @@
 #include <QLabel>
 #include <QStackedWidget>
 #include <string>
+#include <QPushButton>
 
-#include "GameBoard/GameBoard.h"
-#include "Square/Square.h"
-#include "Style/Style.h"
-#include "Timer/Timer.h"
 class GameBoard;
 class Square;
-
+class Timer;
 class GameBoardPage : public QWidget {
     Q_OBJECT
    public:

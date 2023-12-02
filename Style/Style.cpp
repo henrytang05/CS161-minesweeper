@@ -1,5 +1,6 @@
-#include "../Style/Style.h"
+#include "Style/Style.h"
 
+#include "Square/Square.h"
 void styleButton(
     QPushButton* b, std::string&& background_color, bool rounded, int width, int height,
     std::string&& text_color

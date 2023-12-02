@@ -1,4 +1,11 @@
 #include "MainWindow.h"
+
+#include "GameBoard/GameBoard.h"
+#include "GameBoardPage/GameBoardPage.h"
+#include "HomePage/HomePage.h"
+#include "LevelSelectionPage/LevelSelectionPage.h"
+#include "Square/Square.h"
+#include "Style/Style.h"
 MainWindow::MainWindow(QMainWindow* parent) : QMainWindow(parent) {
     stackedPages = new Pages(this);
     styleWindow("Main Window", windowWidth, windowHeight, this, "E36387");

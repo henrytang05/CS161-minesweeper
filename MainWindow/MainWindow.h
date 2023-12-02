@@ -1,14 +1,12 @@
 #ifndef MENU_H
 #define MENU_H
-
-#include "GameBoard/GameBoard.h"
-#include "GameBoardPage/GameBoardPage.h"
-#include "HomePage/HomePage.h"
-#include "LevelSelectionPage/LevelSelectionPage.h"
-#include "Square/Square.h"
-#include "Style/Style.h"
-
+#include <QMainWindow>
+#include <QWidget>
+#include <QStackedWidget>
 class MainWindow;
+class LevelSelectionPage;
+class HomePage;
+class GameBoardPage;
 class Pages : public QStackedWidget {
     Q_OBJECT
    public:

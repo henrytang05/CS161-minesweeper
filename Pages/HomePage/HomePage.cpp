@@ -1,4 +1,6 @@
 #include "HomePage.h"
+
+#include "Style/Style.h"
 HomePage::HomePage(QStackedWidget* parent) { setupHomePage(); }
 HomePage::~HomePage() {}
 void HomePage::setupHomePage() {

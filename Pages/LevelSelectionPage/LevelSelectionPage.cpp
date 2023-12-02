@@ -1,8 +1,11 @@
 #include "LevelSelectionPage.h"
-LevelSelectionPage::LevelSelectionPage(QStackedWidget* parent) { setupLevelSelectionPage(); }
+
+#include "Style/Style.h"
+LevelSelectionPage::LevelSelectionPage(QStackedWidget* parent) {
+    setupLevelSelectionPage();
+}
 LevelSelectionPage::~LevelSelectionPage() {}
 void LevelSelectionPage::setupLevelSelectionPage() {
-
     QVBoxLayout* mainLayout = new QVBoxLayout();
     this->setLayout(mainLayout);
 
