@@ -79,11 +79,6 @@ void Square::render_square() {
 }
 void Square::squareLeftClickedSlot() {
     if (this->isFlagged) return;
-    if (this->isMine) {
-        GameBoard::revealAllBombs();
-        emit result(LOSE);
-        return;
-    }
     this->breakSurroundingCells();
     if (Square::SQUARE_REVEALED ==
         GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
@@ -139,4 +134,10 @@ void Square::squareDoubleClickedSlot() {
     if (this->isRevealed && this->surroundingMineCount == this->surroundingFlagCount) {
         this->updateSurrounding('d');
     }
+}
+Mine_Square::Mine_Square(int row, int col, QWidget* parent) : Square(row, col, parent) {}
+Mine_Square::~Mine_Square() {}
+void Mine_Square::squareLeftClickedSlot() {
+    GameBoard::revealAllBombs();
+    emit result(LOSE);
 }

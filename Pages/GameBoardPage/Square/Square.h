@@ -7,7 +7,6 @@
 #include <QString>
 #include <QWidget>
 
-
 class GameBoard;
 class Square : public QPushButton {
     friend class GameBoard;
@@ -59,9 +58,15 @@ class Square : public QPushButton {
     }
 
    public slots:
-    void squareLeftClickedSlot();
+    virtual void squareLeftClickedSlot();
     void squareRightClickedSlot();
     void squareDoubleClickedSlot();
+};
+class Mine_Square : public Square {
+   public:
+    Mine_Square(int row, int col, QWidget* parent = nullptr);
+    ~Mine_Square();
+    void squareLeftClickedSlot() override;
 };
 
 #endif
