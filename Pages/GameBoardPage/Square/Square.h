@@ -10,7 +10,7 @@
 class GameBoard;
 class Square : public QPushButton {
    public:
-    enum class STATE : char { Reavealed, UnRevealed, Flagged };
+    enum class STATE : char { Revealed, UnRevealed, Flagged };
     friend class GameBoard;
     Q_OBJECT
    public:
@@ -30,6 +30,7 @@ class Square : public QPushButton {
     );
     virtual void render_square() = 0;
     void updateSurrounding(char mode);
+    virtual void changeState(STATE newState) = 0;
 
    public:
     int row;
@@ -39,6 +40,7 @@ class Square : public QPushButton {
     bool isMine;
     bool isFlagged;
     bool isRevealed;
+    STATE state;
     int surroundingMineCount = 0;
     int surroundingFlagCount = 0;
 
@@ -72,6 +74,7 @@ class Mine_Square : public Square {
     virtual void squareLeftClickedSlot() override;
     virtual void squareDoubleClickedSlot() override;
     virtual void render_square() override;
+    virtual void changeState(STATE state) override;
 };
 class Blank_Square : public Square {
     Q_OBJECT
@@ -81,6 +84,7 @@ class Blank_Square : public Square {
     virtual void squareLeftClickedSlot() override;
     virtual void squareDoubleClickedSlot() override;
     virtual void render_square() override;
+    virtual void changeState(STATE state) override;
 };
 
 #endif

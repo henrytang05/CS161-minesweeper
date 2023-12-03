@@ -7,6 +7,7 @@ Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
     isMine = false;
     isFlagged = false;
     isRevealed = false;
+    state = STATE::UnRevealed;
     surroundingMineCount = 0;
     surroundingFlagCount = 0;
     this->row = row;
@@ -23,6 +24,7 @@ Square::~Square() {}
 void Square::setAsRevealed() {
     SQUARE_REVEALED++;
     this->isRevealed = true;
+    this->changeState(STATE::Revealed);
     this->render_square();
 }
 void Square::updateSurrounding(char mode) {
@@ -73,7 +75,7 @@ void Mine_Square::render_square() {
     if (this->isRevealed) {
         iconPath = QString(":/Images/bomb.png");
         styleSquare(this, "red");
-    } else if (this->isFlagged) {
+    } else if (state == STATE::Flagged) {
         iconPath = QString(":/Images/flag.png");
         styleSquare(this, "yellow");
     }
@@ -112,7 +114,7 @@ void Square::breakSurroundingCells() {
         int newCol = this->col + move[1];
         if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
             newCol >= GameBoard::BOARD_SIZE ||
-            GameBoard::grid[newRow][newCol]->isRevealed) {
+            GameBoard::grid[newRow][newCol]->state == STATE::Revealed) {
             continue;
         }
         GameBoard::grid[newRow][newCol]->breakSurroundingCells();
@@ -121,7 +123,7 @@ void Square::breakSurroundingCells() {
 
 void Square::squareRightClickedSlot() {
     char mode;
-    if (!this->isRevealed) {
+    if (state == STATE::Revealed) {
         if (!this->isFlagged) {
             this->isFlagged = true;
             this->render_square();
@@ -162,7 +164,32 @@ void Blank_Square::squareLeftClickedSlot() {
     }
 }
 void Blank_Square::squareDoubleClickedSlot() {
-    if (this->isRevealed && this->surroundingMineCount == this->surroundingFlagCount) {
+    if (state == STATE::Flagged &&
+        this->surroundingMineCount == this->surroundingFlagCount) {
         this->updateSurrounding('d');
+    }
+}
+void Mine_Square::changeState(STATE newState) {
+    this->state = newState;
+    switch (newState) {
+        case STATE::UnRevealed:
+            return;
+        case STATE::Revealed:
+            this->render_square();
+            emit result(LOSE);
+            break;
+        case STATE::Flagged:
+            this->render_square();
+            break;
+    }
+}
+void Blank_Square::changeState(STATE newState) {
+    this->state = newState;
+    render_square();
+    switch (newState) {
+        case STATE::UnRevealed:
+        case STATE::Revealed:
+        case STATE::Flagged:
+            return;
     }
 }
