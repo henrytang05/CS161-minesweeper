@@ -23,11 +23,11 @@ Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
 Square::~Square() {}
 void Square::setAsRevealed() {
     SQUARE_REVEALED++;
-    this->isRevealed = true;
+    this->changeState(STATE::Revealed);
     this->changeState(STATE::Revealed);
     this->render_square();
 }
-void Square::updateSurrounding(char mode) {
+void Mine_Square::updateSurrounding(char mode) {
     int direction[8][2] = {
         {-1, -1},  // Up-Left
         {-1, 0},   // Up
@@ -61,6 +61,38 @@ void Square::updateSurrounding(char mode) {
         }
     }
 }
+void Blank_Square::updateSurrounding(char mode) {
+    int direction[8][2] = {
+        {-1, -1},  // Up-Left
+        {-1, 0},   // Up
+        {-1, 1},   // Up-Right
+        {0, -1},   // Left
+        {0, 1},    // Right
+        {1, -1},   // Down-Left
+        {1, 0},    // Down
+        {1, 1}     // Down-Right
+    };
+    for (auto& move : direction) {
+        int newRow = this->row + move[0];
+        int newCol = this->col + move[1];
+        if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
+            newCol >= GameBoard::BOARD_SIZE)
+            continue;
+        Square* square = GameBoard::grid[newRow][newCol];
+        else if (mode == 'f')
+            square->surroundingFlagCount++;
+        else if (mode == 'u')
+            square->surroundingFlagCount--;
+        else if (mode == 'd') {
+            if (square->isFlagged && square->isMine) continue;
+            if (square->isFlagged) {
+                square->isFlagged = false;
+                square->setIcon(QIcon());
+            }
+            square->squareLeftClickedSlot();
+        }
+    }
+}
 
 void Square::setSquareIcon(const QIcon& icon, int width, int length) {
     QSize iconSize(width, length);
@@ -72,7 +104,7 @@ void Square::setSquareIcon(const QIcon& icon, int width, int length) {
 }
 void Mine_Square::render_square() {
     QString iconPath;
-    if (this->isRevealed) {
+    if (state == STATE::Revealed) {
         iconPath = QString(":/Images/bomb.png");
         styleSquare(this, "red");
     } else if (state == STATE::Flagged) {

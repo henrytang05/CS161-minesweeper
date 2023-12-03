@@ -78,7 +78,7 @@ void GameBoard::initializeGameBoard(QGridLayout* mainGridLayout) {
 void GameBoard::revealAllBombs() {
     for (auto row : grid) {
         for (auto square : row) {
-            if (square->isMine && !square->isRevealed) {
+            if (square->isMine && square->state == Square::STATE::UnRevealed) {
                 if (!square->isFlagged)
                     square->render_square();
                 else

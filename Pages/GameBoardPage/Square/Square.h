@@ -29,14 +29,14 @@ class Square : public QPushButton {
         int length = Square::CELL_SIZE / 2
     );
     virtual void render_square() = 0;
-    void updateSurrounding(char mode);
+    virtual void updateSurrounding(char mode) = 0;
     virtual void changeState(STATE newState) = 0;
 
    public:
     int row;
     int col;
 
-   protected:
+   public:
     bool isMine;
     bool isFlagged;
     bool isRevealed;
@@ -75,6 +75,7 @@ class Mine_Square : public Square {
     virtual void squareDoubleClickedSlot() override;
     virtual void render_square() override;
     virtual void changeState(STATE state) override;
+    virtual void updateSurrounding(char mode) override;
 };
 class Blank_Square : public Square {
     Q_OBJECT
@@ -85,6 +86,7 @@ class Blank_Square : public Square {
     virtual void squareDoubleClickedSlot() override;
     virtual void render_square() override;
     virtual void changeState(STATE state) override;
+    virtual void updateSurrounding(char mode) override;
 };
 
 #endif
