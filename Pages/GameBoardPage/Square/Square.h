@@ -9,6 +9,8 @@
 
 class GameBoard;
 class Square : public QPushButton {
+   public:
+    enum class STATE : char { Reavealed, UnRevealed, Flagged };
     friend class GameBoard;
     Q_OBJECT
    public:
@@ -21,25 +23,25 @@ class Square : public QPushButton {
    public:
     inline static constexpr int CELL_SIZE = 35;
 
-   private:
+   protected:
     void setSquareIcon(
         const QIcon& icon, int width = Square::CELL_SIZE / 2,
         int length = Square::CELL_SIZE / 2
     );
-    void render_square();
+    virtual void render_square() = 0;
     void updateSurrounding(char mode);
 
    public:
     int row;
     int col;
 
-   private:
+   protected:
     bool isMine;
     bool isFlagged;
     bool isRevealed;
     int surroundingMineCount = 0;
     int surroundingFlagCount = 0;
-    inline static int FLAG_SET = 0;
+
     inline static int SQUARE_REVEALED = 0;
    signals:
     void result(bool);
@@ -58,15 +60,27 @@ class Square : public QPushButton {
     }
 
    public slots:
-    virtual void squareLeftClickedSlot();
+    virtual void squareLeftClickedSlot() = 0;
     void squareRightClickedSlot();
-    void squareDoubleClickedSlot();
+    virtual void squareDoubleClickedSlot() = 0;
 };
 class Mine_Square : public Square {
+    Q_OBJECT
    public:
     Mine_Square(int row, int col, QWidget* parent = nullptr);
     ~Mine_Square();
-    void squareLeftClickedSlot() override;
+    virtual void squareLeftClickedSlot() override;
+    virtual void squareDoubleClickedSlot() override;
+    virtual void render_square() override;
+};
+class Blank_Square : public Square {
+    Q_OBJECT
+   public:
+    Blank_Square(int row, int col, QWidget* parent = nullptr);
+    ~Blank_Square();
+    virtual void squareLeftClickedSlot() override;
+    virtual void squareDoubleClickedSlot() override;
+    virtual void render_square() override;
 };
 
 #endif

@@ -4,9 +4,9 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QPushButton>
+#include <QString>
 #include <cctype>
 #include <string>
-
 
 class Square;
 void styleButton(

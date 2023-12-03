@@ -7,10 +7,17 @@ Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
     isMine = false;
     isFlagged = false;
     isRevealed = false;
+    surroundingMineCount = 0;
+    surroundingFlagCount = 0;
     this->row = row;
     this->col = col;
-    surroundingMineCount = 0;
+
     styleButton(this, "#EEA6B9", false, CELL_SIZE, CELL_SIZE);
+    QObject::connect(this, &QPushButton::clicked, this, &Square::squareLeftClickedSlot);
+    QObject::connect(this, &Square::rightClicked, this, &Square::squareRightClickedSlot);
+    QObject::connect(
+        this, &Square::doubleClicked, this, &Square::squareDoubleClickedSlot
+    );
 }
 Square::~Square() {}
 void Square::setAsRevealed() {
@@ -47,7 +54,6 @@ void Square::updateSurrounding(char mode) {
             if (square->isFlagged) {
                 square->isFlagged = false;
                 square->setIcon(QIcon());
-                FLAG_SET--;
             }
             square->squareLeftClickedSlot();
         }
@@ -62,28 +68,29 @@ void Square::setSquareIcon(const QIcon& icon, int width, int length) {
         this->setIconSize(iconSize);
     }
 }
-void Square::render_square() {
+void Mine_Square::render_square() {
+    QString iconPath;
+    if (this->isRevealed) {
+        iconPath = QString(":/Images/bomb.png");
+        styleSquare(this, "red");
+    } else if (this->isFlagged) {
+        iconPath = QString(":/Images/flag.png");
+        styleSquare(this, "yellow");
+    }
+    QIcon icon(iconPath);
+    this->setSquareIcon(icon);
+}
+void Blank_Square::render_square() {
     QString iconPath;
     if (this->isFlagged) {
         iconPath = QString(":/Images/flag.png");
         styleSquare(this, "yellow");
-    } else if (this->isMine) {
-        iconPath = QString(":/Images/bomb.png");
-        styleSquare(this, "red");
     } else {
         iconPath = QString(":/Images/%1.png").arg(Square::surroundingMineCount);
         styleSquare(this, "green");
     }
     QIcon icon(iconPath);
     this->setSquareIcon(icon);
-}
-void Square::squareLeftClickedSlot() {
-    if (this->isFlagged) return;
-    this->breakSurroundingCells();
-    if (Square::SQUARE_REVEALED ==
-        GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
-        emit result(WIN);
-    }
 }
 void Square::breakSurroundingCells() {
     this->setAsRevealed();
@@ -111,33 +118,51 @@ void Square::breakSurroundingCells() {
         GameBoard::grid[newRow][newCol]->breakSurroundingCells();
     }
 }
+
 void Square::squareRightClickedSlot() {
     char mode;
     if (!this->isRevealed) {
-        if (FLAG_SET == GameBoard::FLAG_NUMBER && !this->isFlagged) return;
         if (!this->isFlagged) {
             this->isFlagged = true;
             this->render_square();
             mode = 'f';
-            FLAG_SET++;
+
         } else {
             this->isFlagged = false;
             styleSquare(this);
             this->setIcon(QIcon());
             mode = 'u';
-            FLAG_SET--;
         }
         this->updateSurrounding(mode);
     }
 }
-void Square::squareDoubleClickedSlot() {
-    if (this->isRevealed && this->surroundingMineCount == this->surroundingFlagCount) {
-        this->updateSurrounding('d');
-    }
-}
+
 Mine_Square::Mine_Square(int row, int col, QWidget* parent) : Square(row, col, parent) {}
 Mine_Square::~Mine_Square() {}
 void Mine_Square::squareLeftClickedSlot() {
+    this->setStyleSheet("background-color: red;");
     GameBoard::revealAllBombs();
     emit result(LOSE);
+}
+void Mine_Square::squareDoubleClickedSlot() {
+    if (this->isFlagged)
+        return;
+    else
+        emit result(WIN);
+}
+Blank_Square::Blank_Square(int row, int col, QWidget* parent)
+    : Square(row, col, parent) {}
+Blank_Square::~Blank_Square() {}
+void Blank_Square::squareLeftClickedSlot() {
+    if (this->isFlagged) return;
+    this->breakSurroundingCells();
+    if (Square::SQUARE_REVEALED ==
+        GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
+        emit result(WIN);
+    }
+}
+void Blank_Square::squareDoubleClickedSlot() {
+    if (this->isRevealed && this->surroundingMineCount == this->surroundingFlagCount) {
+        this->updateSurrounding('d');
+    }
 }

@@ -35,21 +35,24 @@ void styleWindow(
     window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
 }
 void styleSquare(Square* square, std::string&& color) {
+    QString str = std::move(QString("QPushButton { border: 1px solid black;  "));
     if (!color.empty()) {
         if (std::isdigit(color[1])) {
             if (color[0] == '#') color.erase(0, 1);
             square->setStyleSheet(
-                QString::fromStdString("background-color: #" + color + ";")
+                str + QString::fromStdString("background-color: #" + color + ";}")
             );
         } else {
-            square->setStyleSheet(QString::fromStdString("background-color: " + color));
+            square->setStyleSheet(
+                str + QString::fromStdString("background-color: " + color + ";}")
+            );
         }
         return;
     }
     if (square->row % 2 == square->col % 2) {
-        square->setStyleSheet("background-color: #C7DCA7");
+        square->setStyleSheet(str + QString("background-color: #C7DCA7;}"));
     } else {
-        square->setStyleSheet("background-color: #89B9AD");
+        square->setStyleSheet(str + QString("background-color: #89B9AD;}"));
     }
 }
 void styleTimer(QLabel* timer, std::string&& color, double size) {

@@ -23,7 +23,7 @@ class GameBoard : public QWidget {
     static std::vector<std::vector<Square*>> grid;
 
    private:
-    void initializeGameBoard();
+    void initializeGameBoard(QGridLayout*);
 
    signals:
     void result(bool);
