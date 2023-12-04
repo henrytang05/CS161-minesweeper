@@ -6,6 +6,7 @@ class Square;
 class Session {
    public:
     static Session& GetInstance();
+    static std::vector<std::vector<Square*>>& GetBoard();
 
    private:
     Session();

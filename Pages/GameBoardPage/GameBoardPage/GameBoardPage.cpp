@@ -5,7 +5,7 @@
 #include "Square/Square.h"
 #include "Style/Style.h"
 #include "Timer/Timer.h"
-static auto& grid = Session::GetInstance().board;
+static auto& board = Session::GetBoard();
 GameBoardPage::GameBoardPage(QStackedWidget* parent, int level) : QWidget(parent) {
     setupGameBoardPage(level);
 }
@@ -44,7 +44,7 @@ void GameBoardPage::setupGameBoardPage(int level) {
     setLayout(mainLayout);
 }
 void GameBoardPage::reavealAllBombs() {
-    for (auto& squareRow : grid) {
+    for (auto& squareRow : board) {
         for (auto& square : squareRow) {
             if (dynamic_cast<Mine_Square*>(square) != nullptr) {
                 square->changeState(Square::STATE::Revealed);
@@ -61,7 +61,7 @@ void GameBoardPage::victoryAnnoucement(bool won) {
         announcementLabel->setText("You lost!");
     }
     announcementLabel->show();
-    for (auto& squareRow : grid) {
+    for (auto& squareRow : board) {
         for (auto& square : squareRow) {
             square->setEnabled(false);
         }

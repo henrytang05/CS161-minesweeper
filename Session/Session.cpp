@@ -20,6 +20,9 @@ Session& Session::GetInstance() {
     static Session instance;
     return instance;
 }
+std::vector<std::vector<Square*>>& Session::GetBoard() {
+    return Session::GetInstance().board;
+}
 void Session::setupBoard() {
     // board.resize(
     //     boardDimension.first, std::vector<Square*>(boardDimension.second, nullptr)

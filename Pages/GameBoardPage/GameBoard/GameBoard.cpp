@@ -3,7 +3,7 @@
 #include "Session/Session.h"
 #include "Square/Square.h"
 #include "Style/Style.h"
-static auto& grid = Session::GetInstance().board;
+static auto& board = Session::GetInstance().board;
 GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
     if (level == 1)
         BOARD_SIZE = 9;
@@ -32,7 +32,7 @@ void GameBoard::setupGameBoard() {
             Square* square = new Blank_Square(row, col, this);
             styleSquare(square);
             QObject::connect(square, &Square::result, this, &GameBoard::result);
-            grid[row][col] = square;
+            board[row][col] = square;
             mainGridLayout->addWidget(square, row, col);
         }
     }
@@ -51,17 +51,17 @@ void GameBoard::initializeGameBoard(QGridLayout* mainGridLayout) {
             rowRandomNumber = distribution(generator);
             colRandomNumber = distribution(generator);
 
-        } while (dynamic_cast<Mine_Square*>(grid[rowRandomNumber][colRandomNumber]) !=
+        } while (dynamic_cast<Mine_Square*>(board[rowRandomNumber][colRandomNumber]) !=
                  nullptr);
 
-        delete grid[rowRandomNumber][colRandomNumber];
-        grid[rowRandomNumber][colRandomNumber] =
+        delete board[rowRandomNumber][colRandomNumber];
+        board[rowRandomNumber][colRandomNumber] =
             new Mine_Square(rowRandomNumber, colRandomNumber, this);
-        Square* square = grid[rowRandomNumber][colRandomNumber];
+        Square* square = board[rowRandomNumber][colRandomNumber];
         QObject::connect(square, &Square::result, this, &GameBoard::result);
         styleSquare(square);
         mainGridLayout->addWidget(
-            grid[rowRandomNumber][colRandomNumber], rowRandomNumber, colRandomNumber
+            board[rowRandomNumber][colRandomNumber], rowRandomNumber, colRandomNumber
         );
         updateSurroundingMineNumber(square);
     }
@@ -83,6 +83,6 @@ void GameBoard::updateSurroundingMineNumber(Square* square) {
         if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
             newCol >= GameBoard::BOARD_SIZE)
             continue;
-        grid[newRow][newCol]->surroundingMineCount++;
+        board[newRow][newCol]->surroundingMineCount++;
     }
 }
