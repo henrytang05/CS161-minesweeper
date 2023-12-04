@@ -1,8 +1,8 @@
 #include "Square.h"
 
 #include "GameBoard/GameBoard.h"
+#include "Session/Session.h"
 #include "Style/Style.h"
-
 Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
     isMine = false;
     isFlagged = false;
@@ -32,6 +32,7 @@ Blank_Square::Blank_Square(int row, int col, QWidget* parent)
 Blank_Square::~Blank_Square() {}
 
 void Square::updateSurroundingFlag(char mode) {
+    auto& grid = Session::GetInstance().board;
     int direction[8][2] = {
         {-1, -1},  // Up-Left
         {-1, 0},   // Up
@@ -48,7 +49,7 @@ void Square::updateSurroundingFlag(char mode) {
         if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
             newCol >= GameBoard::BOARD_SIZE)
             continue;
-        Square* square = GameBoard::grid[newRow][newCol];
+        Square* square = grid[newRow][newCol];
         if (mode == 'f')
             square->surroundingFlagCount++;
         else if (mode == 'u')
@@ -106,6 +107,8 @@ void Blank_Square::render_square() {
     this->setSquareIcon(icon);
 }
 void Square::breakSurroundingCells() {
+    auto& grid = Session::GetInstance().board;
+
     this->changeState(STATE::Revealed);
     if (this->surroundingMineCount != 0) {
         return;
@@ -125,10 +128,10 @@ void Square::breakSurroundingCells() {
         int newCol = this->col + move[1];
         if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
             newCol >= GameBoard::BOARD_SIZE ||
-            GameBoard::grid[newRow][newCol]->state == STATE::Revealed) {
+            grid[newRow][newCol]->state == STATE::Revealed) {
             continue;
         }
-        GameBoard::grid[newRow][newCol]->breakSurroundingCells();
+        grid[newRow][newCol]->breakSurroundingCells();
     }
 }
 void Square::squareLeftClickedSlot() {

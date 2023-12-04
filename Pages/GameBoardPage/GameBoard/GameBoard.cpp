@@ -1,8 +1,9 @@
 #include "GameBoard.h"
 
+#include "Session/Session.h"
 #include "Square/Square.h"
 #include "Style/Style.h"
-std::vector<std::vector<Square*>> GameBoard::grid;
+static auto& grid = Session::GetInstance().board;
 GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
     if (level == 1)
         BOARD_SIZE = 9;
@@ -14,25 +15,16 @@ GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
         BOARD_SIZE = 9;
     MINE_NUMBER = BOARD_SIZE * BOARD_SIZE / 8;
     FLAG_NUMBER = MINE_NUMBER;
+
     setupGameBoard();
 }
-GameBoard::~GameBoard() {
-    for (auto& row : grid) {
-        for (auto& square : row) {
-            delete square;
-            square = nullptr;
-        }
-    }
-    grid.clear();
-}
+GameBoard::~GameBoard() {}
 void GameBoard::setupGameBoard() {
     this->setFixedSize(
         Square::CELL_SIZE * GameBoard::BOARD_SIZE,
         Square::CELL_SIZE * GameBoard::BOARD_SIZE
     );
-    grid.resize(
-        GameBoard::BOARD_SIZE, std::vector<Square*>(GameBoard::BOARD_SIZE, nullptr)
-    );
+
     QGridLayout* mainGridLayout = new QGridLayout(this);
 
     for (int row = 0; row < GameBoard::BOARD_SIZE; row++) {

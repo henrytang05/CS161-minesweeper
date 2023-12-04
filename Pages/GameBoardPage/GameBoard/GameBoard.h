@@ -19,7 +19,6 @@ class GameBoard : public QWidget {
     inline static int BOARD_SIZE = 8;
     inline static int MINE_NUMBER = 0;
     inline static int FLAG_NUMBER = 0;
-    static std::vector<std::vector<Square*>> grid;
 
    private:
     void initializeGameBoard(QGridLayout*);

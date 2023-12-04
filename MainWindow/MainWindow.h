@@ -1,8 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
 #include <QMainWindow>
-#include <QWidget>
 #include <QStackedWidget>
+#include <QWidget>
 class MainWindow;
 class LevelSelectionPage;
 class HomePage;
@@ -33,14 +33,14 @@ class Pages : public QStackedWidget {
 class MainWindow : public QMainWindow {
     Q_OBJECT
    public:
-    MainWindow(QMainWindow* parent = nullptr);
+    MainWindow(double width = 0, double height = 0, QMainWindow* parent = nullptr);
     ~MainWindow();
     void makeconnection();
 
    private:
     Pages* stackedPages;
-    double windowWidth = 520;
-    double windowHeight = 420;
+    double windowWidth = 900;
+    double windowHeight = 900;
 };
 
 #endif

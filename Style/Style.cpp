@@ -31,7 +31,7 @@ void styleWindow(
     std::string&& title, int width, int height, QMainWindow* window, std::string&& color
 ) {
     window->setWindowTitle(QString::fromStdString(title));
-    window->setFixedSize(width, height);
+    // window->setFixedSize(width, height);
     window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
 }
 void styleSquare(Square* square, std::string&& color) {

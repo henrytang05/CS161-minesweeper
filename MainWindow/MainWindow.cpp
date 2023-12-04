@@ -6,8 +6,11 @@
 #include "LevelSelectionPage/LevelSelectionPage.h"
 #include "Square/Square.h"
 #include "Style/Style.h"
-MainWindow::MainWindow(QMainWindow* parent) : QMainWindow(parent) {
+MainWindow::MainWindow(double width, double height, QMainWindow* parent)
+    : QMainWindow(parent) {
     stackedPages = new Pages(this);
+    this->windowWidth = width;
+    this->windowHeight = height;
     styleWindow("Main Window", windowWidth, windowHeight, this, "E36387");
     setCentralWidget(stackedPages);
     makeconnection();
@@ -30,11 +33,11 @@ void MainWindow::makeconnection() {
     QObject::connect(stackedPages, Pages::newGameSignal, this, [this]() {
         double windowWidth = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 300;
         double windowHeight = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 100;
-        this->setFixedSize(windowWidth, windowHeight);
+        // this->setFixedSize(windowWidth, windowHeight);
     });
-    QObject::connect(stackedPages, Pages::replaySignal, this, [this]() {
-        this->setFixedSize(520, 420);
-    });
+    // QObject::connect(stackedPages, Pages::replaySignal, this, [this]() {
+    //     this->setFixedSize(520, 420);
+    // });
 }
 void Pages::makeconnection() {
     // QObject::connect(homePage, HomePage::newGameClicked, this, &Pages::newGameSignal);

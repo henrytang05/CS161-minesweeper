@@ -5,7 +5,7 @@ project(CS161-Minesweeper VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp MainWindow/*.cpp Style/*.cpp Pages/*.cpp)
+FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp MainWindow/*.cpp Style/*.cpp Pages/*.cpp Session/*.cpp)
 
 set(TARGET_NAME Game)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
