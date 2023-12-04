@@ -68,22 +68,29 @@ void GameBoard::initializeGameBoard(QGridLayout* mainGridLayout) {
         Square* square = grid[rowRandomNumber][colRandomNumber];
         QObject::connect(square, &Square::result, this, &GameBoard::result);
         styleSquare(square);
-        grid[rowRandomNumber][colRandomNumber]->updateSurrounding('m');
         mainGridLayout->addWidget(
             grid[rowRandomNumber][colRandomNumber], rowRandomNumber, colRandomNumber
         );
+        updateSurroundingMineNumber(square);
     }
 }
-
-void GameBoard::revealAllBombs() {
-    for (auto row : grid) {
-        for (auto square : row) {
-            if (square->isMine && square->state == Square::STATE::UnRevealed) {
-                if (!square->isFlagged)
-                    square->render_square();
-                else
-                    styleSquare(square, "red");
-            }
-        }
+void GameBoard::updateSurroundingMineNumber(Square* square) {
+    int direction[8][2] = {
+        {-1, -1},  // Up-Left
+        {-1, 0},   // Up
+        {-1, 1},   // Up-Right
+        {0, -1},   // Left
+        {0, 1},    // Right
+        {1, -1},   // Down-Left
+        {1, 0},    // Down
+        {1, 1}     // Down-Right
+    };
+    for (auto& move : direction) {
+        int newRow = square->row + move[0];
+        int newCol = square->col + move[1];
+        if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
+            newCol >= GameBoard::BOARD_SIZE)
+            continue;
+        grid[newRow][newCol]->surroundingMineCount++;
     }
 }

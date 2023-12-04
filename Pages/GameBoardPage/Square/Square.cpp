@@ -24,10 +24,14 @@ Square::~Square() {}
 void Square::setAsRevealed() {
     SQUARE_REVEALED++;
     this->changeState(STATE::Revealed);
-    this->changeState(STATE::Revealed);
-    this->render_square();
 }
-void Mine_Square::updateSurrounding(char mode) {
+Mine_Square::Mine_Square(int row, int col, QWidget* parent) : Square(row, col, parent) {}
+Mine_Square::~Mine_Square() {}
+Blank_Square::Blank_Square(int row, int col, QWidget* parent)
+    : Square(row, col, parent) {}
+Blank_Square::~Blank_Square() {}
+
+void Square::updateSurroundingFlag(char mode) {
     int direction[8][2] = {
         {-1, -1},  // Up-Left
         {-1, 0},   // Up
@@ -45,50 +49,11 @@ void Mine_Square::updateSurrounding(char mode) {
             newCol >= GameBoard::BOARD_SIZE)
             continue;
         Square* square = GameBoard::grid[newRow][newCol];
-        if (mode == 'm')
-            square->surroundingMineCount++;
-        else if (mode == 'f')
+        if (mode == 'f')
             square->surroundingFlagCount++;
         else if (mode == 'u')
             square->surroundingFlagCount--;
         else if (mode == 'd') {
-            if (square->isFlagged && square->isMine) continue;
-            if (square->isFlagged) {
-                square->isFlagged = false;
-                square->setIcon(QIcon());
-            }
-            square->squareLeftClickedSlot();
-        }
-    }
-}
-void Blank_Square::updateSurrounding(char mode) {
-    int direction[8][2] = {
-        {-1, -1},  // Up-Left
-        {-1, 0},   // Up
-        {-1, 1},   // Up-Right
-        {0, -1},   // Left
-        {0, 1},    // Right
-        {1, -1},   // Down-Left
-        {1, 0},    // Down
-        {1, 1}     // Down-Right
-    };
-    for (auto& move : direction) {
-        int newRow = this->row + move[0];
-        int newCol = this->col + move[1];
-        if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
-            newCol >= GameBoard::BOARD_SIZE)
-            continue;
-        Square* square = GameBoard::grid[newRow][newCol];
-        else if (mode == 'f')
-            square->surroundingFlagCount++;
-        else if (mode == 'u')
-            square->surroundingFlagCount--;
-        else if (mode == 'd') {
-            if (square->isFlagged && square->isMine) continue;
-            if (square->isFlagged) {
-                square->isFlagged = false;
-                square->setIcon(QIcon());
-            }
             square->squareLeftClickedSlot();
         }
     }
@@ -104,30 +69,44 @@ void Square::setSquareIcon(const QIcon& icon, int width, int length) {
 }
 void Mine_Square::render_square() {
     QString iconPath;
-    if (state == STATE::Revealed) {
-        iconPath = QString(":/Images/bomb.png");
-        styleSquare(this, "red");
-    } else if (state == STATE::Flagged) {
-        iconPath = QString(":/Images/flag.png");
-        styleSquare(this, "yellow");
+    switch (state) {
+        case STATE::Revealed:
+            iconPath = QString(":/Images/bomb.png");
+            styleSquare(this, "red");
+            break;
+        case STATE::Flagged:
+            iconPath = QString(":/Images/flag.png");
+            styleSquare(this, "yellow");
+            break;
+        case STATE::UnRevealed:
+            this->setIcon(QIcon());
+            styleSquare(this);
+            return;
     }
     QIcon icon(iconPath);
     this->setSquareIcon(icon);
 }
 void Blank_Square::render_square() {
     QString iconPath;
-    if (this->isFlagged) {
-        iconPath = QString(":/Images/flag.png");
-        styleSquare(this, "yellow");
-    } else {
-        iconPath = QString(":/Images/%1.png").arg(Square::surroundingMineCount);
-        styleSquare(this, "green");
+    switch (state) {
+        case STATE::Revealed:
+            iconPath = QString(":/Images/%1.png").arg(Square::surroundingMineCount);
+            styleSquare(this, "green");
+            break;
+        case STATE::Flagged:
+            iconPath = QString(":/Images/flag.png");
+            styleSquare(this, "yellow");
+            break;
+        case STATE::UnRevealed:
+            this->setIcon(QIcon());
+            styleSquare(this);
+            return;
     }
     QIcon icon(iconPath);
     this->setSquareIcon(icon);
 }
 void Square::breakSurroundingCells() {
-    this->setAsRevealed();
+    this->changeState(STATE::Revealed);
     if (this->surroundingMineCount != 0) {
         return;
     }
@@ -152,76 +131,75 @@ void Square::breakSurroundingCells() {
         GameBoard::grid[newRow][newCol]->breakSurroundingCells();
     }
 }
+void Square::squareLeftClickedSlot() {
+    if (state == STATE::Flagged) return;
+    this->changeState(STATE::Revealed);
+}
 
 void Square::squareRightClickedSlot() {
-    char mode;
-    if (state == STATE::Revealed) {
-        if (!this->isFlagged) {
-            this->isFlagged = true;
-            this->render_square();
-            mode = 'f';
-
-        } else {
-            this->isFlagged = false;
-            styleSquare(this);
-            this->setIcon(QIcon());
-            mode = 'u';
-        }
-        this->updateSurrounding(mode);
-    }
-}
-
-Mine_Square::Mine_Square(int row, int col, QWidget* parent) : Square(row, col, parent) {}
-Mine_Square::~Mine_Square() {}
-void Mine_Square::squareLeftClickedSlot() {
-    this->setStyleSheet("background-color: red;");
-    GameBoard::revealAllBombs();
-    emit result(LOSE);
-}
-void Mine_Square::squareDoubleClickedSlot() {
-    if (this->isFlagged)
-        return;
-    else
-        emit result(WIN);
-}
-Blank_Square::Blank_Square(int row, int col, QWidget* parent)
-    : Square(row, col, parent) {}
-Blank_Square::~Blank_Square() {}
-void Blank_Square::squareLeftClickedSlot() {
-    if (this->isFlagged) return;
-    this->breakSurroundingCells();
-    if (Square::SQUARE_REVEALED ==
-        GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
-        emit result(WIN);
-    }
-}
-void Blank_Square::squareDoubleClickedSlot() {
-    if (state == STATE::Flagged &&
-        this->surroundingMineCount == this->surroundingFlagCount) {
-        this->updateSurrounding('d');
-    }
-}
-void Mine_Square::changeState(STATE newState) {
-    this->state = newState;
-    switch (newState) {
+    switch (state) {
         case STATE::UnRevealed:
-            return;
-        case STATE::Revealed:
-            this->render_square();
-            emit result(LOSE);
+            this->changeState(STATE::Flagged);
+            // TODO: update surrounding cells
             break;
         case STATE::Flagged:
-            this->render_square();
+            this->changeState(STATE::UnRevealed);
+
+            // TODO: update surrounding cells
+            break;
+        case STATE::Revealed:
+            return;
+    }
+}
+
+void Mine_Square::squareDoubleClickedSlot() {
+    if (state == STATE::Flagged) return;
+    this->changeState(STATE::Revealed);
+}
+
+void Blank_Square::squareDoubleClickedSlot() {
+    if (state == STATE::Flagged) return;
+    if (this->surroundingMineCount == this->surroundingFlagCount) {
+        this->updateSurroundingFlag('d');
+    }
+}
+
+void Mine_Square::changeState(STATE newState) {
+    if (this->state == newState) return;
+    this->state = newState;
+    this->render_square();
+    switch (newState) {
+        case STATE::UnRevealed:
+            updateSurroundingFlag('u');
+            break;
+        case STATE::Revealed:
+            emit result(LOSE);
+            return;
+        case STATE::Flagged:
+            updateSurroundingFlag('f');
+
             break;
     }
 }
 void Blank_Square::changeState(STATE newState) {
+    if (this->state == newState) return;
     this->state = newState;
     render_square();
+
     switch (newState) {
         case STATE::UnRevealed:
+            updateSurroundingFlag('u');
+            break;
         case STATE::Revealed:
+            this->breakSurroundingCells();
+
+            break;
         case STATE::Flagged:
+            updateSurroundingFlag('f');
             return;
+    }
+    if (Square::SQUARE_REVEALED ==
+        GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
+        emit result(WIN);
     }
 }

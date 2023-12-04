@@ -13,7 +13,6 @@ class GameBoard : public QWidget {
     GameBoard(QWidget* parent = nullptr, int level = 0);
     ~GameBoard();
 
-    static void revealAllBombs();
     void setupGameBoard();
 
    public:
@@ -24,6 +23,7 @@ class GameBoard : public QWidget {
 
    private:
     void initializeGameBoard(QGridLayout*);
+    void updateSurroundingMineNumber(Square*);
 
    signals:
     void result(bool);

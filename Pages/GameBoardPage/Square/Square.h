@@ -18,6 +18,7 @@ class Square : public QPushButton {
     ~Square();
     void setAsRevealed();
     void breakSurroundingCells();
+    virtual void changeState(STATE newState) = 0;
     enum { LOSE, WIN };
 
    public:
@@ -29,8 +30,7 @@ class Square : public QPushButton {
         int length = Square::CELL_SIZE / 2
     );
     virtual void render_square() = 0;
-    virtual void updateSurrounding(char mode) = 0;
-    virtual void changeState(STATE newState) = 0;
+    void updateSurroundingFlag(char mode);
 
    public:
     int row;
@@ -62,7 +62,7 @@ class Square : public QPushButton {
     }
 
    public slots:
-    virtual void squareLeftClickedSlot() = 0;
+    void squareLeftClickedSlot();
     void squareRightClickedSlot();
     virtual void squareDoubleClickedSlot() = 0;
 };
@@ -71,22 +71,18 @@ class Mine_Square : public Square {
    public:
     Mine_Square(int row, int col, QWidget* parent = nullptr);
     ~Mine_Square();
-    virtual void squareLeftClickedSlot() override;
     virtual void squareDoubleClickedSlot() override;
     virtual void render_square() override;
     virtual void changeState(STATE state) override;
-    virtual void updateSurrounding(char mode) override;
 };
 class Blank_Square : public Square {
     Q_OBJECT
    public:
     Blank_Square(int row, int col, QWidget* parent = nullptr);
     ~Blank_Square();
-    virtual void squareLeftClickedSlot() override;
     virtual void squareDoubleClickedSlot() override;
     virtual void render_square() override;
     virtual void changeState(STATE state) override;
-    virtual void updateSurrounding(char mode) override;
 };
 
 #endif

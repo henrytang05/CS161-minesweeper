@@ -3,9 +3,9 @@
 
 #include <QBoxLayout>
 #include <QLabel>
+#include <QPushButton>
 #include <QStackedWidget>
 #include <string>
-#include <QPushButton>
 
 class GameBoard;
 class Square;
@@ -16,6 +16,7 @@ class GameBoardPage : public QWidget {
     GameBoardPage(QStackedWidget* parent = nullptr, int level = 0);
     ~GameBoardPage();
     void setupGameBoardPage(int);
+    void reavealAllBombs();
 
    private:
     GameBoard* Board;

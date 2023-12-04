@@ -1,6 +1,5 @@
 #include "GameBoardPage.h"
 
-
 #include "GameBoard/GameBoard.h"
 #include "Square/Square.h"
 #include "Style/Style.h"
@@ -42,8 +41,18 @@ void GameBoardPage::setupGameBoardPage(int level) {
     mainLayout->addStretch();
     setLayout(mainLayout);
 }
+void GameBoardPage::reavealAllBombs() {
+    for (auto& squareRow : Board->grid) {
+        for (auto& square : squareRow) {
+            if (dynamic_cast<Mine_Square*>(square) != nullptr) {
+                square->changeState(Square::STATE::Revealed);
+            }
+        }
+    }
+}
 void GameBoardPage::victoryAnnoucement(bool won) {
     timer->stopTimer();
+    this->reavealAllBombs();
     if (won) {
         announcementLabel->setText("You won!");
     } else {
