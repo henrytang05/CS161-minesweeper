@@ -3,10 +3,9 @@
 #include "GameBoard/GameBoard.h"
 #include "Session/Session.h"
 #include "Style/Style.h"
+static auto& board = Session::GetBoard();
+
 Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
-    isMine = false;
-    isFlagged = false;
-    isRevealed = false;
     state = STATE::UnRevealed;
     surroundingMineCount = 0;
     surroundingFlagCount = 0;
@@ -14,17 +13,12 @@ Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
     this->col = col;
 
     styleButton(this, "#EEA6B9", false, CELL_SIZE, CELL_SIZE);
-    QObject::connect(this, &QPushButton::clicked, this, &Square::squareLeftClickedSlot);
-    QObject::connect(this, &Square::rightClicked, this, &Square::squareRightClickedSlot);
-    QObject::connect(
-        this, &Square::doubleClicked, this, &Square::squareDoubleClickedSlot
-    );
+    QObject::connect(this, &Square::leftClick, this, &Square::squareLeftClickedSlot);
+    QObject::connect(this, &Square::rightClick, this, &Square::squareRightClickedSlot);
+    QObject::connect(this, &Square::doubleClick, this, &Square::squareDoubleClickedSlot);
 }
 Square::~Square() {}
-void Square::setAsRevealed() {
-    SQUARE_REVEALED++;
-    this->changeState(STATE::Revealed);
-}
+
 Mine_Square::Mine_Square(int row, int col, QWidget* parent) : Square(row, col, parent) {}
 Mine_Square::~Mine_Square() {}
 Blank_Square::Blank_Square(int row, int col, QWidget* parent)
@@ -46,8 +40,8 @@ void Square::updateSurroundingFlag(char mode) {
     for (auto& move : direction) {
         int newRow = this->row + move[0];
         int newCol = this->col + move[1];
-        if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
-            newCol >= GameBoard::BOARD_SIZE)
+        if (newRow < 0 || newRow >= Session::GetRow() || newCol < 0 ||
+            newCol >= Session::GetColumn())
             continue;
         Square* square = board[newRow][newCol];
         if (mode == 'f')
@@ -107,8 +101,6 @@ void Blank_Square::render_square() {
     this->setSquareIcon(icon);
 }
 void Square::breakSurroundingCells() {
-    auto& board = Session::GetBoard();
-
     this->changeState(STATE::Revealed);
     if (this->surroundingMineCount != 0) {
         return;
@@ -126,8 +118,8 @@ void Square::breakSurroundingCells() {
     for (auto& move : direction) {
         int newRow = this->row + move[0];
         int newCol = this->col + move[1];
-        if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
-            newCol >= GameBoard::BOARD_SIZE ||
+        if (newRow < 0 || newRow >= Session::GetRow() || newCol < 0 ||
+            newCol >= Session::GetColumn() ||
             board[newRow][newCol]->state == STATE::Revealed) {
             continue;
         }
@@ -147,7 +139,6 @@ void Square::squareRightClickedSlot() {
             break;
         case STATE::Flagged:
             this->changeState(STATE::UnRevealed);
-
             // TODO: update surrounding cells
             break;
         case STATE::Revealed:
@@ -171,38 +162,54 @@ void Mine_Square::changeState(STATE newState) {
     if (this->state == newState) return;
     this->state = newState;
     this->render_square();
+    int& s_correctFlagged = Session::GetCorrectFlag();
+    int& s_flagged = Session::GetFlag();
     switch (newState) {
-        case STATE::UnRevealed:
-            updateSurroundingFlag('u');
-            break;
         case STATE::Revealed:
             emit result(LOSE);
-            return;
+            break;
+
+        // this mean you unflag it
+        case STATE::UnRevealed:
+            updateSurroundingFlag('u');
+            s_flagged--;
+            s_correctFlagged--;
+            break;
+
         case STATE::Flagged:
             updateSurroundingFlag('f');
-
+            s_flagged++;
+            s_correctFlagged++;
             break;
+    }
+    if (Session::GetSquareRevealed() + s_correctFlagged ==
+        Session::GetRow() * Session::GetColumn()) {
+        emit result(WIN);
     }
 }
 void Blank_Square::changeState(STATE newState) {
     if (this->state == newState) return;
     this->state = newState;
     render_square();
-
+    int& s_revealed = Session::GetSquareRevealed();
+    int& s_correctFlagged = Session::GetCorrectFlag();
+    int& s_flagged = Session::GetFlag();
     switch (newState) {
+        case STATE::Revealed:
+            s_revealed++;
+            this->breakSurroundingCells();
+            break;
+        // this mean you unflag it
         case STATE::UnRevealed:
             updateSurroundingFlag('u');
-            break;
-        case STATE::Revealed:
-            this->breakSurroundingCells();
-
+            s_flagged--;
             break;
         case STATE::Flagged:
             updateSurroundingFlag('f');
-            return;
+            s_flagged++;
+            break;
     }
-    if (Square::SQUARE_REVEALED ==
-        GameBoard::BOARD_SIZE * GameBoard::BOARD_SIZE - GameBoard::MINE_NUMBER) {
+    if (s_revealed + s_correctFlagged == Session::GetRow() * Session::GetColumn()) {
         emit result(WIN);
     }
 }

@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
     QApplication app(argc, argv);
 
     MainWindow* Game = new MainWindow(800, 800);
-    Game->showFullScreen();
+    Game->setFixSize(800, 800);
 
     return app.exec();
 }

@@ -4,6 +4,7 @@
 #include "GameBoardPage/GameBoardPage.h"
 #include "HomePage/HomePage.h"
 #include "LevelSelectionPage/LevelSelectionPage.h"
+#include "Session/Session.h"
 #include "Square/Square.h"
 #include "Style/Style.h"
 MainWindow::MainWindow(double width, double height, QMainWindow* parent)
@@ -30,11 +31,11 @@ Pages::~Pages() {
 }
 
 void MainWindow::makeconnection() {
-    QObject::connect(stackedPages, Pages::newGameSignal, this, [this]() {
-        double windowWidth = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 300;
-        double windowHeight = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 100;
-        // this->setFixedSize(windowWidth, windowHeight);
-    });
+    // QObject::connect(stackedPages, Pages::newGameSignal, this, [this]() {
+    //     double windowWidth = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 300;
+    //     double windowHeight = Square::CELL_SIZE * GameBoard::BOARD_SIZE + 100;
+    //     // this->setFixedSize(windowWidth, windowHeight);
+    // });
     // QObject::connect(stackedPages, Pages::replaySignal, this, [this]() {
     //     this->setFixedSize(520, 420);
     // });
@@ -64,6 +65,7 @@ void Pages::startNewGameSlot(int difficulty) {
 void Pages::replayGameSlot() {
     delete gameBoardPage;
     gameBoardPage = nullptr;
+    Session::GetInstance().~Session();
     emit replaySignal();
     this->setCurrentWidget(levelSelectionPage);
 }

@@ -3,32 +3,37 @@
 #include "Session/Session.h"
 #include "Square/Square.h"
 #include "Style/Style.h"
-static auto& board = Session::GetInstance().board;
 GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
-    if (level == 1)
-        BOARD_SIZE = 9;
-    else if (level == 2)
-        BOARD_SIZE = 16;
-    else if (level == 3)
-        BOARD_SIZE = 30;
-    else
-        BOARD_SIZE = 9;
-    MINE_NUMBER = BOARD_SIZE * BOARD_SIZE / 8;
-    FLAG_NUMBER = MINE_NUMBER;
-
+    int tmp = 0;
+    switch (level) {
+        case 1:
+            tmp = 9;
+            break;
+        case 2:
+            tmp = 16;
+            break;
+        case 3:
+            tmp = 30;
+            break;
+        default:
+            break;
+            // TODO: add customization
+    }
+    Session::SetBoardDimension(tmp, tmp);  //
     setupGameBoard();
 }
 GameBoard::~GameBoard() {}
 void GameBoard::setupGameBoard() {
+    auto& board = Session::GetBoard();
+
     this->setFixedSize(
-        Square::CELL_SIZE * GameBoard::BOARD_SIZE,
-        Square::CELL_SIZE * GameBoard::BOARD_SIZE
+        Square::CELL_SIZE * Session::GetColumn(), Square::CELL_SIZE * Session::GetRow()
     );
 
     QGridLayout* mainGridLayout = new QGridLayout(this);
 
-    for (int row = 0; row < GameBoard::BOARD_SIZE; row++) {
-        for (int col = 0; col < GameBoard::BOARD_SIZE; col++) {
+    for (int row = 0, n = Session::GetRow(); row < n; row++) {
+        for (int col = 0, m = Session::GetColumn(); col < m; col++) {
             Square* square = new Blank_Square(row, col, this);
             styleSquare(square);
             QObject::connect(square, &Square::result, this, &GameBoard::result);
@@ -42,14 +47,16 @@ void GameBoard::setupGameBoard() {
 void GameBoard::initializeGameBoard(QGridLayout* mainGridLayout) {
     std::random_device rd;
     std::mt19937 generator(rd());
-    std::uniform_int_distribution<int> distribution(0, GameBoard::BOARD_SIZE - 1);
+    std::uniform_int_distribution<int> row_distribution(0, Session::GetRow() - 1);
+    std::uniform_int_distribution<int> col_distribution(0, Session::GetColumn() - 1);
+    for (int i = 0; i < Session::GetMineNumber(); i++) {
+        auto& board = Session::GetBoard();
 
-    for (int i = 0; i < GameBoard::MINE_NUMBER; i++) {
         int rowRandomNumber, colRandomNumber;
 
         do {
-            rowRandomNumber = distribution(generator);
-            colRandomNumber = distribution(generator);
+            rowRandomNumber = row_distribution(generator);
+            colRandomNumber = col_distribution(generator);
 
         } while (dynamic_cast<Mine_Square*>(board[rowRandomNumber][colRandomNumber]) !=
                  nullptr);
@@ -67,6 +74,8 @@ void GameBoard::initializeGameBoard(QGridLayout* mainGridLayout) {
     }
 }
 void GameBoard::updateSurroundingMineNumber(Square* square) {
+    auto& board = Session::GetBoard();
+
     int direction[8][2] = {
         {-1, -1},  // Up-Left
         {-1, 0},   // Up
@@ -80,8 +89,8 @@ void GameBoard::updateSurroundingMineNumber(Square* square) {
     for (auto& move : direction) {
         int newRow = square->row + move[0];
         int newCol = square->col + move[1];
-        if (newRow < 0 || newRow >= GameBoard::BOARD_SIZE || newCol < 0 ||
-            newCol >= GameBoard::BOARD_SIZE)
+        if (newRow < 0 || newRow >= Session::GetRow() || newCol < 0 ||
+            newCol >= Session::GetColumn())
             continue;
         board[newRow][newCol]->surroundingMineCount++;
     }

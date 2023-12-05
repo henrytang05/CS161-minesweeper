@@ -16,9 +16,7 @@ class GameBoard : public QWidget {
     void setupGameBoard();
 
    public:
-    inline static int BOARD_SIZE = 8;
-    inline static int MINE_NUMBER = 0;
-    inline static int FLAG_NUMBER = 0;
+        inline static int FLAG_NUMBER = 0;
 
    private:
     void initializeGameBoard(QGridLayout*);

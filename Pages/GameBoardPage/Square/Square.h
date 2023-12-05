@@ -16,7 +16,7 @@ class Square : public QPushButton {
    public:
     Square(int row, int col, QWidget* parent = nullptr);
     ~Square();
-    void setAsRevealed();
+
     void breakSurroundingCells();
     virtual void changeState(STATE newState) = 0;
     enum { LOSE, WIN };
@@ -37,9 +37,6 @@ class Square : public QPushButton {
     int col;
 
    public:
-    bool isMine;
-    bool isFlagged;
-    bool isRevealed;
     STATE state;
     int surroundingMineCount = 0;
     int surroundingFlagCount = 0;
@@ -47,18 +44,19 @@ class Square : public QPushButton {
     inline static int SQUARE_REVEALED = 0;
    signals:
     void result(bool);
-    void rightClicked();
-    void doubleClicked();
+    void leftClick();
+    void rightClick();
+    void doubleClick();
 
    protected:
     void mouseReleaseEvent(QMouseEvent* e) {
         if (e->button() == Qt::RightButton)
-            emit rightClicked();
+            emit rightClick();
         else if (e->button() == Qt::LeftButton)
-            emit clicked();
+            emit leftClick();
     }
     void mouseDoubleClickEvent(QMouseEvent* e) override {
-        if (e->button() == Qt::LeftButton) emit doubleClicked();
+        if (e->button() == Qt::LeftButton) emit doubleClick();
     }
 
    public slots:
