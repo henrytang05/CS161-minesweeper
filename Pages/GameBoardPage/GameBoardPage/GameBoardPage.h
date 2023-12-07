@@ -22,8 +22,7 @@ class GameBoardPage : public QWidget {
     GameBoard* Board;
     QPushButton* replayButton;
     QLabel* announcementLabel;
-    Timer* timer;
-
+    QLabel* timer;
    signals:
     void replayClicked();
 
