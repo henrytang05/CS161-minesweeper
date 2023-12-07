@@ -6,11 +6,13 @@ class Square;
 class Session {
    public:
     static Session& GetInstance();
+    void ResetInstance();
     static std::vector<std::vector<Square*>>& GetBoard();
     static int& GetFlag();  // Done
     static int& GetMineNumber();
     static int& GetSquareRevealed();  // Done
     static int& GetCorrectFlag();
+    static double& GetCellSize();
     static void SetBoardDimension(int row, int col);
     static std::pair<int, int>& GetBoardDimension();
     static const int& GetRow();
@@ -22,7 +24,7 @@ class Session {
     Session();
 
    public:
-    double cellSize;
+    double s_CellSize;
     std::pair<int, int> s_boardDimension;
     std::vector<std::vector<Square*>> s_board;
     int s_MineNumber;

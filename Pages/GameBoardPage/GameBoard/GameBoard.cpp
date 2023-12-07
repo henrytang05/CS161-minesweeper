@@ -25,54 +25,25 @@ GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
 GameBoard::~GameBoard() {}
 void GameBoard::setupGameBoard() {
     auto& board = Session::GetBoard();
-
     this->setFixedSize(
-        Square::CELL_SIZE * Session::GetColumn(), Square::CELL_SIZE * Session::GetRow()
+        Session::GetCellSize() * Session::GetColumn(),
+        Session::GetCellSize() * Session::GetRow()
     );
 
     QGridLayout* mainGridLayout = new QGridLayout(this);
 
-    for (int row = 0, n = Session::GetRow(); row < n; row++) {
-        for (int col = 0, m = Session::GetColumn(); col < m; col++) {
-            Square* square = new Blank_Square(row, col, this);
+    for (auto& row : board) {
+        for (auto& square : row) {
             styleSquare(square);
             QObject::connect(square, &Square::result, this, &GameBoard::result);
-            board[row][col] = square;
-            mainGridLayout->addWidget(square, row, col);
+            mainGridLayout->addWidget(square, square->row, square->col);
+            if (dynamic_cast<Mine_Square*>(square) != nullptr)
+                updateSurroundingMineNumber(square);
         }
     }
     this->setLayout(mainGridLayout);
-    initializeGameBoard(mainGridLayout);
 }
-void GameBoard::initializeGameBoard(QGridLayout* mainGridLayout) {
-    std::random_device rd;
-    std::mt19937 generator(rd());
-    std::uniform_int_distribution<int> row_distribution(0, Session::GetRow() - 1);
-    std::uniform_int_distribution<int> col_distribution(0, Session::GetColumn() - 1);
-    for (int i = 0; i < Session::GetMineNumber(); i++) {
-        auto& board = Session::GetBoard();
 
-        int rowRandomNumber, colRandomNumber;
-
-        do {
-            rowRandomNumber = row_distribution(generator);
-            colRandomNumber = col_distribution(generator);
-
-        } while (dynamic_cast<Mine_Square*>(board[rowRandomNumber][colRandomNumber]) !=
-                 nullptr);
-
-        delete board[rowRandomNumber][colRandomNumber];
-        board[rowRandomNumber][colRandomNumber] =
-            new Mine_Square(rowRandomNumber, colRandomNumber, this);
-        Square* square = board[rowRandomNumber][colRandomNumber];
-        QObject::connect(square, &Square::result, this, &GameBoard::result);
-        styleSquare(square);
-        mainGridLayout->addWidget(
-            board[rowRandomNumber][colRandomNumber], rowRandomNumber, colRandomNumber
-        );
-        updateSurroundingMineNumber(square);
-    }
-}
 void GameBoard::updateSurroundingMineNumber(Square* square) {
     auto& board = Session::GetBoard();
 

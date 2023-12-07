@@ -15,11 +15,7 @@ class GameBoard : public QWidget {
 
     void setupGameBoard();
 
-   public:
-        inline static int FLAG_NUMBER = 0;
-
    private:
-    void initializeGameBoard(QGridLayout*);
     void updateSurroundingMineNumber(Square*);
 
    signals:

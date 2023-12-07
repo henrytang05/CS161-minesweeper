@@ -55,12 +55,12 @@ void GameBoardPage::reavealAllBombs() {
 }
 void GameBoardPage::victoryAnnoucement(bool won) {
     timer->stopTimer();
-    this->reavealAllBombs();
     auto& board = Session::GetBoard();
 
     if (won) {
         announcementLabel->setText("You won!");
     } else {
+        this->reavealAllBombs();
         announcementLabel->setText("You lost!");
     }
     announcementLabel->show();

@@ -15,20 +15,14 @@ class Square : public QPushButton {
     Q_OBJECT
    public:
     Square(int row, int col, QWidget* parent = nullptr);
-    ~Square();
+    virtual ~Square();
 
     void breakSurroundingCells();
     virtual void changeState(STATE newState) = 0;
     enum { LOSE, WIN };
 
-   public:
-    inline static constexpr int CELL_SIZE = 35;
-
    protected:
-    void setSquareIcon(
-        const QIcon& icon, int width = Square::CELL_SIZE / 2,
-        int length = Square::CELL_SIZE / 2
-    );
+    void setSquareIcon(const QIcon& icon);
     virtual void render_square() = 0;
     void updateSurroundingFlag(char mode);
 
@@ -41,7 +35,6 @@ class Square : public QPushButton {
     int surroundingMineCount = 0;
     int surroundingFlagCount = 0;
 
-    inline static int SQUARE_REVEALED = 0;
    signals:
     void result(bool);
     void leftClick();

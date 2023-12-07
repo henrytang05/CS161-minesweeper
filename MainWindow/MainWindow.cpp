@@ -63,9 +63,9 @@ void Pages::startNewGameSlot(int difficulty) {
     this->setCurrentWidget(gameBoardPage);
 }
 void Pages::replayGameSlot() {
+    Session::GetInstance().ResetInstance();
     delete gameBoardPage;
     gameBoardPage = nullptr;
-    Session::GetInstance().~Session();
     emit replaySignal();
     this->setCurrentWidget(levelSelectionPage);
 }

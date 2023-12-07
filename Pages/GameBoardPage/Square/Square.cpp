@@ -12,12 +12,18 @@ Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
     this->row = row;
     this->col = col;
 
-    styleButton(this, "#EEA6B9", false, CELL_SIZE, CELL_SIZE);
+    styleButton(this, "#EEA6B9", false, Session::GetCellSize(), Session::GetCellSize());
     QObject::connect(this, &Square::leftClick, this, &Square::squareLeftClickedSlot);
     QObject::connect(this, &Square::rightClick, this, &Square::squareRightClickedSlot);
     QObject::connect(this, &Square::doubleClick, this, &Square::squareDoubleClickedSlot);
 }
-Square::~Square() {}
+Square::~Square() {
+    QObject::disconnect(this, &Square::leftClick, this, &Square::squareLeftClickedSlot);
+    QObject::disconnect(this, &Square::rightClick, this, &Square::squareRightClickedSlot);
+    QObject::disconnect(
+        this, &Square::doubleClick, this, &Square::squareDoubleClickedSlot
+    );
+}
 
 Mine_Square::Mine_Square(int row, int col, QWidget* parent) : Square(row, col, parent) {}
 Mine_Square::~Mine_Square() {}
@@ -54,7 +60,9 @@ void Square::updateSurroundingFlag(char mode) {
     }
 }
 
-void Square::setSquareIcon(const QIcon& icon, int width, int length) {
+void Square::setSquareIcon(const QIcon& icon) {
+    double width, length;
+    width = length = Session::GetCellSize() / 2;
     QSize iconSize(width, length);
     QPixmap pixmap = icon.pixmap(iconSize);
     if (this) {
