@@ -19,7 +19,7 @@ GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
             break;
             // TODO: add customization
     }
-    Session::SetBoardDimension(tmp, tmp);  //
+    Session::SetBoardDimension(tmp, tmp);  
     setupGameBoard();
 }
 GameBoard::~GameBoard() {}

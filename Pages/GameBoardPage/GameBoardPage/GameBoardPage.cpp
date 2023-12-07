@@ -11,7 +11,7 @@ GameBoardPage::GameBoardPage(QStackedWidget* parent, int level) : QWidget(parent
 GameBoardPage::~GameBoardPage() {}
 void GameBoardPage::setupGameBoardPage(int level) {
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
-    Board = new GameBoard(this);
+    Board = new GameBoard(this, level);
     replayButton = new QPushButton("Replay", this);
     timer = new QLabel(QString("00:00"), this);
     styleTimer(timer);

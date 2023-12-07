@@ -3,6 +3,7 @@
 #include <random>
 
 #include "Square/Square.h"
+#include "Timer/Timer.h"
 Session::Session() {
     s_CellSize = 35;
     s_FlagSet = 0;
@@ -24,6 +25,7 @@ void Session::ResetInstance() {
         }
     }
     s_board.clear();
+s_timer.resetTimer();
     s_FlagSet = 0;
     s_SquareRevealed = 0;
     s_CorrectFlag = 0;
@@ -34,14 +36,14 @@ std::vector<std::vector<Square*>>& Session::GetBoard() {
     return Session::GetInstance().s_board;
 }
 int& Session::GetFlag() { return GetInstance().s_FlagSet; }
-int& Session::GetMineNumber() { return GetInstance().s_MineNumber; }
+const int& Session::GetMineNumber() { return GetInstance().s_MineNumber; }
 int& Session::GetSquareRevealed() { return GetInstance().s_SquareRevealed; }
 int& Session::GetCorrectFlag() { return GetInstance().s_CorrectFlag; }
 double& Session::GetCellSize() { return GetInstance().s_CellSize; }
 void Session::SetBoardDimension(int row, int col) {
-    Session::GetBoardDimension() = std::make_pair(row, col);
+    GetBoardDimension() = std::make_pair(row, col);
     // Session::GetMineNumber() = row * col / 6;
-    GetMineNumber() = GetRow() * GetColumn() / 9;
+    GetInstance().s_MineNumber = GetRow() * GetColumn() / 9;
     GetInstance().setupBoard();
 }
 std::pair<int, int>& Session::GetBoardDimension() {
