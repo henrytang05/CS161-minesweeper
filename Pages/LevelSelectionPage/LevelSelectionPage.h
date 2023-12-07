@@ -3,12 +3,13 @@
 #include <QBoxLayout>
 #include <QDialogButtonBox>
 #include <QFormLayout>
+#include <QGuiApplication>
 #include <QLabel>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QScreen>
 #include <QStackedWidget>
-
 class LevelSelectionPage : public QWidget {
     Q_OBJECT
    public:

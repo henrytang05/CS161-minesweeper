@@ -56,6 +56,10 @@ void LevelSelectionPage::setupLevelSelectionPage() {
         Session::SetBoardDimension(row, col);
         Session::SetMineNumber(mine);
         if (row == 0 || col == 0) return;
+        // QScreen* screen = QGuiApplication::primaryScreen();
+        // int screenWidth = screen->size().width();
+        // int screenHeight = screen->size().height();
+        // this->resize(screenWidth, screenHeight);
         emit LevelSelectionPage::levelSelected();
     });
     connect(back, &QPushButton::clicked, this, [this]() {
@@ -66,6 +70,7 @@ void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
     QList<int> dimensions;
     bool validInput = false;
     do {
+    again:
         QDialog dialog(this);
         QFormLayout form(&dialog);
 
@@ -101,7 +106,7 @@ void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
                     this, "Invalid input", "Please enter a valid integer greater than 0"
                 );
                 validInput = false;
-                break;
+                goto again;
             }
             dimensions << value;
         }

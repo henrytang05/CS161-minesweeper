@@ -103,6 +103,7 @@
     "format": "cpp",
     "stdfloat": "cpp",
     "qicon": "cpp",
-    "qwidget": "cpp"
+    "qwidget": "cpp",
+    "qscreen": "cpp"
   }
 }
