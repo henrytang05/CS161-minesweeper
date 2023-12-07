@@ -56,10 +56,7 @@ void LevelSelectionPage::setupLevelSelectionPage() {
         Session::SetBoardDimension(row, col);
         Session::SetMineNumber(mine);
         if (row == 0 || col == 0) return;
-        // QScreen* screen = QGuiApplication::primaryScreen();
-        // int screenWidth = screen->size().width();
-        // int screenHeight = screen->size().height();
-        // this->resize(screenWidth, screenHeight);
+
         emit LevelSelectionPage::levelSelected();
     });
     connect(back, &QPushButton::clicked, this, [this]() {
@@ -72,6 +69,11 @@ void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
     do {
     again:
         QDialog dialog(this);
+
+        // QScreen* screen = QGuiApplication::primaryScreen();
+        // int screenWidth = screen->size().width();
+        // int screenHeight = screen->size().height();
+        // dialog.resize(screenWidth, screenHeight);
         QFormLayout form(&dialog);
 
         QList<QLineEdit*> fields;
