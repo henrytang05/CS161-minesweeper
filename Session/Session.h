@@ -10,6 +10,7 @@ class Session {
     static std::vector<std::vector<Square*>>& GetBoard();
     static int& GetFlag();  // Done
     static int& GetMineNumber();
+    static void SetMineNumber(int);
     static int& GetSquareRevealed();  // Done
     static int& GetCorrectFlag();
     static double& GetCellSize();

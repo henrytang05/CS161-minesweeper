@@ -35,6 +35,7 @@ std::vector<std::vector<Square*>>& Session::GetBoard() {
 }
 int& Session::GetFlag() { return GetInstance().s_FlagSet; }
 int& Session::GetMineNumber() { return GetInstance().s_MineNumber; }
+void Session::SetMineNumber(int n) { GetInstance().s_MineNumber = n; }
 int& Session::GetSquareRevealed() { return GetInstance().s_SquareRevealed; }
 int& Session::GetCorrectFlag() { return GetInstance().s_CorrectFlag; }
 double& Session::GetCellSize() { return GetInstance().s_CellSize; }
