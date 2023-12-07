@@ -10,7 +10,7 @@ class Square;
 class GameBoard : public QWidget {
     Q_OBJECT
    public:
-    GameBoard(QWidget* parent = nullptr, int level = 0);
+    GameBoard(QWidget* parent = nullptr);
     ~GameBoard();
 
     void setupGameBoard();

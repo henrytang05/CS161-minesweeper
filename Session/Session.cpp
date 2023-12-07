@@ -42,7 +42,6 @@ double& Session::GetCellSize() { return GetInstance().s_CellSize; }
 void Session::SetBoardDimension(int row, int col) {
     Session::GetBoardDimension() = std::make_pair(row, col);
     // Session::GetMineNumber() = row * col / 6;
-    GetMineNumber() = GetRow() * GetColumn() / 9;
     GetInstance().setupBoard();
 }
 std::pair<int, int>& Session::GetBoardDimension() {

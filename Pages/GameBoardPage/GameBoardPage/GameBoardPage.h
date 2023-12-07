@@ -13,9 +13,9 @@ class Timer;
 class GameBoardPage : public QWidget {
     Q_OBJECT
    public:
-    GameBoardPage(QStackedWidget* parent = nullptr, int level = 0);
+    GameBoardPage(QStackedWidget* parent = nullptr);
     ~GameBoardPage();
-    void setupGameBoardPage(int);
+    void setupGameBoardPage();
     void reavealAllBombs();
 
    private:

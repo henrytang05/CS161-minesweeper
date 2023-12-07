@@ -17,8 +17,8 @@ class LevelSelectionPage : public QWidget {
     void setupLevelSelectionPage();
    signals:
     void backClicked();
-    void levelSelected(int difficulty);
+    void levelSelected();
    public slots:
-    void customLevelSelection()
+    void customLevelSelection(int&, int&, int&);
 };
 #endif

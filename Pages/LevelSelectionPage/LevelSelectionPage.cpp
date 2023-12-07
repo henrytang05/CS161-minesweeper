@@ -19,32 +19,50 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     QPushButton* easy = new QPushButton("Easy", this);
     QPushButton* medium = new QPushButton("Medium", this);
     QPushButton* hard = new QPushButton("Hard", this);
+    QPushButton* custom = new QPushButton("Custom", this);
     QPushButton* back = new QPushButton("Back", this);
 
     styleButton(easy, "FFF6F6");
     styleButton(medium, "FFF6F6");
     styleButton(hard, "FFF6F6");
+    styleButton(custom, "FFF6F6");
     styleButton(back, "FFF6F6");
 
     buttonLayout->addWidget(easy, 0, Qt::AlignCenter);
     buttonLayout->addWidget(medium, 0, Qt::AlignCenter);
     buttonLayout->addWidget(hard, 0, Qt::AlignCenter);
+    buttonLayout->addWidget(custom, 0, Qt::AlignCenter);
     buttonLayout->addWidget(back, 0, Qt::AlignCenter);
 
     connect(easy, &QPushButton::clicked, this, [this]() {
-        emit LevelSelectionPage::levelSelected(1);
+        Session::SetBoardDimension(9, 9);
+        Session::SetMineNumber(10);
+
+        emit LevelSelectionPage::levelSelected();
     });
     connect(medium, &QPushButton::clicked, this, [this]() {
-        emit LevelSelectionPage::levelSelected(2);
+        Session::SetBoardDimension(16, 16);
+        Session::SetMineNumber(50);
+        emit LevelSelectionPage::levelSelected();
     });
     connect(hard, &QPushButton::clicked, this, [this]() {
-        emit LevelSelectionPage::levelSelected(3);
+        Session::SetBoardDimension(20, 30);
+        Session::SetMineNumber(99);
+        emit LevelSelectionPage::levelSelected();
+    });
+    connect(custom, &QPushButton::clicked, this, [this]() {
+        int row = 0, col = 0, mine = 0;
+        customLevelSelection(row, col, mine);
+        Session::SetBoardDimension(row, col);
+        Session::SetMineNumber(mine);
+        if (row == 0 || col == 0) return;
+        emit LevelSelectionPage::levelSelected();
     });
     connect(back, &QPushButton::clicked, this, [this]() {
         emit LevelSelectionPage::backClicked();
     });
 }
-void LevelSelectionPage::customLevelSelection() {
+void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
     QList<int> dimensions;
     bool validInput = false;
     do {
@@ -87,17 +105,21 @@ void LevelSelectionPage::customLevelSelection() {
             }
             dimensions << value;
         }
-        if (dimensions[0] * dimensions[1] <= dimensions[2]) {
+        if (dimensions[0] * dimensions[1] <= dimensions[2] ||
+            (dimensions[1] > 50 || dimensions[2] > 50)) {
             QMessageBox::warning(
-                this, "Invalid input", "Row * Column must be greater than Mine Number"
+                this, "Invalid input",
+                "Row * Column must be greater than Mine Number and Row & Column must be "
+                "smaller than or equal to 50"
             );
             validInput = false;
         }
     } while (!validInput);
 
     if (validInput) {
-        Session::SetBoardDimension(dimensions[0], dimensions[1]);
-        Session::SetMineNumber(dimensions[2]);
+        row = dimensions[0];
+        col = dimensions[1];
+        mine = dimensions[2];
     }
     return;
 }

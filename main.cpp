@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
 
     MainWindow* Game = new MainWindow(800, 800);
     Game->setFixedSize(700, 700);
-    // Game->showFullScreen();
-    Game->show();
+    Game->showFullScreen();
+    // Game->show();
     return app.exec();
 }

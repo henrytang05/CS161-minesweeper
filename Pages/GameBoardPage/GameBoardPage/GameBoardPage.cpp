@@ -5,13 +5,13 @@
 #include "Square/Square.h"
 #include "Style/Style.h"
 #include "Timer/Timer.h"
-GameBoardPage::GameBoardPage(QStackedWidget* parent, int level) : QWidget(parent) {
-    setupGameBoardPage(level);
+GameBoardPage::GameBoardPage(QStackedWidget* parent) : QWidget(parent) {
+    setupGameBoardPage();
 }
 GameBoardPage::~GameBoardPage() {}
-void GameBoardPage::setupGameBoardPage(int level) {
+void GameBoardPage::setupGameBoardPage() {
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
-    Board = new GameBoard(this, level);
+    Board = new GameBoard(this);
     replayButton = new QPushButton("Replay", this);
     timer = new Timer(this);
     styleButton(replayButton, "12D9C4", true);
