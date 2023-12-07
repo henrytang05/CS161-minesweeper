@@ -76,4 +76,10 @@ void Session::setupBoard() {
         s_board[rowRandomNumber][colRandomNumber] =
             new Mine_Square(rowRandomNumber, colRandomNumber);
     }
+    s_timer.startTimer();
 }
+Timer& Session::GetTimer() { return Session::GetInstance().s_timer; }
+QString Session::GetElapsedTimeAsString() {
+    return Session::GetTimer().elapsedTime.toString("mm:ss");
+}
+void Session::StopTimer() { Session::GetTimer().stopTimer(); }
