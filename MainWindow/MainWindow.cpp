@@ -55,8 +55,11 @@ void Pages::makeconnection() {
     });
 }
 
-void Pages::startNewGameSlot(int difficulty) {
-    createGameBoardPage(difficulty);
+void Pages::startNewGameSlot() {
+    gameBoardPage = new GameBoardPage(this);
+    this->addWidget(gameBoardPage);
+    setCurrentWidget(gameBoardPage);
+    connect(gameBoardPage, &GameBoardPage::replayClicked, this, &Pages::replayGameSlot);
     this->addWidget(gameBoardPage);
     emit newGameSignal();
     QObject::connect(gameBoardPage, GameBoardPage::replayClicked, this, &replayGameSlot);
@@ -68,12 +71,6 @@ void Pages::replayGameSlot() {
     gameBoardPage = nullptr;
     emit replaySignal();
     this->setCurrentWidget(levelSelectionPage);
-}
-void Pages::createGameBoardPage(int difficulty) {
-    gameBoardPage = new GameBoardPage(this, difficulty);
-    this->addWidget(gameBoardPage);
-    setCurrentWidget(gameBoardPage);
-    connect(gameBoardPage, &GameBoardPage::replayClicked, this, &Pages::replayGameSlot);
 }
 void Pages::setupPages() {
     homePage = new HomePage(this);

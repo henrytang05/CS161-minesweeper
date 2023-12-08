@@ -1,15 +1,22 @@
 #ifndef SESSION_H
 #define SESSION_H
+#include <QString>
 #include <utility>
 #include <vector>
+
+#include "Timer/Timer.h"
 class Square;
+class LevelSelectionPage;
 class Session {
    public:
     static Session& GetInstance();
     void ResetInstance();
     static std::vector<std::vector<Square*>>& GetBoard();
     static int& GetFlag();  // Done
+
     static int& GetMineNumber();
+    static void SetMineNumber(int);
+
     static int& GetSquareRevealed();  // Done
     static int& GetCorrectFlag();
     static double& GetCellSize();
@@ -17,11 +24,14 @@ class Session {
     static std::pair<int, int>& GetBoardDimension();
     static const int& GetRow();
     static const int& GetColumn();
-    void setupBoard();
-    ~Session();
+    static Timer& GetTimer();
+    static QString GetElapsedTimeAsString();
+    static void StopTimer();
 
    private:
     Session();
+    ~Session();
+    void setupBoard();
 
    public:
     double s_CellSize;
@@ -31,7 +41,7 @@ class Session {
     int s_FlagSet;
     int s_CorrectFlag;
     int s_SquareRevealed;
-    // add time
+    Timer s_timer;
 };
 
 #endif

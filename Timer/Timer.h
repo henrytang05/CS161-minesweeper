@@ -3,21 +3,22 @@
 #include <QLabel>
 #include <QTime>
 #include <QTimer>
-class Timer : public QLabel {
+class Timer : public QTimer {
     Q_OBJECT
    public:
     Timer(QWidget* parent = nullptr);
     ~Timer();
     void startTimer();
     void stopTimer();
+    void resetTimer();
 
    signals:
     void timerUpdated();
    public slots:
     void updateTimerSlot();
 
-   private:
-    QTimer* timerObject;
+   public:
+    // QTimer* timerObject;
     QTime elapsedTime;
 };
 #endif

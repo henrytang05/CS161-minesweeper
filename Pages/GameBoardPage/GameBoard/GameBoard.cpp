@@ -3,25 +3,7 @@
 #include "Session/Session.h"
 #include "Square/Square.h"
 #include "Style/Style.h"
-GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) {
-    int tmp = 0;
-    switch (level) {
-        case 1:
-            tmp = 9;
-            break;
-        case 2:
-            tmp = 16;
-            break;
-        case 3:
-            tmp = 30;
-            break;
-        default:
-            break;
-            // TODO: add customization
-    }
-    Session::SetBoardDimension(tmp, tmp);  //
-    setupGameBoard();
-}
+GameBoard::GameBoard(QWidget* parent, int level) : QWidget(parent) { setupGameBoard(); }
 GameBoard::~GameBoard() {}
 void GameBoard::setupGameBoard() {
     auto& board = Session::GetBoard();

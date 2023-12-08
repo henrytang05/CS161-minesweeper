@@ -13,7 +13,7 @@ class Pages : public QStackedWidget {
     Pages(QWidget* parent = nullptr);
     ~Pages();
     void setupPages();
-    void createGameBoardPage(int difficulty);
+
     void makeconnection();
 
    private:
@@ -27,7 +27,7 @@ class Pages : public QStackedWidget {
 
    public slots:
     void replayGameSlot();
-    void startNewGameSlot(int difficulty);
+    void startNewGameSlot();
 };
 
 class MainWindow : public QMainWindow {

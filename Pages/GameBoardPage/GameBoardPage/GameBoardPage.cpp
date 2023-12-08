@@ -5,15 +5,19 @@
 #include "Square/Square.h"
 #include "Style/Style.h"
 #include "Timer/Timer.h"
-GameBoardPage::GameBoardPage(QStackedWidget* parent, int level) : QWidget(parent) {
-    setupGameBoardPage(level);
+GameBoardPage::GameBoardPage(QStackedWidget* parent) : QWidget(parent) {
+    setupGameBoardPage();
 }
 GameBoardPage::~GameBoardPage() {}
-void GameBoardPage::setupGameBoardPage(int level) {
+void GameBoardPage::setupGameBoardPage() {
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
-    Board = new GameBoard(this, level);
+    Board = new GameBoard(this);
     replayButton = new QPushButton("Replay", this);
-    timer = new Timer(this);
+    timer = new QLabel(QString("00:00"), this);
+    styleTimer(timer);
+    QObject::connect(&Session::GetTimer(), &Timer::timerUpdated, this, [this]() {
+        timer->setText(Session::GetElapsedTimeAsString());
+    });
     styleButton(replayButton, "12D9C4", true);
 
     announcementLabel = new QLabel("Announcement", this);
@@ -47,16 +51,15 @@ void GameBoardPage::reavealAllBombs() {
 
     for (auto& squareRow : board) {
         for (auto& square : squareRow) {
-            if (dynamic_cast<Mine_Square*>(square) != nullptr) {
+            if (dynamic_cast<Mine_Square*>(square) != nullptr &&
+                square->state != Square::STATE::Flagged) {
                 square->changeState(Square::STATE::Revealed);
             }
         }
     }
 }
 void GameBoardPage::victoryAnnoucement(bool won) {
-    timer->stopTimer();
     auto& board = Session::GetBoard();
-
     if (won) {
         announcementLabel->setText("You won!");
     } else {
@@ -69,4 +72,5 @@ void GameBoardPage::victoryAnnoucement(bool won) {
             square->setEnabled(false);
         }
     }
+    Session::StopTimer();
 }

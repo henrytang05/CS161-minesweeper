@@ -13,17 +13,16 @@ class Timer;
 class GameBoardPage : public QWidget {
     Q_OBJECT
    public:
-    GameBoardPage(QStackedWidget* parent = nullptr, int level = 0);
+    GameBoardPage(QStackedWidget* parent = nullptr);
     ~GameBoardPage();
-    void setupGameBoardPage(int);
+    void setupGameBoardPage();
     void reavealAllBombs();
 
    private:
     GameBoard* Board;
     QPushButton* replayButton;
     QLabel* announcementLabel;
-    Timer* timer;
-
+    QLabel* timer;
    signals:
     void replayClicked();
 
