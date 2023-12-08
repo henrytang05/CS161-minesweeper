@@ -37,17 +37,19 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     connect(easy, &QPushButton::clicked, this, [this]() {
         Session::SetBoardDimension(9, 9);
         Session::SetMineNumber(10);
-
+        Session::GetInstance().setupBoard();
         emit LevelSelectionPage::levelSelected();
     });
     connect(medium, &QPushButton::clicked, this, [this]() {
         Session::SetBoardDimension(16, 16);
         Session::SetMineNumber(50);
+        Session::GetInstance().setupBoard();
         emit LevelSelectionPage::levelSelected();
     });
     connect(hard, &QPushButton::clicked, this, [this]() {
         Session::SetBoardDimension(20, 30);
         Session::SetMineNumber(99);
+        Session::GetInstance().setupBoard();
         emit LevelSelectionPage::levelSelected();
     });
     connect(custom, &QPushButton::clicked, this, [this]() {
@@ -56,7 +58,7 @@ void LevelSelectionPage::setupLevelSelectionPage() {
         Session::SetBoardDimension(row, col);
         Session::SetMineNumber(mine);
         if (row == 0 || col == 0) return;
-
+        Session::GetInstance().setupBoard();
         emit LevelSelectionPage::levelSelected();
     });
     connect(back, &QPushButton::clicked, this, [this]() {
