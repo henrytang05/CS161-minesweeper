@@ -25,7 +25,7 @@ void HomePage::setupHomePage() {
     styleButton(Resume, "A6DCEF");
 
     connect(newGame, &QPushButton::clicked, this, &HomePage::newGameClicked);
-    // connect(Resume, &QPushButton::clicked, this, &HomePage::resumeGameClicked);
+    connect(Resume, &QPushButton::clicked, this, &HomePage::resumeGameClicked);
 
     mainLayout->addStretch();
     mainLayout->addLayout(labelLayout);

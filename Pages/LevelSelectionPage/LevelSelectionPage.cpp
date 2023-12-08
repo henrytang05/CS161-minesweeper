@@ -34,36 +34,25 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     buttonLayout->addWidget(custom, 0, Qt::AlignCenter);
     buttonLayout->addWidget(back, 0, Qt::AlignCenter);
 
-    connect(easy, &QPushButton::clicked, this, [this]() {
-        Session::SetBoardDimension(9, 9);
-        Session::SetMineNumber(10);
-        Session::GetInstance().setupBoard();
-        emit LevelSelectionPage::levelSelected();
-    });
-    connect(medium, &QPushButton::clicked, this, [this]() {
-        Session::SetBoardDimension(16, 16);
-        Session::SetMineNumber(50);
-        Session::GetInstance().setupBoard();
-        emit LevelSelectionPage::levelSelected();
-    });
-    connect(hard, &QPushButton::clicked, this, [this]() {
-        Session::SetBoardDimension(20, 30);
-        Session::SetMineNumber(99);
-        Session::GetInstance().setupBoard();
-        emit LevelSelectionPage::levelSelected();
-    });
+    connect(easy, &QPushButton::clicked, this, [this]() { setupNewGame(9, 9, 10); });
+    connect(medium, &QPushButton::clicked, this, [this]() { setupNewGame(16, 16, 50); });
+    connect(hard, &QPushButton::clicked, this, [this]() { setupNewGame(10, 30, 99); });
     connect(custom, &QPushButton::clicked, this, [this]() {
         int row = 0, col = 0, mine = 0;
         customLevelSelection(row, col, mine);
-        Session::SetBoardDimension(row, col);
-        Session::SetMineNumber(mine);
         if (row == 0 || col == 0) return;
-        Session::GetInstance().setupBoard();
-        emit LevelSelectionPage::levelSelected();
+        setupNewGame(row, col, mine);
     });
     connect(back, &QPushButton::clicked, this, [this]() {
         emit LevelSelectionPage::backClicked();
     });
+}
+void LevelSelectionPage::setupNewGame(int row, int col, int mine) {
+    Session::GetInstance().ResetInstance();
+    Session::SetBoardDimension(row, col);
+    Session::SetMineNumber(mine);
+    Session::GetInstance().setupBoard();
+    emit LevelSelectionPage::levelSelected();
 }
 void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
     QList<int> dimensions;

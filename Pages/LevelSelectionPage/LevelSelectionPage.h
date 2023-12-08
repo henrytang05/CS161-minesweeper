@@ -16,6 +16,7 @@ class LevelSelectionPage : public QWidget {
     LevelSelectionPage(QStackedWidget* parent = nullptr);
     ~LevelSelectionPage();
     void setupLevelSelectionPage();
+    void setupNewGame(int row, int col, int mine);
    signals:
     void backClicked();
     void levelSelected();

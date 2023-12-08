@@ -8,7 +8,7 @@ Session::Session() {
     s_FlagSet = 0;
     s_SquareRevealed = 0;
     s_CorrectFlag = 0;
-    s_boardDimension = std::make_pair(0, 0);
+    s_BoardDimension = std::make_pair(0, 0);
     s_MineNumber = 0;
 }
 Session::~Session() {}
@@ -27,7 +27,7 @@ void Session::ResetInstance() {
     s_FlagSet = 0;
     s_SquareRevealed = 0;
     s_CorrectFlag = 0;
-    s_boardDimension = std::make_pair(0, 0);
+    s_BoardDimension = std::make_pair(0, 0);
     s_MineNumber = 0;
 }
 std::vector<std::vector<Square*>>& Session::GetBoard() {
@@ -44,17 +44,17 @@ void Session::SetBoardDimension(int row, int col) {
     // Session::GetMineNumber() = row * col / 6;
 }
 std::pair<int, int>& Session::GetBoardDimension() {
-    return GetInstance().s_boardDimension;
+    return GetInstance().s_BoardDimension;
 }
-const int& Session::GetRow() { return GetInstance().s_boardDimension.first; }
-const int& Session::GetColumn() { return GetInstance().s_boardDimension.second; }
+const int& Session::GetRow() { return GetInstance().s_BoardDimension.first; }
+const int& Session::GetColumn() { return GetInstance().s_BoardDimension.second; }
 
 void Session::setupBoard() {
     s_board.resize(
-        s_boardDimension.first, std::vector<Square*>(s_boardDimension.second, nullptr)
+        s_BoardDimension.first, std::vector<Square*>(s_BoardDimension.second, nullptr)
     );
-    for (int row = 0, n = s_boardDimension.first; row < n; row++) {
-        for (int col = 0, m = s_boardDimension.second; col < m; col++) {
+    for (int row = 0, n = s_BoardDimension.first; row < n; row++) {
+        for (int col = 0, m = s_BoardDimension.second; col < m; col++) {
             s_board[row][col] = new Blank_Square(row, col);
         }
     }
@@ -75,4 +75,73 @@ void Session::setupBoard() {
         s_board[rowRandomNumber][colRandomNumber] =
             new Mine_Square(rowRandomNumber, colRandomNumber);
     }
+}
+void Session::serialize() {
+    QFile file("save.dat");
+    if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "Cannot open file for writing: " << qPrintable(file.errorString())
+                 << '\n';
+        return;
+    }
+    QDataStream out(&file);
+    auto& session = Session::GetInstance();
+    out << session;
+    file.close();
+}
+
+QDataStream& operator<<(QDataStream& out, const Session& session) {
+    out << session.s_CellSize;
+    out << session.s_BoardDimension.first;
+    out << session.s_BoardDimension.second;
+    out << session.s_MineNumber;
+    out << session.s_FlagSet;
+    out << session.s_CorrectFlag;
+    out << session.s_SquareRevealed;
+    for (int i = 0; i < session.GetInstance().s_BoardDimension.first; i++) {
+        for (int j = 0; j < session.GetInstance().s_BoardDimension.second; j++) {
+            out << session.s_board[i][j]->state;
+            out << session.s_board[i][j]->row;
+            out << session.s_board[i][j]->col;
+            out << session.s_board[i][j]->surroundingMineCount;
+            out << session.s_board[i][j]->surroundingFlagCount;
+        }
+    }
+    return out;
+}
+void Session::deserialize() {
+       QFile file("save.dat");
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "Cannot open file for reading: " << qPrintable(file.errorString())
+                 << '\n';
+        return;
+    }
+    QDataStream in(&file);
+    auto& session = Session::GetInstance();
+    in >> session;
+    file.close();
+}
+QDataStream& operator>>(QDataStream& in, Session& session) {
+    in >> session.s_CellSize;
+    in >> session.s_BoardDimension.first;
+    in >> session.s_BoardDimension.second;
+    in >> session.s_MineNumber;
+    in >> session.s_FlagSet;
+    in >> session.s_CorrectFlag;
+    in >> session.s_SquareRevealed;
+    // Add deserialization for s_board here
+    session.s_board.resize(
+        session.s_BoardDimension.first,
+        std::vector<Square*>(session.s_BoardDimension.second, nullptr)
+    );
+    for (int i = 0; i < session.GetInstance().s_BoardDimension.first; i++) {
+        for (int j = 0; j < session.GetInstance().s_BoardDimension.second; j++) {
+            in >> session.s_board[i][j]->state;
+            in >> session.s_board[i][j]->row;
+            in >> session.s_board[i][j]->col;
+
+            in >> session.s_board[i][j]->surroundingMineCount;
+            in >> session.s_board[i][j]->surroundingFlagCount;
+        }
+    }
+    return in;
 }

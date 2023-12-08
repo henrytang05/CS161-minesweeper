@@ -28,6 +28,7 @@ class Pages : public QStackedWidget {
    public slots:
     void replayGameSlot();
     void startNewGameSlot();
+    void resumeGameSlot();
 };
 
 class MainWindow : public QMainWindow {

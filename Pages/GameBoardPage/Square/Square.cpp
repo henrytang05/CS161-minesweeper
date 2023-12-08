@@ -5,7 +5,7 @@
 #include "Style/Style.h"
 static auto& board = Session::GetBoard();
 
-Square::Square(int row, int col, QWidget* parent) : QPushButton(parent) {
+Square::Square(int row, int col) {
     state = STATE::UnRevealed;
     surroundingMineCount = 0;
     surroundingFlagCount = 0;
@@ -25,10 +25,9 @@ Square::~Square() {
     );
 }
 
-Mine_Square::Mine_Square(int row, int col, QWidget* parent) : Square(row, col, parent) {}
+Mine_Square::Mine_Square(int row, int col) : Square(row, col) {}
 Mine_Square::~Mine_Square() {}
-Blank_Square::Blank_Square(int row, int col, QWidget* parent)
-    : Square(row, col, parent) {}
+Blank_Square::Blank_Square(int row, int col) : Square(row, col) {}
 Blank_Square::~Blank_Square() {}
 
 void Square::updateSurroundingFlag(char mode) {

@@ -17,6 +17,7 @@ class GameBoard : public QWidget {
 
    private:
     void updateSurroundingMineNumber(Square*);
+    QGridLayout* mainGridLayout;
 
    signals:
     void result(bool);

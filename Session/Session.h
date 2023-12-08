@@ -1,5 +1,7 @@
 #ifndef SESSION_H
 #define SESSION_H
+#include <QDataStream>
+#include <QFile>
 #include <utility>
 #include <vector>
 class Square;
@@ -19,14 +21,19 @@ class Session {
     static const int& GetRow();
     static const int& GetColumn();
     void setupBoard();
-    ~Session();
+    void serialize();
+    void deserialize();
+
+    friend QDataStream& operator<<(QDataStream& out, const Session& session);
+    friend QDataStream& operator>>(QDataStream& in, Session& session);
 
    private:
     Session();
+    ~Session();
 
    public:
     double s_CellSize;
-    std::pair<int, int> s_boardDimension;
+    std::pair<int, int> s_BoardDimension;
     std::vector<std::vector<Square*>> s_board;
     int s_MineNumber;
     int s_FlagSet;

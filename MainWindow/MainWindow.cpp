@@ -53,6 +53,7 @@ void Pages::makeconnection() {
         setCurrentWidget(homePage);
         emit replaySignal();
     });
+    QObject::connect(homePage, HomePage::resumeGameClicked, this, &Pages::resumeGameSlot);
 }
 
 void Pages::startNewGameSlot() {
@@ -66,11 +67,15 @@ void Pages::startNewGameSlot() {
     this->setCurrentWidget(gameBoardPage);
 }
 void Pages::replayGameSlot() {
-    Session::GetInstance().ResetInstance();
+    Session::GetInstance().serialize();
     delete gameBoardPage;
     gameBoardPage = nullptr;
     emit replaySignal();
     this->setCurrentWidget(levelSelectionPage);
+}
+void Pages::resumeGameSlot() {
+    Session::GetInstance().deserialize();
+    startNewGameSlot();
 }
 void Pages::setupPages() {
     homePage = new HomePage(this);

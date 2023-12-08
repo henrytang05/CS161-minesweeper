@@ -14,7 +14,7 @@ class Square : public QPushButton {
     friend class GameBoard;
     Q_OBJECT
    public:
-    Square(int row, int col, QWidget* parent = nullptr);
+    Square(int row, int col);
     virtual ~Square();
 
     void breakSurroundingCells();
@@ -60,7 +60,7 @@ class Square : public QPushButton {
 class Mine_Square : public Square {
     Q_OBJECT
    public:
-    Mine_Square(int row, int col, QWidget* parent = nullptr);
+    Mine_Square(int row, int col);
     ~Mine_Square();
     virtual void squareDoubleClickedSlot() override;
     virtual void render_square() override;
@@ -69,7 +69,7 @@ class Mine_Square : public Square {
 class Blank_Square : public Square {
     Q_OBJECT
    public:
-    Blank_Square(int row, int col, QWidget* parent = nullptr);
+    Blank_Square(int row, int col);
     ~Blank_Square();
     virtual void squareDoubleClickedSlot() override;
     virtual void render_square() override;
