@@ -85,11 +85,6 @@ void Session::serialize() {
     }
     QDataStream out(&file);
     auto& session = Session::GetInstance();
-    out << session;
-    file.close();
-}
-
-QDataStream& operator<<(QDataStream& out, const Session& session) {
     out << session.s_CellSize;
     out << session.s_BoardDimension.first;
     out << session.s_BoardDimension.second;
@@ -97,9 +92,14 @@ QDataStream& operator<<(QDataStream& out, const Session& session) {
     out << session.s_FlagSet;
     out << session.s_CorrectFlag;
     out << session.s_SquareRevealed;
+    out << session;
+    file.close();
+}
+
+QDataStream& operator<<(QDataStream& out, const Session& session) {
     for (int i = 0; i < session.GetInstance().s_BoardDimension.first; i++) {
         for (int j = 0; j < session.GetInstance().s_BoardDimension.second; j++) {
-            session.s_board[i][j]->serialize(out);
+            out << *(session.s_board[i][j]);
         }
     }
     return out;
@@ -125,18 +125,24 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
     in >> session.s_CorrectFlag;
     in >> session.s_SquareRevealed;
     // Add deserialization for s_board here
+    // if (session.s_board.size() != 0) {
+    //     session.s_board.clear();
+    // }
     session.s_board.resize(
         session.s_BoardDimension.first,
         std::vector<Square*>(session.s_BoardDimension.second, nullptr)
     );
     for (int i = 0; i < session.GetInstance().s_BoardDimension.first; i++) {
         for (int j = 0; j < session.GetInstance().s_BoardDimension.second; j++) {
-            in >> session.s_board[i][j]->state;
-            in >> session.s_board[i][j]->row;
-            in >> session.s_board[i][j]->col;
-
-            in >> session.s_board[i][j]->surroundingMineCount;
-            in >> session.s_board[i][j]->surroundingFlagCount;
+            Square_Type type;
+            in >> type;
+            if (type == Square_Type::Blank) {
+                session.s_board[i][j] = new Blank_Square(i, j);
+            } else if (type == Square_Type::Mine) {
+                session.s_board[i][j] = new Mine_Square(i, j);
+            }
+            session.s_board[i][j]->type = type;
+            in >> *(session.s_board[i][j]);
         }
     }
     return in;

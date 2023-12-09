@@ -67,16 +67,12 @@ void Pages::startNewGameSlot() {
     this->setCurrentWidget(gameBoardPage);
 }
 void Pages::replayGameSlot() {
-    Session::GetInstance().serialize();
     delete gameBoardPage;
     gameBoardPage = nullptr;
     emit replaySignal();
     this->setCurrentWidget(levelSelectionPage);
 }
-void Pages::resumeGameSlot() {
-    Session::GetInstance().deserialize();
-    startNewGameSlot();
-}
+void Pages::resumeGameSlot() { startNewGameSlot(); }
 void Pages::setupPages() {
     homePage = new HomePage(this);
     levelSelectionPage = new LevelSelectionPage(this);

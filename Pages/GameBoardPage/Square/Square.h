@@ -1,5 +1,6 @@
 #ifndef SQUARE_H
 #define SQUARE_H
+#include <QDataStream>
 #include <QIcon>
 #include <QMouseEvent>
 #include <QPushButton>
@@ -8,18 +9,22 @@
 #include <QWidget>
 
 class GameBoard;
-enum class Square_Type : char { Mine, Blank };
+enum class Square_Type : int8_t { Mine = -2, Blank };
 class Square : public QPushButton {
    public:
-    enum class STATE : char { Revealed, UnRevealed, Flagged };
+    enum class STATE : int8_t { Revealed = -3, UnRevealed, Flagged };
     friend class GameBoard;
     Q_OBJECT
    public:
-    Square(int row, int col);
+    Square(int row, int col, Square_Type type);
     virtual ~Square();
 
     void breakSurroundingCells();
     virtual void changeState(STATE newState) = 0;
+
+    friend QDataStream& operator<<(QDataStream& out, const Square& square);
+    friend QDataStream& operator>>(QDataStream& out, Square& square);
+
     enum { LOSE, WIN };
 
    protected:
@@ -59,6 +64,8 @@ class Square : public QPushButton {
     void squareRightClickedSlot();
     virtual void squareDoubleClickedSlot() = 0;
 };
+QDataStream& operator<<(QDataStream& out, const Square& square);
+QDataStream& operator>>(QDataStream& out, Square& square);
 class Mine_Square : public Square {
     Q_OBJECT
    public:

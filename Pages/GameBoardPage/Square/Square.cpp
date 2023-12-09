@@ -5,8 +5,9 @@
 #include "Style/Style.h"
 static auto& board = Session::GetBoard();
 
-Square::Square(int row, int col) {
+Square::Square(int row, int col, Square_Type type) {
     state = STATE::UnRevealed;
+    this->type = type;
     surroundingMineCount = 0;
     surroundingFlagCount = 0;
     this->row = row;
@@ -25,9 +26,9 @@ Square::~Square() {
     );
 }
 
-Mine_Square::Mine_Square(int row, int col) : Square(row, col) {}
+Mine_Square::Mine_Square(int row, int col) : Square(row, col, Square_Type::Mine) {}
 Mine_Square::~Mine_Square() {}
-Blank_Square::Blank_Square(int row, int col) : Square(row, col) {}
+Blank_Square::Blank_Square(int row, int col) : Square(row, col, Square_Type::Blank) {}
 Blank_Square::~Blank_Square() {}
 
 void Square::updateSurroundingFlag(char mode) {
@@ -219,4 +220,15 @@ void Blank_Square::changeState(STATE newState) {
     if (s_revealed + s_correctFlagged == Session::GetRow() * Session::GetColumn()) {
         emit result(WIN);
     }
+}
+
+QDataStream& operator<<(QDataStream& out, const Square& square) {
+    out << square.type << square.state << square.row << square.col
+        << square.surroundingMineCount << square.surroundingFlagCount;
+    return out;
+}
+QDataStream& operator>>(QDataStream& in, Square& square) {
+    in >> square.state >> square.row >> square.col >> square.surroundingMineCount >>
+        square.surroundingFlagCount;
+    return in;
 }
