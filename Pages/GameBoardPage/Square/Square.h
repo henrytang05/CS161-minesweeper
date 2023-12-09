@@ -8,6 +8,7 @@
 #include <QWidget>
 
 class GameBoard;
+enum class Square_Type : char { Mine, Blank };
 class Square : public QPushButton {
    public:
     enum class STATE : char { Revealed, UnRevealed, Flagged };
@@ -32,6 +33,7 @@ class Square : public QPushButton {
 
    public:
     STATE state;
+    Square_Type type;
     int surroundingMineCount = 0;
     int surroundingFlagCount = 0;
 

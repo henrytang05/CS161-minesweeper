@@ -99,17 +99,13 @@ QDataStream& operator<<(QDataStream& out, const Session& session) {
     out << session.s_SquareRevealed;
     for (int i = 0; i < session.GetInstance().s_BoardDimension.first; i++) {
         for (int j = 0; j < session.GetInstance().s_BoardDimension.second; j++) {
-            out << session.s_board[i][j]->state;
-            out << session.s_board[i][j]->row;
-            out << session.s_board[i][j]->col;
-            out << session.s_board[i][j]->surroundingMineCount;
-            out << session.s_board[i][j]->surroundingFlagCount;
+            session.s_board[i][j]->serialize(out);
         }
     }
     return out;
 }
 void Session::deserialize() {
-       QFile file("save.dat");
+    QFile file("save.dat");
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "Cannot open file for reading: " << qPrintable(file.errorString())
                  << '\n';
