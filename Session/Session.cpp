@@ -147,3 +147,4 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
     }
     return in;
 }
+// When losing cannot press replay

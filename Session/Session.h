@@ -5,6 +5,7 @@
 #include <utility>
 #include <vector>
 class Square;
+enum class State : int8_t { Playing = -2, Not_Playing = -1 };
 class Session {
    public:
     static Session& GetInstance();
