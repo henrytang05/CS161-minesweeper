@@ -10,6 +10,7 @@ Session::Session() {
     s_CorrectFlag = 0;
     s_BoardDimension = std::make_pair(0, 0);
     s_MineNumber = 0;
+    timer.resetTimer();
 }
 Session::~Session() {}
 Session& Session::GetInstance() {
@@ -39,6 +40,7 @@ void Session::SetMineNumber(int n) { GetInstance().s_MineNumber = n; }
 int& Session::GetSquareRevealed() { return GetInstance().s_SquareRevealed; }
 int& Session::GetCorrectFlag() { return GetInstance().s_CorrectFlag; }
 double& Session::GetCellSize() { return GetInstance().s_CellSize; }
+
 void Session::SetBoardDimension(int row, int col) {
     Session::GetBoardDimension() = std::make_pair(row, col);
     // Session::GetMineNumber() = row * col / 6;

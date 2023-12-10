@@ -4,6 +4,7 @@
 #include <QFile>
 #include <utility>
 #include <vector>
+class Timer;
 class Square;
 enum class State : int8_t { Playing = -2, Not_Playing = -1 };
 class Session {
@@ -40,6 +41,7 @@ class Session {
     int s_FlagSet;
     int s_CorrectFlag;
     int s_SquareRevealed;
+    Timer timer;
     // add time
 };
 
