@@ -3,6 +3,7 @@
 #include <random>
 
 #include "Square/Square.h"
+#include "Timer/Timer.h"
 Session::Session() {
     s_CellSize = 35;
     s_FlagSet = 0;
@@ -10,7 +11,7 @@ Session::Session() {
     s_CorrectFlag = 0;
     s_BoardDimension = std::make_pair(0, 0);
     s_MineNumber = 0;
-    timer.resetTimer();
+    timer->resetTimer();
 }
 Session::~Session() {}
 Session& Session::GetInstance() {
@@ -149,4 +150,11 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
     }
     return in;
 }
+void Session::startTimer() { timer->startTimer(); }
+void Session::stopTimer() { timer->stopTimer(); }
+void Session::resetTimer() { timer->resetTimer(); }
+const QString Session::GetElapsedTimeAsString() {
+    return GetInstance().timer->elapsedTime.toString("mm:ss");
+}
+
 // When losing cannot press replay

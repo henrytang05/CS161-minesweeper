@@ -2,6 +2,7 @@
 #define SESSION_H
 #include <QDataStream>
 #include <QFile>
+#include <QString>
 #include <utility>
 #include <vector>
 class Timer;
@@ -22,6 +23,13 @@ class Session {
     static std::pair<int, int>& GetBoardDimension();
     static const int& GetRow();
     static const int& GetColumn();
+
+    void startTimer();
+    void stopTimer();
+    void resetTimer();
+    static const QString GetElapsedTimeAsString();
+    static const Timer& GetTimer();
+
     void setupBoard();
     void serialize();
     void deserialize();
@@ -41,7 +49,7 @@ class Session {
     int s_FlagSet;
     int s_CorrectFlag;
     int s_SquareRevealed;
-    Timer timer;
+    Timer* timer;
     // add time
 };
 
