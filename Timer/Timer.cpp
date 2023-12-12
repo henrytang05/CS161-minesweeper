@@ -3,8 +3,7 @@
 #include "Style/Style.h"
 Timer::Timer(QWidget* parent) : QTimer(parent) {
     elapsedTime = QTime(0, 0);
-    // Change the interval to 500 milliseconds (half a second)
-    this->startTimer();
+
     connect(this, &QTimer::timeout, this, &Timer::updateTimerSlot);
     // this->setText(QString("00:00"));
     // styleTimer(this);

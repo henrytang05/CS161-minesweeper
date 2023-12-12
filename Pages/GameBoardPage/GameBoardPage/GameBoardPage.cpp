@@ -13,7 +13,7 @@ void GameBoardPage::setupGameBoardPage() {
     QHBoxLayout* mainLayout = new QHBoxLayout(this);
     Board = new GameBoard(this);
     replayButton = new QPushButton("Replay", this);
-    QLabel* timer = new QLabel(Session::GetElapsedTimeAsString(), this); 
+    QLabel* timer = new QLabel(Session::GetElapsedTimeAsString(), this);
     styleTimer(timer);
     styleButton(replayButton, "12D9C4", true);
 
@@ -41,6 +41,7 @@ void GameBoardPage::setupGameBoardPage() {
     QObject::connect(Board, &GameBoard::result, this, &GameBoardPage::victoryAnnoucement);
 
     mainLayout->addStretch();
+    Session::GetInstance().startTimer();
     setLayout(mainLayout);
 }
 void GameBoardPage::reavealAllBombs() {

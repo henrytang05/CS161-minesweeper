@@ -4,14 +4,7 @@
 #include "Square/Square.h"
 #include "Style/Style.h"
 GameBoard::GameBoard(QWidget* parent) : QWidget(parent) { setupGameBoard(); }
-GameBoard::~GameBoard() {
-    for (QObject* child : mainGridLayout->children()) {
-        QWidget* widget = qobject_cast<QWidget*>(child);
-        if (widget) {
-            mainGridLayout->removeWidget(widget);
-        }
-    }
-}
+GameBoard::~GameBoard() {}
 void GameBoard::setupGameBoard() {
     auto& board = Session::GetBoard();
     this->setFixedSize(

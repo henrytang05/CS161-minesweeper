@@ -48,7 +48,6 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     });
 }
 void LevelSelectionPage::setupNewGame(int row, int col, int mine) {
-    Session::GetInstance().ResetInstance();
     Session::SetBoardDimension(row, col);
     Session::SetMineNumber(mine);
     Session::GetInstance().setupBoard();

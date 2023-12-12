@@ -11,26 +11,24 @@ Session::Session() {
     s_CorrectFlag = 0;
     s_BoardDimension = std::make_pair(0, 0);
     s_MineNumber = 0;
-    timer->resetTimer();
+    timer = new Timer;
 }
-Session::~Session() {}
+Session::~Session() { delete timer; }
 Session& Session::GetInstance() {
     static Session s_instance;
     return s_instance;
 }
-void Session::ResetInstance() {
-    for (auto& row : s_board) {
-        for (auto& square : row) {
-            delete square;
-            square = nullptr;
-        }
-    }
-    s_board.clear();
-    s_FlagSet = 0;
-    s_SquareRevealed = 0;
-    s_CorrectFlag = 0;
-    s_BoardDimension = std::make_pair(0, 0);
-    s_MineNumber = 0;
+Session& Session::ResetInstance() {
+    // squares are automically deallocated by qt
+    auto& s = GetInstance();
+    s.s_board.clear();
+    s.s_BoardDimension = std::make_pair(0, 0);
+    s.s_MineNumber = 0;
+    s.s_FlagSet = 0;
+    s.s_CorrectFlag = 0;
+    s.s_SquareRevealed = 0;
+    s.timer->resetTimer();
+    return s;
 }
 std::vector<std::vector<Square*>>& Session::GetBoard() {
     return Session::GetInstance().s_board;
@@ -87,7 +85,11 @@ void Session::serialize() {
         return;
     }
     QDataStream out(&file);
-    auto& session = Session::GetInstance();
+    out << Session::GetInstance();
+    file.close();
+}
+
+QDataStream& operator<<(QDataStream& out, const Session& session) {
     out << session.s_CellSize;
     out << session.s_BoardDimension.first;
     out << session.s_BoardDimension.second;
@@ -95,11 +97,6 @@ void Session::serialize() {
     out << session.s_FlagSet;
     out << session.s_CorrectFlag;
     out << session.s_SquareRevealed;
-    out << session;
-    file.close();
-}
-
-QDataStream& operator<<(QDataStream& out, const Session& session) {
     for (int i = 0; i < session.GetInstance().s_BoardDimension.first; i++) {
         for (int j = 0; j < session.GetInstance().s_BoardDimension.second; j++) {
             out << *(session.s_board[i][j]);
@@ -115,8 +112,7 @@ void Session::deserialize() {
         return;
     }
     QDataStream in(&file);
-    auto& session = Session::GetInstance();
-    in >> session;
+    in >> Session::GetInstance();
     file.close();
 }
 QDataStream& operator>>(QDataStream& in, Session& session) {
@@ -127,7 +123,7 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
     in >> session.s_FlagSet;
     in >> session.s_CorrectFlag;
     in >> session.s_SquareRevealed;
-    // Add deserialization for s_board here
+
     // if (session.s_board.size() != 0) {
     //     session.s_board.clear();
     // }

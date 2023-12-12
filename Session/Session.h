@@ -11,7 +11,7 @@ enum class State : int8_t { Playing = -2, Not_Playing = -1 };
 class Session {
    public:
     static Session& GetInstance();
-    void ResetInstance();
+    static Session& ResetInstance();
     static std::vector<std::vector<Square*>>& GetBoard();
     static int& GetFlag();  // Done
     static int& GetMineNumber();
@@ -43,8 +43,8 @@ class Session {
 
    public:
     double s_CellSize;
-    std::pair<int, int> s_BoardDimension;
     std::vector<std::vector<Square*>> s_board;
+    std::pair<int, int> s_BoardDimension;
     int s_MineNumber;
     int s_FlagSet;
     int s_CorrectFlag;
