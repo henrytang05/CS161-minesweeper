@@ -14,6 +14,7 @@ void GameBoardPage::setupGameBoardPage() {
     Board = new GameBoard(this);
     replayButton = new QPushButton("Replay", this);
     QLabel* timer = new QLabel(Session::GetElapsedTimeAsString(), this);
+    Session::GetTimer()->connectTimer(timer);
     styleTimer(timer);
     styleButton(replayButton, "12D9C4", true);
 
@@ -56,9 +57,8 @@ void GameBoardPage::reavealAllBombs() {
     }
 }
 void GameBoardPage::victoryAnnoucement(bool won) {
-    timer->stopTimer();
     auto& board = Session::GetBoard();
-
+    Session::GetInstance().stopTimer();
     if (won) {
         announcementLabel->setText("You won!");
     } else {

@@ -152,5 +152,6 @@ void Session::resetTimer() { timer->resetTimer(); }
 const QString Session::GetElapsedTimeAsString() {
     return GetInstance().timer->elapsedTime.toString("mm:ss");
 }
+Timer* Session::GetTimer() { return GetInstance().timer; }
 
 // When losing cannot press replay

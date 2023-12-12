@@ -11,6 +11,7 @@ class Timer : public QTimer {
     void startTimer();
     void stopTimer();
     void resetTimer();
+    void connectTimer(QLabel*);
 
    signals:
     void timerUpdated();

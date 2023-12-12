@@ -28,7 +28,7 @@ class Session {
     void stopTimer();
     void resetTimer();
     static const QString GetElapsedTimeAsString();
-    static const Timer& GetTimer();
+    static Timer* GetTimer();
 
     void setupBoard();
     void serialize();

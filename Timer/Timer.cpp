@@ -17,3 +17,8 @@ void Timer::updateTimerSlot() {
     emit timerUpdated();
     // this->setText(elapsedTime.toString("mm:ss"));
 }
+void Timer::connectTimer(QLabel* label) {
+    QObject::connect(this, &QTimer::timeout, label, [this, label]() {
+        label->setText(elapsedTime.toString("mm:ss"));
+    });
+}
