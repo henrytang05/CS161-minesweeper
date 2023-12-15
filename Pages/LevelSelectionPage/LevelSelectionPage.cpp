@@ -16,12 +16,12 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     mainLayout->addSpacing(-50);
     QVBoxLayout* buttonLayout = new QVBoxLayout(this);
     mainLayout->addLayout(buttonLayout);
-    QPushButton* resume = new QPushButton("Resume", this);
-    QPushButton* easy = new QPushButton("Easy", this);
-    QPushButton* medium = new QPushButton("Medium", this);
-    QPushButton* hard = new QPushButton("Hard", this);
-    QPushButton* custom = new QPushButton("Custom", this);
-    QPushButton* back = new QPushButton("Back", this);
+    resume = new QPushButton("Resume", this);
+    easy = new QPushButton("Easy", this);
+    medium = new QPushButton("Medium", this);
+    hard = new QPushButton("Hard", this);
+    custom = new QPushButton("Custom", this);
+    back = new QPushButton("Back", this);
 
     styleButton(resume, "FFF6F6");
     styleButton(easy, "FFF6F6");

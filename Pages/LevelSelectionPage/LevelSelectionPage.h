@@ -10,8 +10,11 @@
 #include <QPushButton>
 #include <QScreen>
 #include <QStackedWidget>
+class MainWindow;
 class LevelSelectionPage : public QWidget {
     Q_OBJECT
+    friend class MainWindow;
+
    public:
     LevelSelectionPage(QStackedWidget* parent = nullptr);
     ~LevelSelectionPage();
@@ -20,6 +23,15 @@ class LevelSelectionPage : public QWidget {
    signals:
     void backClicked();
     void levelSelected();
+
+   private:
+    QPushButton* resume;
+    QPushButton* easy;
+    QPushButton* medium;
+    QPushButton* hard;
+    QPushButton* custom;
+    QPushButton* back;
+
    public slots:
     void customLevelSelection(int&, int&, int&);
 };

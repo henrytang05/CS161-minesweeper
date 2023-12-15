@@ -17,6 +17,8 @@ class Session : public QObject {
     enum class State : int8_t { Playing = 4, None, Win, Lose };
     static Session& GetInstance();
     static Session& ResetInstance();
+    static void StopSession();
+    static void ResumeSession();
     void GetPreviousSession();
     static std::vector<std::vector<Square*>>& GetBoard();
     static int& GetFlag();

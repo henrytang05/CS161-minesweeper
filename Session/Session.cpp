@@ -30,6 +30,7 @@ Session& Session::ResetInstance() {
     s.s_CorrectFlag = 0;
     s.s_SquareRevealed = 0;
     s.timer->resetTimer();
+
     return s;
 }
 void Session::GetPreviousSession() { Session::GetInstance().deserialize(); }
@@ -192,4 +193,14 @@ const QString Session::GetElapsedTimeAsString() {
 }
 Timer* Session::GetTimer() { return GetInstance().timer; }
 
+void Session::StopSession() {
+    auto& s = GetInstance();
+    s.stopTimer();
+    s.serialize();
+}
+void Session::ResumeSession() {
+    auto& s = GetInstance();
+    s.deserialize();
+    s.startTimer();
+}
 // TODO : When losing cannot press replay
