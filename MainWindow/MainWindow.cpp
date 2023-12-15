@@ -41,6 +41,9 @@ void MainWindow::makeConnection() {
         levelSelectionPage, LevelSelectionPage::levelSelected, gameboardPage,
         &GameboardPage::handleNewGameStart
     );
+    QObject::connect(gameboardPage->replayButton, &QPushButton::clicked, this, [this]() {
+        Pages->setCurrentWidget(levelSelectionPage);
+        });
     // TODO : change resume to high score
     // TODO : move resume to level selection page
 }
