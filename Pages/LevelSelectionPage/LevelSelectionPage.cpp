@@ -16,24 +16,28 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     mainLayout->addSpacing(-50);
     QVBoxLayout* buttonLayout = new QVBoxLayout(this);
     mainLayout->addLayout(buttonLayout);
+    QPushButton* resume = new QPushButton("Resume", this);
     QPushButton* easy = new QPushButton("Easy", this);
     QPushButton* medium = new QPushButton("Medium", this);
     QPushButton* hard = new QPushButton("Hard", this);
     QPushButton* custom = new QPushButton("Custom", this);
     QPushButton* back = new QPushButton("Back", this);
 
+    styleButton(resume, "FFF6F6");
     styleButton(easy, "FFF6F6");
     styleButton(medium, "FFF6F6");
     styleButton(hard, "FFF6F6");
     styleButton(custom, "FFF6F6");
     styleButton(back, "FFF6F6");
 
+    buttonLayout->addWidget(resume, 0, Qt::AlignCenter);
     buttonLayout->addWidget(easy, 0, Qt::AlignCenter);
     buttonLayout->addWidget(medium, 0, Qt::AlignCenter);
     buttonLayout->addWidget(hard, 0, Qt::AlignCenter);
     buttonLayout->addWidget(custom, 0, Qt::AlignCenter);
     buttonLayout->addWidget(back, 0, Qt::AlignCenter);
 
+    // TODO : add connection for resume
     connect(easy, &QPushButton::clicked, this, [this]() { setupNewGame(9, 9, 10); });
     connect(medium, &QPushButton::clicked, this, [this]() { setupNewGame(16, 16, 50); });
     connect(hard, &QPushButton::clicked, this, [this]() { setupNewGame(10, 30, 99); });

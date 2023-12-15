@@ -1,5 +1,6 @@
 #include "Style/Style.h"
 
+#include "Session/Session.h"
 #include "Square/Square.h"
 void styleButton(
     QPushButton* b, std::string&& background_color, bool rounded, int width, int height,
@@ -15,6 +16,7 @@ void styleButton(
 
     if (background_color[0] == '#') background_color.erase(0, 1);
     if (text_color[0] == '#') text_color.erase(0, 1);
+
     b->setFixedSize(width, height);
     b->setStyleSheet(QString::fromStdString(
         "background-color: #" + background_color + "; " +
@@ -35,14 +37,12 @@ void styleLabel(QLabel* label, std::string&& color, double size) {
     label->setAlignment(Qt::AlignCenter);
 }
 
-void styleWindow(
-    std::string&& title, int width, int height, QMainWindow* window, std::string&& color
-) {
+void styleWindow(std::string&& title, QMainWindow* window, std::string&& color) {
     window->setWindowTitle(QString::fromStdString(title));
-    // window->setFixedSize(width, height);
     window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
 }
 void styleSquare(Square* square, std::string&& color) {
+    square->setFixedSize(Session::GetCellSize(), Session::GetCellSize());
     QString str = std::move(QString("QPushButton { border: 1px solid black;  "));
     if (!color.empty()) {
         if (std::isdigit(color[1])) {

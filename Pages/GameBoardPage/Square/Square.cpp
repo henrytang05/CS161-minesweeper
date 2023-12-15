@@ -1,6 +1,6 @@
 #include "Square.h"
 
-#include "GameBoard/GameBoard.h"
+#include "GameboardPage/GameboardPage.h"
 #include "Session/Session.h"
 #include "Style/Style.h"
 static auto& board = Session::GetBoard();
@@ -13,7 +13,8 @@ Square::Square(int row, int col, Square_Type type) {
     this->row = row;
     this->col = col;
 
-    styleButton(this, "#EEA6B9", false, Session::GetCellSize(), Session::GetCellSize());
+    styleSquare(this);
+
     QObject::connect(this, &Square::leftClick, this, &Square::squareLeftClickedSlot);
     QObject::connect(this, &Square::rightClick, this, &Square::squareRightClickedSlot);
     QObject::connect(this, &Square::doubleClick, this, &Square::squareDoubleClickedSlot);
@@ -174,7 +175,8 @@ void Mine_Square::changeState(STATE newState) {
     int& s_flagged = Session::GetFlag();
     switch (newState) {
         case STATE::Revealed:
-            emit result(LOSE);
+            Session::GetInstance().changeState(Session::State::Lose);
+
             break;
 
         // this mean you unflag it
@@ -192,7 +194,7 @@ void Mine_Square::changeState(STATE newState) {
     }
     if (Session::GetSquareRevealed() + s_correctFlagged ==
         Session::GetRow() * Session::GetColumn()) {
-        emit result(WIN);
+        Session::GetInstance().changeState(Session::State::Win);
     }
 }
 void Blank_Square::changeState(STATE newState) {
@@ -218,7 +220,7 @@ void Blank_Square::changeState(STATE newState) {
             break;
     }
     if (s_revealed + s_correctFlagged == Session::GetRow() * Session::GetColumn()) {
-        emit result(WIN);
+        Session::GetInstance().changeState(Session::State::Win);
     }
 }
 

@@ -7,13 +7,12 @@
 #include <QSize>
 #include <QString>
 #include <QWidget>
-
-class GameBoard;
+class Gameboard;
 enum class Square_Type : int8_t { Mine = -2, Blank };
 class Square : public QPushButton {
    public:
     enum class STATE : int8_t { Revealed = -3, UnRevealed, Flagged };
-    friend class GameBoard;
+    friend class Gameboard;
     Q_OBJECT
    public:
     Square(int row, int col, Square_Type type);
@@ -43,7 +42,7 @@ class Square : public QPushButton {
     int surroundingFlagCount = 0;
 
    signals:
-    void result(bool);
+    void result();
     void leftClick();
     void rightClick();
     void doubleClick();

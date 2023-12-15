@@ -1,6 +1,5 @@
 #include "Timer.h"
 
-#include "Style/Style.h"
 Timer::Timer(QWidget* parent) : QTimer(parent) {
     elapsedTime = QTime(0, 0);
 

@@ -16,7 +16,7 @@ class HomePage : public QWidget {
     void setupHomePage();
 
    signals:
-    void newGameClicked();
-    void resumeGameClicked();
+    void newGameButton();
+    void highScoreButton();
 };
 #endif

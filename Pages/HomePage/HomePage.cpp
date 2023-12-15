@@ -18,14 +18,14 @@ void HomePage::setupHomePage() {
     QVBoxLayout* buttonLayout = new QVBoxLayout;
     QPushButton* newGame = new QPushButton("New Game");
     buttonLayout->setSpacing(20);
-    QPushButton* Resume = new QPushButton("Resume Game");
+    QPushButton* highScore = new QPushButton("High Scores");
     buttonLayout->addWidget(newGame, 0, Qt::AlignCenter);
-    buttonLayout->addWidget(Resume, 0, Qt::AlignCenter);
+    buttonLayout->addWidget(highScore, 0, Qt::AlignCenter);
     styleButton(newGame, "A6DCEF");
-    styleButton(Resume, "A6DCEF");
+    styleButton(highScore, "A6DCEF");
 
-    connect(newGame, &QPushButton::clicked, this, &HomePage::newGameClicked);
-    connect(Resume, &QPushButton::clicked, this, &HomePage::resumeGameClicked);
+    connect(newGame, &QPushButton::clicked, this, &HomePage::newGameButton);
+    connect(highScore, &QPushButton::clicked, this, &HomePage::highScoreButton);
 
     mainLayout->addStretch();
     mainLayout->addLayout(labelLayout);

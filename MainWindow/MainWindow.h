@@ -6,42 +6,28 @@
 class MainWindow;
 class LevelSelectionPage;
 class HomePage;
-class GameBoardPage;
-class Pages : public QStackedWidget {
+class GameboardPage;
+class MainWindow : public QMainWindow {
     Q_OBJECT
    public:
-    Pages(QWidget* parent = nullptr);
-    ~Pages();
-    void setupPages();
-
-    void makeconnection();
+    MainWindow(QMainWindow* parent = nullptr);
+    ~MainWindow();
+    void makeConnection();
 
    private:
+    QStackedWidget* Pages;
     HomePage* homePage;
     LevelSelectionPage* levelSelectionPage;
-    GameBoardPage* gameBoardPage;
+    GameboardPage* gameboardPage;
 
    signals:
     void newGameSignal();
     void replaySignal();
 
    public slots:
-    void replayGameSlot();
     void startNewGameSlot();
     void resumeGameSlot();
-};
-
-class MainWindow : public QMainWindow {
-    Q_OBJECT
-   public:
-    MainWindow(double width = 0, double height = 0, QMainWindow* parent = nullptr);
-    ~MainWindow();
-    void makeconnection();
-
-   private:
-    Pages* stackedPages;
-    double windowWidth = 900;
-    double windowHeight = 900;
+    void replayGameSlot();
 };
 
 #endif

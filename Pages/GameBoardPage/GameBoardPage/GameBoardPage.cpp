@@ -1,24 +1,19 @@
-#include "GameBoardPage.h"
+#include "GameboardPage.h"
 
-#include "GameBoard/GameBoard.h"
 #include "Session/Session.h"
 #include "Square/Square.h"
 #include "Style/Style.h"
 #include "Timer/Timer.h"
-GameBoardPage::GameBoardPage(QStackedWidget* parent) : QWidget(parent) {
-    setupGameBoardPage();
-}
-GameBoardPage::~GameBoardPage() {}
-void GameBoardPage::setupGameBoardPage() {
-    QHBoxLayout* mainLayout = new QHBoxLayout(this);
-    Board = new GameBoard(this);
+GameboardPage::GameboardPage(QStackedWidget* parent) : QWidget(parent) {
+    gameboard = new QWidget(this);
     replayButton = new QPushButton("Replay", this);
-    QLabel* timer = new QLabel(Session::GetElapsedTimeAsString(), this);
-    Session::GetTimer()->connectTimer(timer);
+    announcementLabel = new QLabel(this);
+    timer = new QLabel("00:00", this);
+    QHBoxLayout* mainLayout = new QHBoxLayout(this);
+
     styleTimer(timer);
     styleButton(replayButton, "12D9C4", true);
 
-    announcementLabel = new QLabel("Announcement", this);
     announcementLabel->setAlignment(Qt::AlignVCenter);
     styleLabel(announcementLabel, "DBD8AE", 20);
     announcementLabel->hide();
@@ -32,31 +27,31 @@ void GameBoardPage::setupGameBoardPage() {
 
     rightLayout->addSpacing(10);
 
-    mainLayout->addWidget(Board);
+    mainLayout->addWidget(gameboard);
     mainLayout->addStretch();
     mainLayout->addLayout(rightLayout);
 
-    QObject::connect(
-        replayButton, &QPushButton::clicked, this, &GameBoardPage::replayClicked
-    );
-    QObject::connect(Board, &GameBoard::result, this, &GameBoardPage::victoryAnnoucement);
-
     mainLayout->addStretch();
-    Session::GetInstance().startTimer();
     setLayout(mainLayout);
+
+    QObject::connect(
+        &Session::GetInstance(), &Session::result, this, &victoryAnnoucement
+    );
 }
-void GameBoardPage::reavealAllBombs() {
+GameboardPage::~GameboardPage() {}
+
+void GameboardPage::reavealAllBombs() {
     auto& board = Session::GetBoard();
 
     for (auto& squareRow : board) {
         for (auto& square : squareRow) {
-            if (dynamic_cast<Mine_Square*>(square) != nullptr) {
+            if (square->type == Square_Type::Mine) {
                 square->changeState(Square::STATE::Revealed);
             }
         }
     }
 }
-void GameBoardPage::victoryAnnoucement(bool won) {
+void GameboardPage::victoryAnnoucement(Result won) {
     auto& board = Session::GetBoard();
     Session::GetInstance().stopTimer();
     if (won) {
@@ -71,4 +66,25 @@ void GameBoardPage::victoryAnnoucement(bool won) {
             square->setEnabled(false);
         }
     }
+}
+void GameboardPage::handleNewGameStart() {
+    // TODO : Get Session and stuffs
+    QGridLayout* mainGridLayout = new QGridLayout(this);
+    auto& board = Session::GetBoard();
+    gameboard->setFixedSize(
+        Session::GetCellSize() * Session::GetColumn(),
+        Session::GetCellSize() * Session::GetRow()
+    );
+
+    mainGridLayout = new QGridLayout(this);
+
+    for (auto& row : board) {
+        for (auto& square : row) {
+            mainGridLayout->addWidget(square, square->row, square->col);
+        }
+    }
+    gameboard->setLayout(mainGridLayout);
+    connect(Session::GetTimer(), &Timer::timerUpdated, timer, [this]() {
+        timer->setText(Session::GetTimer()->elapsedTime.toString("mm:ss"));
+    });
 }

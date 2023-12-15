@@ -4,13 +4,14 @@
 
 #include "Square/Square.h"
 #include "Timer/Timer.h"
-Session::Session() {
+Session::Session(QObject* parent) : QObject(parent) {
+    s_state = State::None;
     s_CellSize = 35;
     s_FlagSet = 0;
-    s_SquareRevealed = 0;
     s_CorrectFlag = 0;
-    s_BoardDimension = std::make_pair(0, 0);
+    s_SquareRevealed = 0;
     s_MineNumber = 0;
+    s_BoardDimension = std::make_pair(0, 0);
     timer = new Timer;
 }
 Session::~Session() { delete timer; }
@@ -22,6 +23,7 @@ Session& Session::ResetInstance() {
     // squares are automically deallocated by qt
     auto& s = GetInstance();
     s.s_board.clear();
+    // s.s_CellSize = 0;
     s.s_BoardDimension = std::make_pair(0, 0);
     s.s_MineNumber = 0;
     s.s_FlagSet = 0;
@@ -30,6 +32,7 @@ Session& Session::ResetInstance() {
     s.timer->resetTimer();
     return s;
 }
+void Session::GetPreviousSession() { Session::GetInstance().deserialize(); }
 std::vector<std::vector<Square*>>& Session::GetBoard() {
     return Session::GetInstance().s_board;
 }
@@ -42,13 +45,30 @@ double& Session::GetCellSize() { return GetInstance().s_CellSize; }
 
 void Session::SetBoardDimension(int row, int col) {
     Session::GetBoardDimension() = std::make_pair(row, col);
-    // Session::GetMineNumber() = row * col / 6;
 }
 std::pair<int, int>& Session::GetBoardDimension() {
     return GetInstance().s_BoardDimension;
 }
 const int& Session::GetRow() { return GetInstance().s_BoardDimension.first; }
 const int& Session::GetColumn() { return GetInstance().s_BoardDimension.second; }
+
+void Session::changeState(State newstate) {
+    switch (newstate) {
+        case State::Playing:
+            Session::GetInstance().startTimer();
+            break;
+        case State::Win:
+            Session::GetInstance().stopTimer();
+            emit Session::GetInstance().result(Win);
+            break;
+        case State::Lose:
+            Session::GetInstance().stopTimer();
+            emit Session::GetInstance().result(Win);
+            break;
+        default:
+            break;
+    }
+}
 
 void Session::setupBoard() {
     s_board.resize(
@@ -69,12 +89,30 @@ void Session::setupBoard() {
             rowRandomNumber = row_distribution(generator);
             colRandomNumber = col_distribution(generator);
 
-        } while (dynamic_cast<Mine_Square*>(s_board[rowRandomNumber][colRandomNumber]) !=
-                 nullptr);
+        } while (s_board[rowRandomNumber][colRandomNumber]->type == Square_Type::Mine);
 
         delete s_board[rowRandomNumber][colRandomNumber];
         s_board[rowRandomNumber][colRandomNumber] =
             new Mine_Square(rowRandomNumber, colRandomNumber);
+
+        int direction[8][2] = {
+            {-1, -1},  // Up-Left
+            {-1, 0},   // Up
+            {-1, 1},   // Up-Right
+            {0, -1},   // Left
+            {0, 1},    // Right
+            {1, -1},   // Down-Left
+            {1, 0},    // Down
+            {1, 1}     // Down-Right
+        };
+        for (auto& move : direction) {
+            int newRow = rowRandomNumber + move[0];
+            int newCol = colRandomNumber + move[1];
+            if (newRow < 0 || newRow >= Session::GetRow() || newCol < 0 ||
+                newCol >= Session::GetColumn())
+                continue;
+            s_board[newRow][newCol]->surroundingMineCount++;
+        }
     }
 }
 void Session::serialize() {
@@ -90,18 +128,20 @@ void Session::serialize() {
 }
 
 QDataStream& operator<<(QDataStream& out, const Session& session) {
+    out << session.s_state;
     out << session.s_CellSize;
-    out << session.s_BoardDimension.first;
-    out << session.s_BoardDimension.second;
-    out << session.s_MineNumber;
     out << session.s_FlagSet;
     out << session.s_CorrectFlag;
     out << session.s_SquareRevealed;
+    out << session.s_MineNumber;
+    out << session.s_BoardDimension.first;
+    out << session.s_BoardDimension.second;
     for (int i = 0; i < session.GetInstance().s_BoardDimension.first; i++) {
         for (int j = 0; j < session.GetInstance().s_BoardDimension.second; j++) {
             out << *(session.s_board[i][j]);
         }
     }
+    out << session.timer->elapsedTime;
     return out;
 }
 void Session::deserialize() {
@@ -116,17 +156,14 @@ void Session::deserialize() {
     file.close();
 }
 QDataStream& operator>>(QDataStream& in, Session& session) {
+    in >> session.s_state;
     in >> session.s_CellSize;
-    in >> session.s_BoardDimension.first;
-    in >> session.s_BoardDimension.second;
-    in >> session.s_MineNumber;
     in >> session.s_FlagSet;
     in >> session.s_CorrectFlag;
     in >> session.s_SquareRevealed;
-
-    // if (session.s_board.size() != 0) {
-    //     session.s_board.clear();
-    // }
+    in >> session.s_MineNumber;
+    in >> session.s_BoardDimension.first;
+    in >> session.s_BoardDimension.second;
     session.s_board.resize(
         session.s_BoardDimension.first,
         std::vector<Square*>(session.s_BoardDimension.second, nullptr)
@@ -144,6 +181,7 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
             in >> *(session.s_board[i][j]);
         }
     }
+    in >> session.timer->elapsedTime;
     return in;
 }
 void Session::startTimer() { timer->startTimer(); }
@@ -154,4 +192,4 @@ const QString Session::GetElapsedTimeAsString() {
 }
 Timer* Session::GetTimer() { return GetInstance().timer; }
 
-// When losing cannot press replay
+// TODO : When losing cannot press replay

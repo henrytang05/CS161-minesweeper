@@ -1,34 +1,37 @@
-#ifndef GAME_BOARD_PAGE_H
-#define GAME_BOARD_PAGE_H
+#ifndef GAMEBOARD_PAGE_H
+#define GAMEBOARD_PAGE_H
 
 #include <QBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QStackedWidget>
+#include <QWidget>
 #include <string>
 
-class GameBoard;
+#include "Session/Result.h"
 class Square;
 class Timer;
-class GameBoardPage : public QWidget {
+class Session;
+
+class GameboardPage : public QWidget {
     Q_OBJECT
    public:
-    GameBoardPage(QStackedWidget* parent = nullptr);
-    ~GameBoardPage();
-    void setupGameBoardPage();
+    GameboardPage(QStackedWidget* parent = nullptr);
+    ~GameboardPage();
     void reavealAllBombs();
 
    private:
-    GameBoard* Board;
+    QWidget* gameboard;
+    QLabel* timer;
     QPushButton* replayButton;
     QLabel* announcementLabel;
-    Timer* timer;
 
    signals:
     void replayClicked();
 
    public slots:
-    void victoryAnnoucement(bool);
+    void handleNewGameStart();
+    void victoryAnnoucement(Result);
 };
 
 #endif
