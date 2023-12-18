@@ -27,7 +27,7 @@ class MainWindow : public QMainWindow {
    public slots:
     void startNewGameSlot();
     void resumeGameSlot();
-    void replayGameSlot();
+    void endGameSlot();
 };
 
 #endif

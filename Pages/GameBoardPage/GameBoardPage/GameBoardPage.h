@@ -12,12 +12,15 @@
 class Square;
 class Timer;
 class Session;
-
+class MainWindow;
 class GameboardPage : public QWidget {
     Q_OBJECT
+    friend class MainWindow;
+
    public:
     GameboardPage(QStackedWidget* parent = nullptr);
     ~GameboardPage();
+    void setupGameboard();
     void reavealAllBombs();
 
    private:
@@ -25,6 +28,9 @@ class GameboardPage : public QWidget {
     QLabel* timer;
     QPushButton* replayButton;
     QLabel* announcementLabel;
+    QGridLayout* mainGridLayout;
+
+    std::vector<QLayout*> layoutCollection;
 
    signals:
     void replayClicked();

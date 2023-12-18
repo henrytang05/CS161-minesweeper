@@ -42,8 +42,7 @@ void MainWindow::makeConnection() {
     );
 
     QObject::connect(
-        gameboardPage->replayButton, &QPushButton::clicked, this,
-        &MainWindow::replayGameSlot
+        gameboardPage->replayButton, &QPushButton::clicked, this, &MainWindow::endGameSlot
     );
     QObject::connect(
         levelSelectionPage->resume, &QPushButton::clicked, this,
@@ -56,11 +55,9 @@ void MainWindow::startNewGameSlot() {
     Pages->setCurrentWidget(gameboardPage);
     Session::GetInstance().startTimer();
 }
-void MainWindow::replayGameSlot() {
+void MainWindow::endGameSlot() {
     Session::StopSession();
     Session::ResetInstance();
-    delete gameboardPage;
-    gameboardPage = new GameboardPage(Pages);
     Pages->setCurrentWidget(levelSelectionPage);
 }
 void MainWindow::resumeGameSlot() {
