@@ -6,8 +6,6 @@
 #include <QStackedWidget>
 #include <QWidget>
 
-
-
 class HomePage : public QWidget {
     Q_OBJECT
    public:
@@ -18,5 +16,6 @@ class HomePage : public QWidget {
    signals:
     void newGameButton();
     void highScoreButton();
+    void resumeButton();
 };
 #endif

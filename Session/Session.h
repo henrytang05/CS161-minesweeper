@@ -14,11 +14,11 @@ class Square;
 class Session : public QObject {
     Q_OBJECT
    public:
-    enum class State : int8_t { Playing = 4, None, Win, Lose };
+    enum class State : int8_t { Playing = 4, Win, Lose, None };
     static Session& GetInstance();
     static Session& ResetInstance();
-    static void StopSession();
-    static void ResumeSession();
+    static Session& StopSession();
+    static Session& ResumeSession();
     void GetPreviousSession();
     static std::vector<std::vector<Square*>>& GetBoard();
     static int& GetFlag();
@@ -31,7 +31,7 @@ class Session : public QObject {
     static std::pair<int, int>& GetBoardDimension();
     static const int& GetRow();
     static const int& GetColumn();
-    static void changeState(State);
+    void changeState(State);
 
     void startTimer();
     void stopTimer();

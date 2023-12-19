@@ -2,6 +2,7 @@
 
 #include <random>
 
+#include "GameboardPage/GameboardPage.h"
 #include "Square/Square.h"
 #include "Timer/Timer.h"
 Session::Session(QObject* parent) : QObject(parent) {
@@ -59,14 +60,13 @@ void Session::changeState(State newstate) {
             Session::GetInstance().startTimer();
             break;
         case State::Win:
-            Session::GetInstance().stopTimer();
-            emit Session::GetInstance().result(Win);
+            this->stopTimer();
+            emit GetInstance().result(Result::Win);
             break;
         case State::Lose:
-            Session::GetInstance().stopTimer();
-            emit Session::GetInstance().result(Win);
-            break;
-        default:
+            this->stopTimer();
+            emit GetInstance().result(Result::Lose);
+
             break;
     }
 }
@@ -180,6 +180,7 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
             }
             session.s_board[i][j]->type = type;
             in >> *(session.s_board[i][j]);
+            session.s_board[i][j]->render_square();
         }
     }
     in >> session.timer->elapsedTime;
@@ -193,14 +194,15 @@ const QString Session::GetElapsedTimeAsString() {
 }
 Timer* Session::GetTimer() { return GetInstance().timer; }
 
-void Session::StopSession() {
+Session& Session::StopSession() {
     auto& s = GetInstance();
     s.stopTimer();
-    s.serialize();
+    return s;
 }
-void Session::ResumeSession() {
+Session& Session::ResumeSession() {
     auto& s = GetInstance();
     s.deserialize();
     s.startTimer();
+    return s;
 }
 // TODO : When losing cannot press replay

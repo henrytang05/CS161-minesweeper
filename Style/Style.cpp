@@ -69,11 +69,12 @@ void styleTimer(QLabel* timer, std::string&& color, double size) {
     font.setPointSize(size);
     font.setBold(true);
     font.setFamily("sans-serif");
+    timer->resize(250, 50);
 
     timer->setFont(font);
     timer->setFont(font);
     timer->setStyleSheet(
-        QString::fromStdString("color: #" + color + "; background-color: #purple;")
+        QString::fromStdString("color: #" + color + "; background-color: red;")
     );
     timer->setAlignment(Qt::AlignCenter);
 }

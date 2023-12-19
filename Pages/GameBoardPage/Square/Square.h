@@ -7,6 +7,8 @@
 #include <QSize>
 #include <QString>
 #include <QWidget>
+
+#include "Session/Result.h"
 class Gameboard;
 enum class Square_Type : int8_t { Mine = -2, Blank };
 class Square : public QPushButton {
@@ -26,7 +28,7 @@ class Square : public QPushButton {
 
     enum { LOSE, WIN };
 
-   protected:
+   public:
     void setSquareIcon(const QIcon& icon);
     virtual void render_square() = 0;
     void updateSurroundingFlag(char mode);
@@ -42,7 +44,7 @@ class Square : public QPushButton {
     int surroundingFlagCount = 0;
 
    signals:
-    void result();
+    void result(Result);
     void leftClick();
     void rightClick();
     void doubleClick();

@@ -106,12 +106,17 @@ void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
             }
             dimensions << value;
         }
-        if (dimensions[0] * dimensions[1] <= dimensions[2] ||
-            (dimensions[1] > 50 || dimensions[2] > 50)) {
+        if (dimensions[0] * dimensions[1] <= dimensions[2]) {
             QMessageBox::warning(
                 this, "Invalid input",
-                "Row * Column must be greater than Mine Number and Row & Column must be "
-                "smaller than or equal to 50"
+                "Row * Column must be greater than Mine Number"
+            );
+            validInput = false;
+        }
+        else if( dimensions[0] > 50 || dimensions[1] > 50){
+            QMessageBox::warning(
+                this, "Invalid input",
+                "Row and Column must be less than 50"
             );
             validInput = false;
         }

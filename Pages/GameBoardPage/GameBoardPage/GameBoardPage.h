@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QWidget>
+#include <memory>
 #include <string>
 
 #include "Session/Result.h"
@@ -22,22 +23,24 @@ class GameboardPage : public QWidget {
     ~GameboardPage();
     void setupGameboard();
     void reavealAllBombs();
+    void cleanBoard();
 
    private:
     QWidget* gameboard;
     QLabel* timer;
     QPushButton* replayButton;
-    QLabel* announcementLabel;
+
     QGridLayout* mainGridLayout;
 
     std::vector<QLayout*> layoutCollection;
 
    signals:
     void replayClicked();
+    void result(Result);
 
    public slots:
-    void handleNewGameStart();
     void victoryAnnoucement(Result);
+    void handleNewGameStart();
 };
 
 #endif

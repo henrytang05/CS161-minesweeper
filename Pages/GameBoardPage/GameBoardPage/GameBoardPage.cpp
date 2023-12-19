@@ -7,7 +7,6 @@
 GameboardPage::GameboardPage(QStackedWidget* parent) : QWidget(parent) {
     gameboard = new QWidget(this);
     replayButton = new QPushButton("Replay", this);
-    announcementLabel = new QLabel(this);
     timer = new QLabel("00:00", this);
     mainGridLayout = new QGridLayout(this);
 }
@@ -18,21 +17,22 @@ void GameboardPage::setupGameboard() {
     int cell = Session::GetCellSize();
     int row = Session::GetRow();
     int col = Session::GetColumn();
-    gameboard->setGeometry(QRect(QPoint(50, 50), QPoint(50 + cell * col, 50 + cell * row))
-    );
+
+    int x = (parentWidget()->width() - gameboard->width()) / 2;
+    int y = (parentWidget()->height() - gameboard->height()) / 2;
     styleTimer(timer);
-    timer->setGeometry(cell * row + 100, cell * col + 100, 200, 200);
+
+    timer->setGeometry(x - 50, y - 200, timer->width(), timer->height());
     styleButton(replayButton, "12D9C4", true);
 
-    announcementLabel->setAlignment(Qt::AlignVCenter);
-    styleLabel(announcementLabel, "DBD8AE", 20);
-    announcementLabel->hide();
+    gameboard->resize(cell * col, cell * row);
 
-    gameboard->resize(cell * row, cell * col);
-
-    QObject::connect(
-        &Session::GetInstance(), &Session::result, this, &victoryAnnoucement
+    gameboard->setGeometry(
+        x - gameboard->width() / 2, y - gameboard->height() / 2, gameboard->width(),
+        gameboard->height()
     );
+
+    connect(this, &GameboardPage::result, this, &GameboardPage::victoryAnnoucement);
 }
 
 void GameboardPage::reavealAllBombs() {
@@ -41,7 +41,7 @@ void GameboardPage::reavealAllBombs() {
     for (auto& squareRow : board) {
         for (auto& square : squareRow) {
             if (square->type == Square_Type::Mine) {
-                square->changeState(Square::STATE::Revealed);
+                square->render_square();
             }
         }
     }
@@ -49,10 +49,14 @@ void GameboardPage::reavealAllBombs() {
 void GameboardPage::victoryAnnoucement(Result won) {
     auto& board = Session::GetBoard();
     Session::GetInstance().stopTimer();
-    if (won) {
+    QLabel* announcementLabel = new QLabel(this);
+    announcementLabel->setGeometry(QRect(QPoint(500, 20), QPoint(500 + 200, 20 + 200)));
+
+    styleLabel(announcementLabel, "DBD8AE", 20);
+    if (won == Result::Win) {
         announcementLabel->setText("You won!");
     } else {
-        this->reavealAllBombs();
+        reavealAllBombs();
         announcementLabel->setText("You lost!");
     }
     announcementLabel->show();
@@ -78,4 +82,13 @@ void GameboardPage::handleNewGameStart() {
     connect(Session::GetTimer(), &Timer::timerUpdated, timer, [this]() {
         timer->setText(Session::GetTimer()->elapsedTime.toString("mm:ss"));
     });
+}
+void GameboardPage::cleanBoard() {
+    QLayoutItem* item;
+    while ((item = mainGridLayout->takeAt(0))) {
+        if (item->widget()) {
+            delete item->widget();
+        }
+        delete item;
+    }
 }

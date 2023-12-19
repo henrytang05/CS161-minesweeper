@@ -28,6 +28,7 @@ void MainWindow::makeConnection() {
     QObject::connect(homePage, HomePage::newGameButton, this, [this]() {
         Pages->setCurrentWidget(levelSelectionPage);
     });
+    QObject::connect(homePage, HomePage::resumeButton, this, &MainWindow::resumeGameSlot);
     QObject::connect(
         levelSelectionPage, LevelSelectionPage::backClicked, Pages,
         [this]() { Pages->setCurrentWidget(homePage); }
@@ -48,6 +49,10 @@ void MainWindow::makeConnection() {
         levelSelectionPage->resume, &QPushButton::clicked, this,
         &MainWindow::resumeGameSlot
     );
+    QObject::connect(
+        &Session::GetInstance(), &Session::result,gameboardPage, &GameboardPage::result
+    );
+
     // TODO : change resume to high score
 }
 void MainWindow::startNewGameSlot() {
@@ -56,16 +61,22 @@ void MainWindow::startNewGameSlot() {
     Session::GetInstance().startTimer();
 }
 void MainWindow::endGameSlot() {
-    Session::StopSession();
+    Session::StopSession().serialize();
     Session::ResetInstance();
+    gameboardPage->cleanBoard();
     Pages->setCurrentWidget(levelSelectionPage);
 }
 void MainWindow::resumeGameSlot() {
     QFile file("save.dat");
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << file.errorString();
+        return;
+    }
     if (file.readAll().isEmpty()) {
+        file.close();
         return;
     }
     Session::ResumeSession();
-    gameboardPage = new GameboardPage(Pages);
+    gameboardPage->handleNewGameStart();
     Pages->setCurrentWidget(gameboardPage);
 }
