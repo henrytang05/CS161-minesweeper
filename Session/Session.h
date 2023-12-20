@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QObject>
 #include <QString>
+#include <QTime>
 #include <utility>
 #include <vector>
 
@@ -63,9 +64,7 @@ class Session : public QObject {
     std::vector<std::vector<Square*>> s_board;
 
    signals:
-    void result(Result result);
-   public slots:
-    // void handleResult();
+    void result(Result);
 };
 
 #endif

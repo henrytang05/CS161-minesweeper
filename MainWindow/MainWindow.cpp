@@ -34,10 +34,6 @@ void MainWindow::makeConnection() {
         [this]() { Pages->setCurrentWidget(homePage); }
     );
     QObject::connect(
-        levelSelectionPage, LevelSelectionPage::levelSelected, gameboardPage,
-        &GameboardPage::handleNewGameStart
-    );
-    QObject::connect(
         levelSelectionPage, LevelSelectionPage::levelSelected, this,
         &MainWindow::startNewGameSlot
     );
@@ -50,14 +46,16 @@ void MainWindow::makeConnection() {
         &MainWindow::resumeGameSlot
     );
     QObject::connect(
-        &Session::GetInstance(), &Session::result, gameboardPage, &GameboardPage::result
+        &Session::GetInstance(), &Session::result, gameboardPage,
+        &GameboardPage::victoryAnnoucement
     );
 
     // TODO : change resume to high score
 }
 void MainWindow::startNewGameSlot() {
-        Pages->setCurrentWidget(gameboardPage);
     Session::StartSession();
+    gameboardPage->handleNewGameStart();
+    Pages->setCurrentWidget(gameboardPage);
 }
 void MainWindow::endGameSlot() {
     Session::StopSession().serialize();
@@ -75,7 +73,16 @@ void MainWindow::resumeGameSlot() {
         file.close();
         return;
     }
+    file.seek(0);
+    QDataStream in(&file);
+    in >> Session::GetInstance().s_state;
+    if (Session::GetInstance().s_state != Session::State::Playing) {
+        file.close();
+        return;
+    }
     Session::ResumeSession();
     gameboardPage->handleNewGameStart();
+    gameboardPage->timer->setText(Session::GetElapsedTimeAsString());
     Pages->setCurrentWidget(gameboardPage);
+    file.close();
 }

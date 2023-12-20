@@ -61,17 +61,17 @@ void Session::changeState(State newstate) {
     switch (newstate) {
         case State::Win:
             this->stopTimer();
-            emit GetInstance().result(Result::Win);
+            emit this->result(Win);
             break;
         case State::Lose:
             this->stopTimer();
-            emit GetInstance().result(Result::Lose);
+            emit this->result(Result::Lose);
             break;
     }
 }
 
 void Session::setupBoard() {
-    s_board.resize(
+        s_board.resize(
         s_BoardDimension.first, std::vector<Square*>(s_BoardDimension.second, nullptr)
     );
     for (int row = 0, n = s_BoardDimension.first; row < n; row++) {
@@ -151,12 +151,9 @@ void Session::deserialize() {
                  << '\n';
         return;
     }
+    file.seek(sizeof(State));
     QDataStream in(&file);
-    in >> Session::GetInstance().s_state;
-    if (Session::GetInstance().s_state != State::Playing) {
-        file.close();
-        return;
-    }
+
     in >> Session::GetInstance();
     file.close();
 }

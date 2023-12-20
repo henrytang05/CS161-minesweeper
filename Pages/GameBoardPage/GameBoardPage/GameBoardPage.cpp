@@ -15,7 +15,8 @@ GameboardPage::~GameboardPage() {}
 
 void GameboardPage::setupGameboard() {
     // layoutCollection.clear();
-    int cell = Session::GetCellSize();
+    double& cell = Session::GetCellSize();
+
     int row = Session::GetRow();
     int col = Session::GetColumn();
     announcementLabel->hide();
@@ -30,8 +31,6 @@ void GameboardPage::setupGameboard() {
 
     timer->setGeometry(x - 50, y - 200, timer->width(), timer->height());
     styleLabel(announcementLabel, "DBD8AE", 20);
-
-    connect(this, &GameboardPage::result, this, &GameboardPage::victoryAnnoucement);
 }
 
 void GameboardPage::reavealAllBombs() {
@@ -39,9 +38,11 @@ void GameboardPage::reavealAllBombs() {
 
     for (auto& squareRow : board) {
         for (auto& square : squareRow) {
-            if (square->type == Square_Type::Mine) {
-                square->render_square();
+            if (square->type == Square_Type::Mine &&
+                square->state != Square::STATE::Flagged) {
+                square->changeState(Square::STATE::Revealed);
             }
+            square->setEnabled(false);
         }
     }
 }
@@ -59,10 +60,13 @@ void GameboardPage::victoryAnnoucement(Result won) {
     } else {
         reavealAllBombs();
         announcementLabel->setText("You lost!");
+        return;
     }
 
     for (auto& squareRow : board) {
         for (auto& square : squareRow) {
+            if (square->type == Square_Type::Mine)
+                square->changeState(Square::STATE::Flagged);
             square->setEnabled(false);
         }
     }
@@ -73,10 +77,13 @@ void GameboardPage::handleNewGameStart() {
     auto& board = Session::GetBoard();
 
     setupGameboard();
-
+    int i = 0, j = 0;
     for (auto& row : board) {
         for (auto& square : row) {
             mainGridLayout->addWidget(square, square->row, square->col);
+            mainGridLayout->setRowStretch(i, 1);
+            mainGridLayout->setColumnStretch(j, 1);
+            square->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         }
     }
     gameboard->setLayout(mainGridLayout);
@@ -92,4 +99,5 @@ void GameboardPage::cleanBoard() {
         }
         delete item;
     }
+    timer->setText("00:00");
 }

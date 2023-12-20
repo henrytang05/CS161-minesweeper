@@ -43,7 +43,7 @@ void styleWindow(std::string&& title, QMainWindow* window, std::string&& color) 
 }
 void styleSquare(Square* square, std::string&& color) {
     square->setFixedSize(Session::GetCellSize(), Session::GetCellSize());
-    QString str = std::move(QString("QPushButton { border: 1px solid black;  "));
+    QString str = std::move(QString("QPushButton { border: 0px solid black;  "));
     if (!color.empty()) {
         if (std::isdigit(color[1])) {
             if (color[0] == '#') color.erase(0, 1);

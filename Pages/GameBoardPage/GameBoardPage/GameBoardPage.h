@@ -37,7 +37,6 @@ class GameboardPage : public QWidget {
 
    signals:
     void replayClicked();
-    void result(Result);
 
    public slots:
     void victoryAnnoucement(Result);

@@ -137,7 +137,11 @@ void Square::breakSurroundingCells() {
 }
 void Square::squareLeftClickedSlot() {
     if (state == STATE::Flagged) return;
+
     this->changeState(STATE::Revealed);
+    if (this->type == Square_Type::Mine) {
+        Session::GetInstance().changeState(Session::State::Lose);
+    }
 }
 
 void Square::squareRightClickedSlot() {
@@ -170,18 +174,11 @@ void Blank_Square::squareDoubleClickedSlot() {
 void Mine_Square::changeState(STATE newState) {
     if (this->state == newState) return;
     this->state = newState;
-    this->render_square();
     int& s_correctFlagged = Session::GetCorrectFlag();
     int& s_flagged = Session::GetFlag();
     switch (newState) {
         case STATE::Revealed:
-            QObject::connect(
-                this, &Square::result, &Session::GetInstance(), &Session::result
-            );
-
-            Session::GetInstance().changeState(Session::State::Lose);
-            return;
-
+            break;
         // this mean you unflag it
         case STATE::UnRevealed:
             updateSurroundingFlag('u');
@@ -195,6 +192,7 @@ void Mine_Square::changeState(STATE newState) {
             s_correctFlagged++;
             break;
     }
+    this->render_square();
     if (Session::GetSquareRevealed() ==
         Session::GetRow() * Session::GetColumn() - Session::GetMineNumber()) {
         Session::GetInstance().changeState(Session::State::Win);
@@ -203,7 +201,6 @@ void Mine_Square::changeState(STATE newState) {
 void Blank_Square::changeState(STATE newState) {
     if (this->state == newState) return;
     this->state = newState;
-    render_square();
     int& s_revealed = Session::GetSquareRevealed();
     int& s_correctFlagged = Session::GetCorrectFlag();
     int& s_flagged = Session::GetFlag();
@@ -222,12 +219,10 @@ void Blank_Square::changeState(STATE newState) {
             s_flagged++;
             break;
     }
+    this->render_square();
+
     if (Session::GetSquareRevealed() ==
         Session::GetRow() * Session::GetColumn() - Session::GetMineNumber()) {
-        QObject::connect(
-            this, &Square::result, &Session::GetInstance(), &Session::result
-        );
-
         Session::GetInstance().changeState(Session::State::Win);
     }
 }

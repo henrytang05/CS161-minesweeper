@@ -44,7 +44,7 @@ class Square : public QPushButton {
     int surroundingFlagCount = 0;
 
    signals:
-    void result(Result);
+
     void leftClick();
     void rightClick();
     void doubleClick();

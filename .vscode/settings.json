@@ -104,6 +104,7 @@
     "stdfloat": "cpp",
     "qicon": "cpp",
     "qwidget": "cpp",
-    "qscreen": "cpp"
+    "qscreen": "cpp",
+    "qtime": "cpp"
   }
 }
