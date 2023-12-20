@@ -54,7 +54,6 @@ void LevelSelectionPage::setupLevelSelectionPage() {
 void LevelSelectionPage::setupNewGame(int row, int col, int mine) {
     Session::SetBoardDimension(row, col);
     Session::SetMineNumber(mine);
-    Session::GetInstance().setupBoard();
     emit LevelSelectionPage::levelSelected();
 }
 void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
@@ -108,15 +107,12 @@ void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
         }
         if (dimensions[0] * dimensions[1] <= dimensions[2]) {
             QMessageBox::warning(
-                this, "Invalid input",
-                "Row * Column must be greater than Mine Number"
+                this, "Invalid input", "Row * Column must be greater than Mine Number"
             );
             validInput = false;
-        }
-        else if( dimensions[0] > 50 || dimensions[1] > 50){
+        } else if (dimensions[0] > 50 || dimensions[1] > 50) {
             QMessageBox::warning(
-                this, "Invalid input",
-                "Row and Column must be less than 50"
+                this, "Invalid input", "Row and Column must be less than 50"
             );
             validInput = false;
         }

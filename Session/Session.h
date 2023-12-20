@@ -16,6 +16,7 @@ class Session : public QObject {
    public:
     enum class State : int8_t { Playing = 4, Win, Lose, None };
     static Session& GetInstance();
+    static Session& StartSession();
     static Session& ResetInstance();
     static Session& StopSession();
     static Session& ResumeSession();

@@ -55,10 +55,10 @@ const int& Session::GetRow() { return GetInstance().s_BoardDimension.first; }
 const int& Session::GetColumn() { return GetInstance().s_BoardDimension.second; }
 
 void Session::changeState(State newstate) {
+    if (s_state == newstate) return;
+    s_state = newstate;
+
     switch (newstate) {
-        case State::Playing:
-            Session::GetInstance().startTimer();
-            break;
         case State::Win:
             this->stopTimer();
             emit GetInstance().result(Result::Win);
@@ -66,7 +66,6 @@ void Session::changeState(State newstate) {
         case State::Lose:
             this->stopTimer();
             emit GetInstance().result(Result::Lose);
-
             break;
     }
 }
@@ -153,11 +152,15 @@ void Session::deserialize() {
         return;
     }
     QDataStream in(&file);
+    in >> Session::GetInstance().s_state;
+    if (Session::GetInstance().s_state != State::Playing) {
+        file.close();
+        return;
+    }
     in >> Session::GetInstance();
     file.close();
 }
 QDataStream& operator>>(QDataStream& in, Session& session) {
-    in >> session.s_state;
     in >> session.s_CellSize;
     in >> session.s_FlagSet;
     in >> session.s_CorrectFlag;
@@ -205,4 +208,10 @@ Session& Session::ResumeSession() {
     s.startTimer();
     return s;
 }
-// TODO : When losing cannot press replay
+Session& Session::StartSession() {
+    auto& s = GetInstance();
+    s.changeState(State::Playing);
+    s.setupBoard();
+    s.startTimer();
+    return s;
+}

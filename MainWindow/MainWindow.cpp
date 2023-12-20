@@ -56,9 +56,8 @@ void MainWindow::makeConnection() {
     // TODO : change resume to high score
 }
 void MainWindow::startNewGameSlot() {
-    // Session already prepared
-    Pages->setCurrentWidget(gameboardPage);
-    Session::GetInstance().startTimer();
+        Pages->setCurrentWidget(gameboardPage);
+    Session::StartSession();
 }
 void MainWindow::endGameSlot() {
     Session::StopSession().serialize();
