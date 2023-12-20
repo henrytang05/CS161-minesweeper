@@ -50,7 +50,7 @@ void MainWindow::makeConnection() {
         &MainWindow::resumeGameSlot
     );
     QObject::connect(
-        &Session::GetInstance(), &Session::result,gameboardPage, &GameboardPage::result
+        &Session::GetInstance(), &Session::result, gameboardPage, &GameboardPage::result
     );
 
     // TODO : change resume to high score

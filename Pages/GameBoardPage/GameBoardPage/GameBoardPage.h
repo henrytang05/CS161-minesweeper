@@ -28,6 +28,7 @@ class GameboardPage : public QWidget {
    private:
     QWidget* gameboard;
     QLabel* timer;
+    QLabel* announcementLabel;
     QPushButton* replayButton;
 
     QGridLayout* mainGridLayout;

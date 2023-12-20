@@ -9,6 +9,7 @@ GameboardPage::GameboardPage(QStackedWidget* parent) : QWidget(parent) {
     replayButton = new QPushButton("Replay", this);
     timer = new QLabel("00:00", this);
     mainGridLayout = new QGridLayout(this);
+    announcementLabel = new QLabel(this);
 }
 GameboardPage::~GameboardPage() {}
 
@@ -17,20 +18,18 @@ void GameboardPage::setupGameboard() {
     int cell = Session::GetCellSize();
     int row = Session::GetRow();
     int col = Session::GetColumn();
+    announcementLabel->hide();
 
+    gameboard->resize(cell * col, cell * row);
     int x = (parentWidget()->width() - gameboard->width()) / 2;
     int y = (parentWidget()->height() - gameboard->height()) / 2;
     styleTimer(timer);
 
-    timer->setGeometry(x - 50, y - 200, timer->width(), timer->height());
     styleButton(replayButton, "12D9C4", true);
+    gameboard->setGeometry(x, y, gameboard->width(), gameboard->height());
 
-    gameboard->resize(cell * col, cell * row);
-
-    gameboard->setGeometry(
-        x - gameboard->width() / 2, y - gameboard->height() / 2, gameboard->width(),
-        gameboard->height()
-    );
+    timer->setGeometry(x - 50, y - 200, timer->width(), timer->height());
+    styleLabel(announcementLabel, "DBD8AE", 20);
 
     connect(this, &GameboardPage::result, this, &GameboardPage::victoryAnnoucement);
 }
@@ -49,17 +48,19 @@ void GameboardPage::reavealAllBombs() {
 void GameboardPage::victoryAnnoucement(Result won) {
     auto& board = Session::GetBoard();
     Session::GetInstance().stopTimer();
-    QLabel* announcementLabel = new QLabel(this);
-    announcementLabel->setGeometry(QRect(QPoint(500, 20), QPoint(500 + 200, 20 + 200)));
-
-    styleLabel(announcementLabel, "DBD8AE", 20);
+    announcementLabel->setGeometry(
+        (parentWidget()->width() + gameboard->width()) / 2 + 50,
+        parentWidget()->height() / 2, announcementLabel->width() + 20,
+        announcementLabel->height() + 30
+    );
+    announcementLabel->show();
     if (won == Result::Win) {
         announcementLabel->setText("You won!");
     } else {
         reavealAllBombs();
         announcementLabel->setText("You lost!");
     }
-    announcementLabel->show();
+
     for (auto& squareRow : board) {
         for (auto& square : squareRow) {
             square->setEnabled(false);

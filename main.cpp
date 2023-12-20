@@ -4,6 +4,7 @@
 
 #include "MainWindow/MainWindow.h"
 #include "Session/Session.h"
+#include "HomePage/HomePage.h"
 int main(int argc, char** argv) {
     QApplication app(argc, argv);
 
@@ -11,6 +12,7 @@ int main(int argc, char** argv) {
     // Game->setFixedSize(700, 700);
     Game->showFullScreen();
     Game->show();
+    QObject::connect(Game->homePage, &HomePage::exit, Game, &QCoreApplication::quit);
 
-    return app.exec();
+        return app.exec();
 }

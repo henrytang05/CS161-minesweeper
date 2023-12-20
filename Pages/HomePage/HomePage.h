@@ -17,5 +17,6 @@ class HomePage : public QWidget {
     void newGameButton();
     void highScoreButton();
     void resumeButton();
+    void exit();
 };
 #endif

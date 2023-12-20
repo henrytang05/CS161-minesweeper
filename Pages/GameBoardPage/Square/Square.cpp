@@ -18,7 +18,6 @@ Square::Square(int row, int col, Square_Type type) {
     QObject::connect(this, &Square::leftClick, this, &Square::squareLeftClickedSlot);
     QObject::connect(this, &Square::rightClick, this, &Square::squareRightClickedSlot);
     QObject::connect(this, &Square::doubleClick, this, &Square::squareDoubleClickedSlot);
-    QObject::connect(this, &Square::result, &Session::GetInstance(), &Session::result);
 }
 Square::~Square() {
     QObject::disconnect(this, &Square::leftClick, this, &Square::squareLeftClickedSlot);
@@ -176,6 +175,10 @@ void Mine_Square::changeState(STATE newState) {
     int& s_flagged = Session::GetFlag();
     switch (newState) {
         case STATE::Revealed:
+            QObject::connect(
+                this, &Square::result, &Session::GetInstance(), &Session::result
+            );
+
             Session::GetInstance().changeState(Session::State::Lose);
             return;
 
@@ -192,8 +195,8 @@ void Mine_Square::changeState(STATE newState) {
             s_correctFlagged++;
             break;
     }
-    if (Session::GetSquareRevealed() + s_correctFlagged ==
-        Session::GetRow() * Session::GetColumn()) {
+    if (Session::GetSquareRevealed() ==
+        Session::GetRow() * Session::GetColumn() - Session::GetMineNumber()) {
         Session::GetInstance().changeState(Session::State::Win);
     }
 }
@@ -219,7 +222,12 @@ void Blank_Square::changeState(STATE newState) {
             s_flagged++;
             break;
     }
-    if (s_revealed + s_correctFlagged == Session::GetRow() * Session::GetColumn()) {
+    if (Session::GetSquareRevealed() ==
+        Session::GetRow() * Session::GetColumn() - Session::GetMineNumber()) {
+        QObject::connect(
+            this, &Square::result, &Session::GetInstance(), &Session::result
+        );
+
         Session::GetInstance().changeState(Session::State::Win);
     }
 }

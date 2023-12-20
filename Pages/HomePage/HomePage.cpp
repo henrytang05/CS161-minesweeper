@@ -9,10 +9,10 @@ void HomePage::setupHomePage() {
 
     QVBoxLayout* labelLayout = new QVBoxLayout;
     QLabel* titleLabel = new QLabel("MineSweeper");
-    QLabel* titleWelcome = new QLabel("Welcome to");
+    QLabel* welcomeLabel = new QLabel("Welcome to");
     styleLabel(titleLabel, "DBD8AE");
-    styleLabel(titleWelcome, "DBD8AE");
-    labelLayout->addWidget(titleWelcome, 0, Qt::AlignCenter);
+    styleLabel(welcomeLabel, "DBD8AE");
+    labelLayout->addWidget(welcomeLabel, 0, Qt::AlignCenter);
     labelLayout->addWidget(titleLabel, 0, Qt::AlignCenter);
 
     QVBoxLayout* buttonLayout = new QVBoxLayout;
@@ -38,4 +38,9 @@ void HomePage::setupHomePage() {
     mainLayout->addStretch();
     mainLayout->addLayout(buttonLayout);
     mainLayout->addStretch();
+
+    QPushButton* exit = new QPushButton("Exit");
+    styleButton(exit, "A6DCEF");
+    connect(exit, &QPushButton::clicked, this, &HomePage::exit);
+    mainLayout->addWidget(exit, 0, Qt::AlignCenter);
 }
