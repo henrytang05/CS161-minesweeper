@@ -27,6 +27,9 @@ MainWindow::~MainWindow() {}
 void MainWindow::makeConnection() {
     QObject::connect(homePage, HomePage::newGameButton, this, [this]() {
         Pages->setCurrentWidget(levelSelectionPage);
+        for (auto [key, val] : Session::GetInstance().highScores.asKeyValueRange()) {
+            qDebug() << key << val;
+        }
     });
     QObject::connect(homePage, HomePage::resumeButton, this, &MainWindow::resumeGameSlot);
     QObject::connect(

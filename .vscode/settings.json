@@ -105,6 +105,8 @@
     "qicon": "cpp",
     "qwidget": "cpp",
     "qscreen": "cpp",
-    "qtime": "cpp"
+    "qtime": "cpp",
+    "qmap": "cpp",
+    "qhash": "cpp"
   }
 }

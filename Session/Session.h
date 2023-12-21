@@ -2,6 +2,7 @@
 #define SESSION_H
 #include <QDataStream>
 #include <QFile>
+#include <QMap>
 #include <QObject>
 #include <QString>
 #include <QTime>
@@ -33,6 +34,8 @@ class Session : public QObject {
     static std::pair<int, int>& GetBoardDimension();
     static const int& GetRow();
     static const int& GetColumn();
+    static const int& GetDifficulty();
+    static const QString GetHighScoreAsString();
     void changeState(State);
 
     void startTimer();
@@ -58,10 +61,13 @@ class Session : public QObject {
     int s_FlagSet;
     int s_CorrectFlag;
     int s_SquareRevealed;
-    Timer* timer;
     int s_MineNumber;
+    Timer* timer;
     std::pair<int, int> s_BoardDimension;
     std::vector<std::vector<Square*>> s_board;
+    int s_difficulty;
+
+    QMap<int, QTime> highScores;  // difficulty, time
 
    signals:
     void result(Result);

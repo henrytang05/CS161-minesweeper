@@ -138,10 +138,10 @@ void Square::breakSurroundingCells() {
 void Square::squareLeftClickedSlot() {
     if (state == STATE::Flagged) return;
 
-    this->changeState(STATE::Revealed);
     if (this->type == Square_Type::Mine) {
         Session::GetInstance().changeState(Session::State::Lose);
     }
+    this->changeState(STATE::Revealed);
 }
 
 void Square::squareRightClickedSlot() {

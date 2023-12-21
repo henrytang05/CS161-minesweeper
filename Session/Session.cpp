@@ -12,8 +12,10 @@ Session::Session(QObject* parent) : QObject(parent) {
     s_CorrectFlag = 0;
     s_SquareRevealed = 0;
     s_MineNumber = 0;
-    s_BoardDimension = std::make_pair(0, 0);
     timer = new Timer;
+    s_BoardDimension = std::make_pair(0, 0);
+
+    s_difficulty = 0;
 }
 Session::~Session() { delete timer; }
 Session& Session::GetInstance() {
@@ -23,14 +25,16 @@ Session& Session::GetInstance() {
 Session& Session::ResetInstance() {
     // squares are automically deallocated by qt
     auto& s = GetInstance();
-    s.s_board.clear();
-    // s.s_CellSize = 0;
-    s.s_BoardDimension = std::make_pair(0, 0);
-    s.s_MineNumber = 0;
+    s.s_state = State::None;
+    s.s_CellSize = 0;
     s.s_FlagSet = 0;
     s.s_CorrectFlag = 0;
     s.s_SquareRevealed = 0;
+    s.s_MineNumber = 0;
     s.timer->resetTimer();
+    s.s_BoardDimension = std::make_pair(0, 0);
+    s.s_board.clear();
+    s.s_difficulty = 0;
 
     return s;
 }
@@ -53,7 +57,10 @@ std::pair<int, int>& Session::GetBoardDimension() {
 }
 const int& Session::GetRow() { return GetInstance().s_BoardDimension.first; }
 const int& Session::GetColumn() { return GetInstance().s_BoardDimension.second; }
-
+const int& Session::GetDifficulty() { return GetInstance().s_difficulty; }
+const QString Session::GetHighScoreAsString() {
+    return Session::GetInstance().highScores[Session::GetDifficulty()].toString("mm:ss");
+}
 void Session::changeState(State newstate) {
     if (s_state == newstate) return;
     s_state = newstate;
@@ -61,7 +68,14 @@ void Session::changeState(State newstate) {
     switch (newstate) {
         case State::Win:
             this->stopTimer();
-            emit this->result(Win);
+            if (highScores.contains(s_difficulty)) {
+                if (highScores[s_difficulty] > timer->elapsedTime) {
+                    highScores[s_difficulty] = timer->elapsedTime;
+                }
+            } else {
+                highScores[s_difficulty] = timer->elapsedTime;
+            }
+            emit this->result(Result::Win);
             break;
         case State::Lose:
             this->stopTimer();
@@ -71,7 +85,8 @@ void Session::changeState(State newstate) {
 }
 
 void Session::setupBoard() {
-        s_board.resize(
+    s_difficulty = GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn());
+    s_board.resize(
         s_BoardDimension.first, std::vector<Square*>(s_BoardDimension.second, nullptr)
     );
     for (int row = 0, n = s_BoardDimension.first; row < n; row++) {
@@ -134,6 +149,7 @@ QDataStream& operator<<(QDataStream& out, const Session& session) {
     out << session.s_CorrectFlag;
     out << session.s_SquareRevealed;
     out << session.s_MineNumber;
+    out << session.timer->elapsedTime;
     out << session.s_BoardDimension.first;
     out << session.s_BoardDimension.second;
     for (int i = 0; i < session.GetInstance().s_BoardDimension.first; i++) {
@@ -141,7 +157,7 @@ QDataStream& operator<<(QDataStream& out, const Session& session) {
             out << *(session.s_board[i][j]);
         }
     }
-    out << session.timer->elapsedTime;
+    out << session.s_difficulty;
     return out;
 }
 void Session::deserialize() {
@@ -163,6 +179,8 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
     in >> session.s_CorrectFlag;
     in >> session.s_SquareRevealed;
     in >> session.s_MineNumber;
+    in >> session.timer->elapsedTime;
+
     in >> session.s_BoardDimension.first;
     in >> session.s_BoardDimension.second;
     session.s_board.resize(
@@ -183,7 +201,7 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
             session.s_board[i][j]->render_square();
         }
     }
-    in >> session.timer->elapsedTime;
+    in >> session.s_difficulty;
     return in;
 }
 void Session::startTimer() { timer->startTimer(); }
