@@ -1,5 +1,6 @@
 #include "Session.h"
 
+#include <cmath>
 #include <random>
 
 #include "GameboardPage/GameboardPage.h"
@@ -59,6 +60,8 @@ const int& Session::GetRow() { return GetInstance().s_BoardDimension.first; }
 const int& Session::GetColumn() { return GetInstance().s_BoardDimension.second; }
 const int& Session::GetDifficulty() { return GetInstance().s_difficulty; }
 const QString Session::GetHighScoreAsString() {
+    if (!GetInstance().highScores.contains(Session::GetDifficulty()))
+        return QString("00:00");
     return Session::GetInstance().highScores[Session::GetDifficulty()].toString("mm:ss");
 }
 void Session::changeState(State newstate) {
@@ -85,7 +88,7 @@ void Session::changeState(State newstate) {
 }
 
 void Session::setupBoard() {
-    s_difficulty = GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn());
+    s_difficulty = std::round(GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn()));
     s_board.resize(
         s_BoardDimension.first, std::vector<Square*>(s_BoardDimension.second, nullptr)
     );

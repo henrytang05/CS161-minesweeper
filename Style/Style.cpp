@@ -32,7 +32,6 @@ void styleLabel(QLabel* label, std::string&& color, double size) {
     font.setFamily("sans-serif");
 
     label->setFont(font);
-    label->setFont(font);
     label->setStyleSheet(QString::fromStdString("color: #" + color + ";"));
     label->setAlignment(Qt::AlignCenter);
 }

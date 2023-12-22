@@ -7,9 +7,13 @@
 GameboardPage::GameboardPage(QStackedWidget* parent) : QWidget(parent) {
     gameboard = new QWidget(this);
     replayButton = new QPushButton("Replay", this);
+
+    gameboard->hide();
     timer = new QLabel("00:00", this);
     mainGridLayout = new QGridLayout(this);
     announcementLabel = new QLabel(this);
+    level = new QLabel(this);
+    highScore = new QLabel(this);
 }
 GameboardPage::~GameboardPage() {}
 
@@ -29,8 +33,18 @@ void GameboardPage::setupGameboard() {
     styleButton(replayButton, "12D9C4", true);
     gameboard->setGeometry(x, y, gameboard->width(), gameboard->height());
 
-    timer->setGeometry(x - 50, y - 200, timer->width(), timer->height());
+    timer->setGeometry(x + 50, y + 50, timer->width(), timer->height());
     styleLabel(announcementLabel, "DBD8AE", 20);
+    level->setText("Level: " + QString::number(Session::GetDifficulty()));
+    styleLabel(level, "DBD8AE", 10);
+    level->adjustSize();
+    level->setGeometry(x, y, level->width(), level->height());
+    highScore->setText("High Score: " + Session::GetHighScoreAsString());
+    styleLabel(highScore, "DBD8AE", 10);
+    highScore->adjustSize();
+    level->show();
+    highScore->show();
+    replayButton->setGeometry(200, 100, replayButton->width(), replayButton->height());
 }
 
 void GameboardPage::reavealAllBombs() {
