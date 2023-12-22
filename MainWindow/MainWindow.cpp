@@ -23,7 +23,7 @@ MainWindow::MainWindow(QMainWindow* parent) : QMainWindow(parent) {
     Pages->setCurrentWidget(homePage);
     makeConnection();
 }
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() { Session::SaveHighScores(); }
 void MainWindow::makeConnection() {
     QObject::connect(homePage, HomePage::newGameButton, this, [this]() {
         Pages->setCurrentWidget(levelSelectionPage);
@@ -67,7 +67,7 @@ void MainWindow::endGameSlot() {
     Pages->setCurrentWidget(levelSelectionPage);
 }
 void MainWindow::resumeGameSlot() {
-    QFile file("save.dat");
+    QFile file("Data/Session.dat");
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << file.errorString();
         return;

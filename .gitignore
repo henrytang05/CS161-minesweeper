@@ -2,4 +2,4 @@
 [Bb]uild/
 *.exe
 Debug
-save.dat
+Data/

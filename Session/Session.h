@@ -22,6 +22,9 @@ class Session : public QObject {
     static Session& ResetInstance();
     static Session& StopSession();
     static Session& ResumeSession();
+    static void SaveHighScores();
+    static void GetHighScores();
+
     void GetPreviousSession();
     static std::vector<std::vector<Square*>>& GetBoard();
     static int& GetFlag();
@@ -66,7 +69,6 @@ class Session : public QObject {
     std::pair<int, int> s_BoardDimension;
     std::vector<std::vector<Square*>> s_board;
     int s_difficulty;
-
     QMap<int, QTime> highScores;  // difficulty, time
 
    signals:

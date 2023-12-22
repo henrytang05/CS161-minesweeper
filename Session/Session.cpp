@@ -134,7 +134,7 @@ void Session::setupBoard() {
     }
 }
 void Session::serialize() {
-    QFile file("save.dat");
+    QFile file("Data/Session.dat");
     if (!file.open(QIODevice::WriteOnly)) {
         qDebug() << "Cannot open file for writing: " << qPrintable(file.errorString())
                  << '\n';
@@ -161,10 +161,11 @@ QDataStream& operator<<(QDataStream& out, const Session& session) {
         }
     }
     out << session.s_difficulty;
+
     return out;
 }
 void Session::deserialize() {
-    QFile file("save.dat");
+    QFile file("Data/Session.dat");
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "Cannot open file for reading: " << qPrintable(file.errorString())
                  << '\n';
@@ -205,6 +206,7 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
         }
     }
     in >> session.s_difficulty;
+
     return in;
 }
 void Session::startTimer() { timer->startTimer(); }
@@ -218,6 +220,7 @@ Timer* Session::GetTimer() { return GetInstance().timer; }
 Session& Session::StopSession() {
     auto& s = GetInstance();
     s.stopTimer();
+
     return s;
 }
 Session& Session::ResumeSession() {
@@ -225,6 +228,27 @@ Session& Session::ResumeSession() {
     s.deserialize();
     s.startTimer();
     return s;
+}
+void Session::SaveHighScores() {
+    QFile file("Data/Highscores.dat");
+    if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "Cannot open file for writing: " << qPrintable(file.errorString())
+                 << '\n';
+        return;
+    }
+    QDataStream out(&file);
+    out << Session::GetInstance().highScores;
+}
+void Session::GetHighScores() {
+    QFile file("Data/Highscores.dat");
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "Cannot open file for reading: " << qPrintable(file.errorString())
+                 << '\n';
+        return;
+    }
+    file.seek(0);
+    QDataStream in(&file);
+    in >> Session::GetInstance().highScores;
 }
 Session& Session::StartSession() {
     auto& s = GetInstance();

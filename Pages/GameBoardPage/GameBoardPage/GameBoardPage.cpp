@@ -6,9 +6,9 @@
 #include "Timer/Timer.h"
 GameboardPage::GameboardPage(QStackedWidget* parent) : QWidget(parent) {
     gameboard = new QWidget(this);
+
     replayButton = new QPushButton("Replay", this);
 
-    gameboard->hide();
     timer = new QLabel("00:00", this);
     mainGridLayout = new QGridLayout(this);
     announcementLabel = new QLabel(this);
@@ -19,32 +19,49 @@ GameboardPage::~GameboardPage() {}
 
 void GameboardPage::setupGameboard() {
     // layoutCollection.clear();
+    QWidget* sideBar = new QWidget(this);
+    QVBoxLayout* sideLayout = new QVBoxLayout(sideBar);
+    sideBar->setLayout(sideLayout);
+    announcementLabel->hide();
     double& cell = Session::GetCellSize();
-
     int row = Session::GetRow();
     int col = Session::GetColumn();
-    announcementLabel->hide();
-
     gameboard->resize(cell * col, cell * row);
     int x = (parentWidget()->width() - gameboard->width()) / 2;
     int y = (parentWidget()->height() - gameboard->height()) / 2;
-    styleTimer(timer);
 
-    styleButton(replayButton, "12D9C4", true);
     gameboard->setGeometry(x, y, gameboard->width(), gameboard->height());
-
-    timer->setGeometry(x + 50, y + 50, timer->width(), timer->height());
-    styleLabel(announcementLabel, "DBD8AE", 20);
+    // timer->setGeometry(x + 50, y + 50, timer->width(), timer->height());
     level->setText("Level: " + QString::number(Session::GetDifficulty()));
+
+    styleLabel(announcementLabel, "DBD8AE", 20);
+    styleButton(replayButton, "12D9C4", true);
     styleLabel(level, "DBD8AE", 10);
-    level->adjustSize();
-    level->setGeometry(x, y, level->width(), level->height());
-    highScore->setText("High Score: " + Session::GetHighScoreAsString());
+    styleTimer(timer);
     styleLabel(highScore, "DBD8AE", 10);
+
+    // level->setGeometry(x, y, level->width(), level->height());
+    highScore->setText("High Score: " + Session::GetHighScoreAsString());
     highScore->adjustSize();
+    replayButton->adjustSize();
+    level->adjustSize();
+    timer->adjustSize();
+    // replayButton->setGeometry(200, 100, replayButton->width(), replayButton->height());
+
+    sideLayout->addWidget(timer);
+    sideLayout->addWidget(replayButton);
+    sideLayout->addWidget(level);
+    sideLayout->addWidget(highScore);
+
+    replayButton->show();
+    timer->show();
     level->show();
     highScore->show();
-    replayButton->setGeometry(200, 100, replayButton->width(), replayButton->height());
+    // int height =
+    //     timer->height() + replayButton->height() + level->height() +
+    //     highScore->height();
+    // sideBar->setGeometry(QRect(x - 100, y, 300, height + 50));
+    // sideLayout->contentsMargins();
 }
 
 void GameboardPage::reavealAllBombs() {
@@ -62,7 +79,6 @@ void GameboardPage::reavealAllBombs() {
 }
 void GameboardPage::victoryAnnoucement(Result won) {
     auto& board = Session::GetBoard();
-    Session::GetInstance().stopTimer();
     announcementLabel->setGeometry(
         (parentWidget()->width() + gameboard->width()) / 2 + 50,
         parentWidget()->height() / 2, announcementLabel->width() + 20,
@@ -84,6 +100,8 @@ void GameboardPage::victoryAnnoucement(Result won) {
             square->setEnabled(false);
         }
     }
+
+    highScore->setText("High Score: " + Session::GetHighScoreAsString());
 }
 void GameboardPage::handleNewGameStart() {
     // TODO : Get Session and stuffs

@@ -27,15 +27,14 @@ class GameboardPage : public QWidget {
 
    private:
     QWidget* gameboard;
-    QLabel* timer;
     QLabel* announcementLabel;
+    QLabel* timer;
     QPushButton* replayButton;
     QLabel* level;
     QLabel* highScore;
+    QVBoxLayout* sideLayout;
 
     QGridLayout* mainGridLayout;
-
-    std::vector<QLayout*> layoutCollection;
 
    signals:
     void replayClicked();
