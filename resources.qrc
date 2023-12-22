@@ -10,6 +10,5 @@
     <file>Images/8.png</file>
     <file>Images/bomb.png</file>
     <file>Images/flag.png</file>
-    <!-- Add more files as needed -->
   </qresource>
 </RCC>
