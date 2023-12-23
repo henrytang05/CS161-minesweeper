@@ -17,7 +17,6 @@ GameboardPage::GameboardPage(QStackedWidget* parent) : QWidget(parent) {
 GameboardPage::~GameboardPage() {}
 
 void GameboardPage::setupGameboard() {
-    // layoutCollection.clear();
     QWidget* sideBar = new QWidget(this);
     QVBoxLayout* sideLayout = new QVBoxLayout(sideBar);
     sideBar->setLayout(sideLayout);
@@ -31,8 +30,6 @@ void GameboardPage::setupGameboard() {
     int y = (parentWidget()->height() - gameboard->height()) / 2;
     gameboard->setGeometry(x, y, gameboard->width(), gameboard->height());
 
-    // timer->setGeometry(x + 50, y + 50, timer->width(), timer->height());
-
     styleLabel(announcementLabel, "DBD8AE", 20);
     styleButton(newGameButton, "12D9C4", true);
     styleButton(replayButton, "12D9C4", true);
@@ -40,7 +37,6 @@ void GameboardPage::setupGameboard() {
     styleTimer(timer);
     styleLabel(highScore, "DBD8AE", 10);
 
-    // level->setGeometry(x, y, level->width(), level->height());
     level->adjustSize();
     level->setText("Level: " + QString::number(Session::GetDifficulty()));
     highScore->adjustSize();
@@ -48,7 +44,6 @@ void GameboardPage::setupGameboard() {
     newGameButton->adjustSize();
     replayButton->adjustSize();
     timer->adjustSize();
-    // replayButton->setGeometry(200, 100, replayButton->width(), replayButton->height());
 
     sideLayout->addWidget(timer);
     sideLayout->addWidget(newGameButton);
@@ -57,9 +52,11 @@ void GameboardPage::setupGameboard() {
     sideLayout->addWidget(highScore);
 
     QObject::connect(replayButton, &QPushButton::clicked, this, [this]() {
-        Session::GetInstance().setupBoard();
+        timer->setText("00:00");
         cleanBoard();
+        Session::ResetForReplay();
         handleReplay();
+        Session::GetInstance().startTimer();
     });
 
     newGameButton->show();
@@ -81,8 +78,6 @@ void GameboardPage::handleReplay() {
     }
     timer->setText("00:00");
     announcementLabel->hide();
-    Session::GetInstance().resetTimer();
-    Session::GetInstance().startTimer();
 }
 
 void GameboardPage::reavealAllBombs() {
@@ -125,8 +120,6 @@ void GameboardPage::victoryAnnoucement(Result won) {
     highScore->setText("High Score: " + Session::GetHighScoreAsString());
 }
 void GameboardPage::handleNewGameStart() {
-    // TODO : Get Session and stuffs
-
     auto& board = Session::GetBoard();
 
     setupGameboard();

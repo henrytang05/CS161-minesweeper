@@ -37,7 +37,6 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     buttonLayout->addWidget(custom, 0, Qt::AlignCenter);
     buttonLayout->addWidget(back, 0, Qt::AlignCenter);
 
-    // TODO : add connection for resume
     connect(easy, &QPushButton::clicked, this, [this]() { setupNewGame(9, 9, 10); });
     connect(medium, &QPushButton::clicked, this, [this]() { setupNewGame(16, 16, 50); });
     connect(hard, &QPushButton::clicked, this, [this]() { setupNewGame(10, 30, 99); });
@@ -54,8 +53,8 @@ void LevelSelectionPage::setupLevelSelectionPage() {
 void LevelSelectionPage::setupNewGame(int row, int col, int mine) {
     Session::SetBoardDimension(row, col);
     Session::SetMineNumber(mine);
-    double maxBoardWidth = 0.9 * this->parentWidget()->width();
-    double maxBoardHeight = 0.9 * this->parentWidget()->height();
+    double maxBoardWidth = 0.85 * this->parentWidget()->width();
+    double maxBoardHeight = 0.85 * this->parentWidget()->height();
     Session::GetCellSize() = std::min(
         maxBoardWidth / Session::GetColumn(), maxBoardHeight / Session::GetRow()
     );
@@ -67,11 +66,11 @@ void LevelSelectionPage::customLevelSelection(int& row, int& col, int& mine) {
     do {
     again:
         QDialog dialog(this);
-
-        // QScreen* screen = QGuiApplication::primaryScreen();
-        // int screenWidth = screen->size().width();
-        // int screenHeight = screen->size().height();
-        // dialog.resize(screenWidth, screenHeight);
+        // TODO: design the dialog
+        //  QScreen* screen = QGuiApplication::primaryScreen();
+        //  int screenWidth = screen->size().width();
+        //  int screenHeight = screen->size().height();
+        //  dialog.resize(screenWidth, screenHeight);
         QFormLayout form(&dialog);
 
         QList<QLineEdit*> fields;

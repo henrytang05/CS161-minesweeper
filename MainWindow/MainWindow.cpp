@@ -29,6 +29,7 @@ void MainWindow::makeConnection() {
         Pages->setCurrentWidget(levelSelectionPage);
     });
     QObject::connect(homePage, HomePage::resumeButton, this, &MainWindow::resumeGameSlot);
+    QObject::connect(homePage, &HomePage::exit, this, &QCoreApplication::quit);
     QObject::connect(
         levelSelectionPage, LevelSelectionPage::backClicked, Pages,
         [this]() { Pages->setCurrentWidget(homePage); }
@@ -50,8 +51,6 @@ void MainWindow::makeConnection() {
         &Session::GetInstance(), &Session::result, gameboardPage,
         &GameboardPage::victoryAnnoucement
     );
-
-    // TODO : change resume to high score
 }
 void MainWindow::startNewGameSlot() {
     Session::StartSession();

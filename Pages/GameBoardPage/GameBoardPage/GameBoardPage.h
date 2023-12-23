@@ -33,7 +33,6 @@ class GameboardPage : public QWidget {
     QPushButton* replayButton;
     QLabel* level;
     QLabel* highScore;
-    QVBoxLayout* sideLayout;
 
     QGridLayout* mainGridLayout;
 

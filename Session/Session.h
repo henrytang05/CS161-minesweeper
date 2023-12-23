@@ -18,17 +18,17 @@ class Session : public QObject {
    public:
     enum class State : int8_t { Playing = 4, Win, Lose, None };
     static Session& GetInstance();
-    static Session& StartSession();
     static Session& ResetInstance();
+    static Session& ResetForReplay();
+    static Session& StartSession();
     static Session& StopSession();
     static Session& ResumeSession();
     static void SaveHighScores();
     static void GetHighScores();
 
-    void GetPreviousSession();
     static std::vector<std::vector<Square*>>& GetBoard();
     static int& GetFlag();
-    static int& GetMineNumber();
+    static const int& GetMineNumber();
     static void SetMineNumber(int);
     static int& GetSquareRevealed();
     static int& GetCorrectFlag();

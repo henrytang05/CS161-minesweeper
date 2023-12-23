@@ -8,17 +8,16 @@
 #include "Timer/Timer.h"
 Session::Session(QObject* parent) : QObject(parent) {
     s_state = State::None;
-    s_CellSize = 35;
+    s_CellSize = 0;
     s_FlagSet = 0;
     s_CorrectFlag = 0;
     s_SquareRevealed = 0;
     s_MineNumber = 0;
-    timer = new Timer;
+    timer = new Timer(this);
     s_BoardDimension = std::make_pair(0, 0);
-
     s_difficulty = 0;
 }
-Session::~Session() { delete timer; }
+Session::~Session() {}
 Session& Session::GetInstance() {
     static Session s_instance;
     return s_instance;
@@ -36,16 +35,43 @@ Session& Session::ResetInstance() {
     s.s_BoardDimension = std::make_pair(0, 0);
     s.s_board.clear();
     s.s_difficulty = 0;
-
     return s;
 }
-void Session::GetPreviousSession() { Session::GetInstance().deserialize(); }
+Session& Session::ResetForReplay() {
+    auto& s = GetInstance();
+    s.s_state = State::Playing;
+    s.s_FlagSet = 0;
+    s.s_CorrectFlag = 0;
+    s.s_SquareRevealed = 0;
+
+    s.timer->resetTimer();
+    s.setupBoard();
+    return s;
+}
+Session& Session::StartSession() {
+    auto& s = GetInstance();
+    s.changeState(State::Playing);
+    s.setupBoard();  // TODO: change this
+    s.startTimer();
+    return s;
+}
+Session& Session::StopSession() {
+    auto& s = GetInstance();
+    s.stopTimer();
+    return s;
+}
+Session& Session::ResumeSession() {
+    auto& s = GetInstance();
+    s.deserialize();
+    s.startTimer();
+    return s;
+}
 std::vector<std::vector<Square*>>& Session::GetBoard() {
     return Session::GetInstance().s_board;
 }
 int& Session::GetFlag() { return GetInstance().s_FlagSet; }
-int& Session::GetMineNumber() { return GetInstance().s_MineNumber; }
-void Session::SetMineNumber(int n) { GetInstance().s_MineNumber = n; }
+const int& Session::GetMineNumber() { return GetInstance().s_MineNumber; }
+void Session::SetMineNumber(int mineNumber) { GetInstance().s_MineNumber = mineNumber; }
 int& Session::GetSquareRevealed() { return GetInstance().s_SquareRevealed; }
 int& Session::GetCorrectFlag() { return GetInstance().s_CorrectFlag; }
 double& Session::GetCellSize() { return GetInstance().s_CellSize; }
@@ -88,7 +114,9 @@ void Session::changeState(State newstate) {
 }
 
 void Session::setupBoard() {
-    s_difficulty = std::round(GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn()));
+    s_difficulty = std::max(
+        (int)std::round(GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn())), 1
+    );
     s_board.resize(
         s_BoardDimension.first, std::vector<Square*>(s_BoardDimension.second, nullptr)
     );
@@ -217,18 +245,6 @@ const QString Session::GetElapsedTimeAsString() {
 }
 Timer* Session::GetTimer() { return GetInstance().timer; }
 
-Session& Session::StopSession() {
-    auto& s = GetInstance();
-    s.stopTimer();
-
-    return s;
-}
-Session& Session::ResumeSession() {
-    auto& s = GetInstance();
-    s.deserialize();
-    s.startTimer();
-    return s;
-}
 void Session::SaveHighScores() {
     QFile file("Data/Highscores.dat");
     if (!file.open(QIODevice::WriteOnly)) {
@@ -249,11 +265,4 @@ void Session::GetHighScores() {
     file.seek(0);
     QDataStream in(&file);
     in >> Session::GetInstance().highScores;
-}
-Session& Session::StartSession() {
-    auto& s = GetInstance();
-    s.changeState(State::Playing);
-    s.setupBoard();
-    s.startTimer();
-    return s;
 }

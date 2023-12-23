@@ -1,12 +1,13 @@
 #ifndef TIMER_H
 #define TIMER_H
 #include <QLabel>
+#include <QObject>
 #include <QTime>
 #include <QTimer>
 class Timer : public QTimer {
     Q_OBJECT
    public:
-    Timer(QWidget* parent = nullptr);
+    Timer(QObject* parent = nullptr);
     ~Timer();
     void startTimer();
     void stopTimer();
@@ -19,7 +20,6 @@ class Timer : public QTimer {
     void updateTimerSlot();
 
    public:
-    // QTimer* timerObject;
     QTime elapsedTime;
 };
 #endif
