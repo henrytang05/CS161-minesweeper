@@ -29,6 +29,7 @@ class GameboardPage : public QWidget {
     QWidget* gameboard;
     QLabel* announcementLabel;
     QLabel* timer;
+    QPushButton* newGameButton;
     QPushButton* replayButton;
     QLabel* level;
     QLabel* highScore;
@@ -42,6 +43,7 @@ class GameboardPage : public QWidget {
    public slots:
     void victoryAnnoucement(Result);
     void handleNewGameStart();
+    void handleReplay();
 };
 
 #endif

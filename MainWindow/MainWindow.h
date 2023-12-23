@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow {
     ~MainWindow();
     void makeConnection();
 
-   public:
+   private:
     QStackedWidget* Pages;
     HomePage* homePage;
     LevelSelectionPage* levelSelectionPage;
