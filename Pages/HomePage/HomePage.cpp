@@ -1,5 +1,6 @@
 #include "HomePage.h"
 
+#include "Style/Color.h"
 #include "Style/Style.h"
 HomePage::HomePage(QStackedWidget* parent) { setupHomePage(); }
 HomePage::~HomePage() {}
@@ -19,9 +20,9 @@ void HomePage::setupHomePage() {
     QPushButton* newGame = new QPushButton("New Game", this);
     QPushButton* resume = new QPushButton("Resume Game", this);
     QPushButton* exit = new QPushButton("Exit", this);
-    styleButton(newGame, "A6DCEF", "C499F3");
-    styleButton(resume, "A6DCEF", "C499F3");
-    styleButton(exit, "A6DCEF", "C499F3");
+    styleButton(newGame, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(resume, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(exit, BUTTON_COLOR, BUTTON_TEXT_COLOR);
 
     buttonLayout->setSpacing(20);
     buttonLayout->addWidget(newGame, 0, Qt::AlignCenter);

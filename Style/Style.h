@@ -11,10 +11,12 @@
 #include <string>
 
 class Square;
-void styleButton(QPushButton* b, QString background_color, QString text_color);
-void styleLabel(QLabel* label, QString color, double size = 40);
+void styleButton(
+    QPushButton* b, std::string&& background_color, std::string&& text_color
+);
+void styleLabel(QLabel* label, std::string&& color, double size = 40);
 
-void styleWindow(QString title, QMainWindow* window);
-void styleSquare(Square* square, QString color);
-void styleTimer(QLabel* timer, QString color, double size = 40);
+void styleWindow(QMainWindow* window);
+void styleSquare(Square* square, std::string&& color = "");
+void styleTimer(QLabel* timer, std::string&& color, double size = 40);
 #endif

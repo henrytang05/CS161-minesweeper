@@ -1,6 +1,7 @@
 #include "LevelSelectionPage.h"
 
 #include "Session/Session.h"
+#include "Style/Color.h"
 #include "Style/Style.h"
 LevelSelectionPage::LevelSelectionPage(QStackedWidget* parent) {
     setupLevelSelectionPage();
@@ -23,12 +24,12 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     custom = new QPushButton("Custom", this);
     back = new QPushButton("Back", this);
 
-    styleButton(resume, "FFF6F6", "C499F3");
-    styleButton(easy, "FFF6F6", "C499F3");
-    styleButton(medium, "FFF6F6", "C499F3");
-    styleButton(hard, "FFF6F6", "C499F3");
-    styleButton(custom, "FFF6F6", "C499F3");
-    styleButton(back, "FFF6F6", "C499F3");
+    styleButton(resume, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(easy, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(medium, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(hard, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(custom, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(back, BUTTON_COLOR, BUTTON_TEXT_COLOR);
 
     buttonLayout->addWidget(resume, 0, Qt::AlignCenter);
     buttonLayout->addWidget(easy, 0, Qt::AlignCenter);

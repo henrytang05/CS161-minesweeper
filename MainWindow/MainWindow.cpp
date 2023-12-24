@@ -18,13 +18,16 @@ MainWindow::MainWindow(QMainWindow* parent) : QMainWindow(parent) {
     Pages->addWidget(levelSelectionPage);
     Pages->addWidget(gameboardPage);
 
-    styleWindow("Main Window", this);
+    styleWindow(this);
 
     setCentralWidget(Pages);
     Pages->setCurrentWidget(homePage);
     makeConnection();
 }
-MainWindow::~MainWindow() { Session::SaveHighScores(); }
+MainWindow::~MainWindow() {
+    Session::SaveHighScores();
+    if (Session::GetState() == Session::State::Playing) Session::StopSession();
+}
 void MainWindow::makeConnection() {
     QObject::connect(homePage, &HomePage::newGameSignal, this, [this]() {
         Pages->setCurrentWidget(levelSelectionPage);

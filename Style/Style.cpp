@@ -2,23 +2,23 @@
 
 #include "Session/Session.h"
 #include "Square/Square.h"
-void styleButton(QPushButton* b, QString background_color, QString text_color) {
+void styleButton(
+    QPushButton* b, std::string&& background_color, std::string&& text_color
+) {
     if (b == nullptr) {
         throw std::invalid_argument("QPushButton* b is nullptr");
     }
 
-    if (background_color[0] == '#') background_color.remove(0, 1);
-    if (text_color[0] == '#') text_color.remove(0, 1);
-
-    QString styleSheet = "background-color: #" + background_color +
-                         "; border-radius: 15px; " + "font-size: 0px;" + "color: #" +
-                         text_color + ";";
+    QString styleSheet = QString::fromStdString(
+        "background-color: #" + background_color + "; border-radius: 15px; " +
+        "font-size: 0px;" + "color: #" + text_color +
+        "; font-family: 'Arial'; font-size: 14px; font-weight: bold; "
+    );
 
     b->setFixedSize(100, 50);
     b->setStyleSheet(styleSheet);
 }
-void styleLabel(QLabel* label, QString color, double size) {
-    if (color[0] == '#') color.remove(0, 1);
+void styleLabel(QLabel* label, std::string&& color, double size) {
     QFont font = label->font();
     font.setPointSize(size);
     font.setBold(true);
@@ -26,14 +26,12 @@ void styleLabel(QLabel* label, QString color, double size) {
 
     label->setFont(font);
 
-    QString styleSheet = "color: #" + color + "; ";
+    QString styleSheet = QString::fromStdString("color: #" + color + ";");
     label->setStyleSheet(styleSheet);
     label->setAlignment(Qt::AlignCenter);
 }
 
-void styleWindow(QString title, QMainWindow* window) {
-    window->setWindowTitle(title);
-    // window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
+void styleWindow(QMainWindow* window) {
     QLinearGradient gradient(0, 0, 0, window->height());
     gradient.setColorAt(0, QColor("#FFB88C"));
     gradient.setColorAt(1, QColor("#DE6262"));
@@ -42,27 +40,25 @@ void styleWindow(QString title, QMainWindow* window) {
     window->setPalette(palette);
     window->setAutoFillBackground(true);
 }
-void styleSquare(Square* square, QString color) {
+void styleSquare(Square* square, std::string&& color) {
     square->setFixedSize(Session::GetCellSize(), Session::GetCellSize());
-    QString str = "QPushButton { border: 1px solid black;  ";
 
-    if (!color.isEmpty()) {
-        if (color[1].isDigit()) {
-            if (color[0] == '#') color.remove(0, 1);
-            square->setStyleSheet(str + "background-color: #" + color + ";}");
-        } else {
-            square->setStyleSheet(str + "background-color: " + color + ";}");
-        }
+    if (color != "") {
+        if (!isdigit(color[1]))
+            square->setStyleSheet(
+                QString::fromStdString("background-color: " + color + ";")
+            );
         return;
+        square->setStyleSheet(QString::fromStdString("background-color: #" + color + ";")
+        );
     }
     if (square->row % 2 == square->col % 2) {
-        square->setStyleSheet(str + "background-color: #C7DCA7;}");
+        square->setStyleSheet(QString::fromStdString("background-color: #C7DCA7;"));
     } else {
-        square->setStyleSheet(str + "background-color: #89B9AD;}");
+        square->setStyleSheet(QString::fromStdString("background-color: #89B9AD;"));
     }
 }
-void styleTimer(QLabel* timer, QString color, double size) {
-    if (color[0] == '#') color.remove(0, 1);
+void styleTimer(QLabel* timer, std::string&& color, double size) {
     QFont font = timer->font();
     font.setPointSize(size);
     font.setBold(true);
@@ -70,7 +66,6 @@ void styleTimer(QLabel* timer, QString color, double size) {
     timer->resize(250, 50);
 
     timer->setFont(font);
-    timer->setFont(font);
-    timer->setStyleSheet(QString("color: #" + color + "; background-color: red;"));
+    timer->setStyleSheet(QString::fromStdString("color: #" + color + "; "));
     timer->setAlignment(Qt::AlignCenter);
 }
