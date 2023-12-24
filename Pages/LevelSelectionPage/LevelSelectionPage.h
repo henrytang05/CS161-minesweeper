@@ -13,16 +13,14 @@
 class MainWindow;
 class LevelSelectionPage : public QWidget {
     Q_OBJECT
-    friend class MainWindow;
 
    public:
     LevelSelectionPage(QStackedWidget* parent = nullptr);
     ~LevelSelectionPage();
+
+   private:
     void setupLevelSelectionPage();
     void setupNewGame(int row, int col, int mine);
-   signals:
-    void backClicked();
-    void levelSelected();
 
    private:
     QPushButton* resume;
@@ -34,5 +32,10 @@ class LevelSelectionPage : public QWidget {
 
    public slots:
     void customLevelSelection(int&, int&, int&);
+
+   signals:
+    void backClicked();
+    void levelSelected();
+    void resumeClicked();
 };
 #endif

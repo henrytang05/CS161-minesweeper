@@ -36,9 +36,16 @@ void styleLabel(QLabel* label, std::string&& color, double size) {
     label->setAlignment(Qt::AlignCenter);
 }
 
-void styleWindow(std::string&& title, QMainWindow* window, std::string&& color) {
+void styleWindow(std::string&& title, QMainWindow* window) {
     window->setWindowTitle(QString::fromStdString(title));
-    window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
+    // window->setStyleSheet(QString::fromStdString("background-color: #" + color + ";"));
+    QLinearGradient gradient(0, 0, 0, window->height());
+    gradient.setColorAt(0, QColor("#FFB88C"));
+    gradient.setColorAt(1, QColor("#DE6262"));
+    QPalette palette;
+    palette.setBrush(QPalette::Window, gradient);
+    window->setPalette(palette);
+    window->setAutoFillBackground(true);
 }
 void styleSquare(Square* square, std::string&& color) {
     square->setFixedSize(Session::GetCellSize(), Session::GetCellSize());

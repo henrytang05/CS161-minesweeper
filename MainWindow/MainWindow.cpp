@@ -18,18 +18,22 @@ MainWindow::MainWindow(QMainWindow* parent) : QMainWindow(parent) {
     Pages->addWidget(levelSelectionPage);
     Pages->addWidget(gameboardPage);
 
-    styleWindow("Main Window", this, "E36387");
+    styleWindow("Main Window", this);
+
     setCentralWidget(Pages);
     Pages->setCurrentWidget(homePage);
     makeConnection();
 }
 MainWindow::~MainWindow() { Session::SaveHighScores(); }
 void MainWindow::makeConnection() {
-    QObject::connect(homePage, HomePage::newGameButton, this, [this]() {
+    QObject::connect(homePage, &HomePage::newGameSignal, this, [this]() {
         Pages->setCurrentWidget(levelSelectionPage);
     });
-    QObject::connect(homePage, HomePage::resumeButton, this, &MainWindow::resumeGameSlot);
+    QObject::connect(
+        homePage, &HomePage::resumeGameSignal, this, &MainWindow::resumeGameSlot
+    );
     QObject::connect(homePage, &HomePage::exit, this, &QCoreApplication::quit);
+
     QObject::connect(
         levelSelectionPage, LevelSelectionPage::backClicked, Pages,
         [this]() { Pages->setCurrentWidget(homePage); }
@@ -38,15 +42,17 @@ void MainWindow::makeConnection() {
         levelSelectionPage, LevelSelectionPage::levelSelected, this,
         &MainWindow::startNewGameSlot
     );
-
+    // TODO : connect with a signal instead of the button
     QObject::connect(
         gameboardPage->newGameButton, &QPushButton::clicked, this,
         &MainWindow::endGameSlot
     );
+
     QObject::connect(
-        levelSelectionPage->resume, &QPushButton::clicked, this,
+        levelSelectionPage, &LevelSelectionPage::resumeClicked, this,
         &MainWindow::resumeGameSlot
     );
+
     QObject::connect(
         &Session::GetInstance(), &Session::result, gameboardPage,
         &GameboardPage::victoryAnnoucement
@@ -54,8 +60,10 @@ void MainWindow::makeConnection() {
 }
 void MainWindow::startNewGameSlot() {
     Session::StartSession();
+    Session::SetDifficulty();
     gameboardPage->handleNewGameStart();
     Pages->setCurrentWidget(gameboardPage);
+    Session::GetInstance().startTimer();
 }
 void MainWindow::endGameSlot() {
     Session::StopSession().serialize();

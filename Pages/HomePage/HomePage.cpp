@@ -16,31 +16,28 @@ void HomePage::setupHomePage() {
     labelLayout->addWidget(titleLabel, 0, Qt::AlignCenter);
 
     QVBoxLayout* buttonLayout = new QVBoxLayout;
-    QPushButton* newGame = new QPushButton("New Game");
-    QPushButton* resume = new QPushButton("Resume Game");
-    QPushButton* highScore = new QPushButton("High Scores");
+    QPushButton* newGame = new QPushButton("New Game", this);
+    QPushButton* resume = new QPushButton("Resume Game", this);
+    QPushButton* exit = new QPushButton("Exit", this);
+    styleButton(newGame, "A6DCEF");
+    styleButton(resume, "A6DCEF");
+    styleButton(exit, "A6DCEF");
+
     buttonLayout->setSpacing(20);
     buttonLayout->addWidget(newGame, 0, Qt::AlignCenter);
     buttonLayout->setSpacing(20);
-    buttonLayout->addWidget(highScore, 0, Qt::AlignCenter);
+    buttonLayout->addWidget(resume, 0, Qt::AlignCenter);
+    buttonLayout->setSpacing(20);
+    buttonLayout->addWidget(exit, 0, Qt::AlignCenter);
     buttonLayout->setSpacing(20);
 
-    buttonLayout->addWidget(resume, 0, Qt::AlignCenter);
-    styleButton(newGame, "A6DCEF");
-    styleButton(resume, "A6DCEF");
-    styleButton(highScore, "A6DCEF");
+    connect(newGame, &QPushButton::clicked, this, &HomePage::newGameSignal);
+    connect(resume, &QPushButton::clicked, this, &HomePage::resumeGameSignal);
+    connect(exit, &QPushButton::clicked, this, &HomePage::exit);
 
-    connect(newGame, &QPushButton::clicked, this, &HomePage::newGameButton);
-    connect(resume, &QPushButton::clicked, this, &HomePage::resumeButton);
-    connect(highScore, &QPushButton::clicked, this, &HomePage::highScoreButton);
     mainLayout->addStretch();
     mainLayout->addLayout(labelLayout);
     mainLayout->addStretch();
     mainLayout->addLayout(buttonLayout);
     mainLayout->addStretch();
-
-    QPushButton* exit = new QPushButton("Exit");
-    styleButton(exit, "A6DCEF");
-    connect(exit, &QPushButton::clicked, this, &HomePage::exit);
-    mainLayout->addWidget(exit, 0, Qt::AlignCenter);
 }

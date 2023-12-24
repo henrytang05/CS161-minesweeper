@@ -2,7 +2,9 @@
 #define STYLE_H
 
 #include <QLabel>
+#include <QLinearGradient>
 #include <QMainWindow>
+#include <QPalette>
 #include <QPushButton>
 #include <QString>
 #include <cctype>
@@ -15,9 +17,7 @@ void styleButton(
 );
 void styleLabel(QLabel* label, std::string&& color = "FF00000", double size = 40);
 
-void styleWindow(
-    std::string&& title, QMainWindow* window, std::string&& color = "FF00000"
-);
+void styleWindow(std::string&& title, QMainWindow* window);
 void styleSquare(Square* square, std::string&& color = "");
 void styleTimer(QLabel* timer, std::string&& color = "FF00000", double size = 40);
 #endif

@@ -1,6 +1,9 @@
 #ifndef MENU_H
 #define MENU_H
+#include <QGraphicsEffect>
+#include <QLinearGradient>
 #include <QMainWindow>
+#include <QPalette>
 #include <QStackedWidget>
 #include <QWidget>
 class MainWindow;
@@ -12,6 +15,8 @@ class MainWindow : public QMainWindow {
    public:
     MainWindow(QMainWindow* parent = nullptr);
     ~MainWindow();
+
+   private:
     void makeConnection();
 
    private:

@@ -43,7 +43,6 @@ Session& Session::ResetForReplay() {
     s.s_FlagSet = 0;
     s.s_CorrectFlag = 0;
     s.s_SquareRevealed = 0;
-
     s.timer->resetTimer();
     s.setupBoard();
     return s;
@@ -52,12 +51,13 @@ Session& Session::StartSession() {
     auto& s = GetInstance();
     s.changeState(State::Playing);
     s.setupBoard();  // TODO: change this
-    s.startTimer();
+    // s.startTimer();
     return s;
 }
 Session& Session::StopSession() {
     auto& s = GetInstance();
     s.stopTimer();
+    // TODO: save session
     return s;
 }
 Session& Session::ResumeSession() {
@@ -76,15 +76,24 @@ int& Session::GetSquareRevealed() { return GetInstance().s_SquareRevealed; }
 int& Session::GetCorrectFlag() { return GetInstance().s_CorrectFlag; }
 double& Session::GetCellSize() { return GetInstance().s_CellSize; }
 
-void Session::SetBoardDimension(int row, int col) {
-    Session::GetBoardDimension() = std::make_pair(row, col);
+void Session::SetCellSize(double size) {
+    // TODO: insert return statement here
+    Session::GetInstance().s_CellSize = size;
 }
-std::pair<int, int>& Session::GetBoardDimension() {
-    return GetInstance().s_BoardDimension;
+
+void Session::SetBoardDimension(int row, int col) {
+    Session::GetInstance().s_BoardDimension = std::make_pair(row, col);
+}
+
+void Session::SetDifficulty() {
+    Session::GetInstance().s_difficulty = std::max(
+        (int)std::round(GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn())), 1
+    );
 }
 const int& Session::GetRow() { return GetInstance().s_BoardDimension.first; }
 const int& Session::GetColumn() { return GetInstance().s_BoardDimension.second; }
 const int& Session::GetDifficulty() { return GetInstance().s_difficulty; }
+
 const QString Session::GetHighScoreAsString() {
     if (!GetInstance().highScores.contains(Session::GetDifficulty()))
         return QString("00:00");
@@ -93,7 +102,6 @@ const QString Session::GetHighScoreAsString() {
 void Session::changeState(State newstate) {
     if (s_state == newstate) return;
     s_state = newstate;
-
     switch (newstate) {
         case State::Win:
             this->stopTimer();
@@ -114,9 +122,6 @@ void Session::changeState(State newstate) {
 }
 
 void Session::setupBoard() {
-    s_difficulty = std::max(
-        (int)std::round(GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn())), 1
-    );
     s_board.resize(
         s_BoardDimension.first, std::vector<Square*>(s_BoardDimension.second, nullptr)
     );

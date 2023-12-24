@@ -33,8 +33,9 @@ class Session : public QObject {
     static int& GetSquareRevealed();
     static int& GetCorrectFlag();
     static double& GetCellSize();
+    static void SetCellSize(double);
     static void SetBoardDimension(int row, int col);
-    static std::pair<int, int>& GetBoardDimension();
+    static void SetDifficulty();
     static const int& GetRow();
     static const int& GetColumn();
     static const int& GetDifficulty();
