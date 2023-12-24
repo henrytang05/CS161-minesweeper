@@ -23,12 +23,12 @@ void LevelSelectionPage::setupLevelSelectionPage() {
     custom = new QPushButton("Custom", this);
     back = new QPushButton("Back", this);
 
-    styleButton(resume, "FFF6F6");
-    styleButton(easy, "FFF6F6");
-    styleButton(medium, "FFF6F6");
-    styleButton(hard, "FFF6F6");
-    styleButton(custom, "FFF6F6");
-    styleButton(back, "FFF6F6");
+    styleButton(resume, "FFF6F6", "C499F3");
+    styleButton(easy, "FFF6F6", "C499F3");
+    styleButton(medium, "FFF6F6", "C499F3");
+    styleButton(hard, "FFF6F6", "C499F3");
+    styleButton(custom, "FFF6F6", "C499F3");
+    styleButton(back, "FFF6F6", "C499F3");
 
     buttonLayout->addWidget(resume, 0, Qt::AlignCenter);
     buttonLayout->addWidget(easy, 0, Qt::AlignCenter);

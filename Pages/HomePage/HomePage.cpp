@@ -19,9 +19,9 @@ void HomePage::setupHomePage() {
     QPushButton* newGame = new QPushButton("New Game", this);
     QPushButton* resume = new QPushButton("Resume Game", this);
     QPushButton* exit = new QPushButton("Exit", this);
-    styleButton(newGame, "A6DCEF");
-    styleButton(resume, "A6DCEF");
-    styleButton(exit, "A6DCEF");
+    styleButton(newGame, "A6DCEF", "C499F3");
+    styleButton(resume, "A6DCEF", "C499F3");
+    styleButton(exit, "A6DCEF", "C499F3");
 
     buttonLayout->setSpacing(20);
     buttonLayout->addWidget(newGame, 0, Qt::AlignCenter);

@@ -12,7 +12,7 @@
       "environment": [],
       "externalConsole": true,
       "MIMode": "gdb",
-      "miDebuggerPath": "C:/Install/Programming Language/C++/Compiler/winlibs-x86_64-mcf-seh-gcc-13.2.0-llvm-16.0.6-mingw-w64ucrt-11.0.1-r2/mingw64/bin/gdb.exe",
+      // "miDebuggerPath": "C:/Install/Programming Language/C++/Compiler/winlibs-x86_64-mcf-seh-gcc-13.2.0-llvm-16.0.6-mingw-w64ucrt-11.0.1-r2/mingw64/bin/gdb.exe",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -25,7 +25,7 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "C/C++: g++.exe build active file",
+      "preLaunchTask": "C/C++: g++.exe build active file"
       // "visualizerFile": "C:/Users/tangq/AppData/Roaming/Code/User/workspaceStorage/0b2011de9ed0c211dc3eebe58486314c/tonka3000.qtvsctools/qt.natvis.xml"
     }
   ]
