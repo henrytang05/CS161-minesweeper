@@ -23,23 +23,34 @@ class Session : public QObject {
     static Session& StartSession();
     static Session& StopSession();
     static Session& ResumeSession();
+
+    static Session::State& GetState();
+
+    static std::vector<std::vector<Square*>>& GetBoard();
+
+    static const int& GetFlag();
+    static void IncrementFlag();
+    static void DecrementFlag();
+
+    static const int& GetMineNumber();
+    static void SetMineNumber(int);
+
+    static const int& GetSquareRevealed();
+    static void IncrementSquareRevealed();
+
+    static const double& GetCellSize();
+    static void SetCellSize(double);
+
+    static void SetBoardDimension(int row, int col);
+    static const int& GetRow();
+    static const int& GetColumn();
+
+    static const int& GetDifficulty();
+
+    static const QString GetHighScoreAsString();
     static void SaveHighScores();
     static void GetHighScores();
 
-    static std::vector<std::vector<Square*>>& GetBoard();
-    static int& GetFlag();
-    static const int& GetMineNumber();
-    static void SetMineNumber(int);
-    static int& GetSquareRevealed();
-    static int& GetCorrectFlag();
-    static double& GetCellSize();
-    static void SetCellSize(double);
-    static void SetBoardDimension(int row, int col);
-    static void SetDifficulty();
-    static const int& GetRow();
-    static const int& GetColumn();
-    static const int& GetDifficulty();
-    static const QString GetHighScoreAsString();
     void changeState(State);
 
     void startTimer();
@@ -59,11 +70,10 @@ class Session : public QObject {
     Session(QObject* parent = nullptr);
     ~Session();
 
-   public:
+   private:
     State s_state;
     double s_CellSize;
     int s_FlagSet;
-    int s_CorrectFlag;
     int s_SquareRevealed;
     int s_MineNumber;
     Timer* timer;

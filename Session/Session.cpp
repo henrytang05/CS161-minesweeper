@@ -10,7 +10,6 @@ Session::Session(QObject* parent) : QObject(parent) {
     s_state = State::None;
     s_CellSize = 0;
     s_FlagSet = 0;
-    s_CorrectFlag = 0;
     s_SquareRevealed = 0;
     s_MineNumber = 0;
     timer = new Timer(this);
@@ -28,7 +27,7 @@ Session& Session::ResetInstance() {
     s.s_state = State::None;
     s.s_CellSize = 0;
     s.s_FlagSet = 0;
-    s.s_CorrectFlag = 0;
+
     s.s_SquareRevealed = 0;
     s.s_MineNumber = 0;
     s.timer->resetTimer();
@@ -41,7 +40,6 @@ Session& Session::ResetForReplay() {
     auto& s = GetInstance();
     s.s_state = State::Playing;
     s.s_FlagSet = 0;
-    s.s_CorrectFlag = 0;
     s.s_SquareRevealed = 0;
     s.timer->resetTimer();
     s.setupBoard();
@@ -50,13 +48,16 @@ Session& Session::ResetForReplay() {
 Session& Session::StartSession() {
     auto& s = GetInstance();
     s.changeState(State::Playing);
-    s.setupBoard();  // TODO: change this
-    // s.startTimer();
+    s.s_difficulty = std::max(
+        (int)std::round(GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn())), 1
+    );
+    s.setupBoard();
     return s;
 }
 Session& Session::StopSession() {
     auto& s = GetInstance();
     s.stopTimer();
+    s.serialize();
     // TODO: save session
     return s;
 }
@@ -66,15 +67,19 @@ Session& Session::ResumeSession() {
     s.startTimer();
     return s;
 }
+Session::State& Session::GetState() { return Session::GetInstance().s_state; }
 std::vector<std::vector<Square*>>& Session::GetBoard() {
     return Session::GetInstance().s_board;
 }
-int& Session::GetFlag() { return GetInstance().s_FlagSet; }
+const int& Session::GetFlag() { return GetInstance().s_FlagSet; }
+void Session::IncrementFlag() { GetInstance().s_FlagSet++; }
+void Session::DecrementFlag() { GetInstance().s_FlagSet--; }
 const int& Session::GetMineNumber() { return GetInstance().s_MineNumber; }
 void Session::SetMineNumber(int mineNumber) { GetInstance().s_MineNumber = mineNumber; }
-int& Session::GetSquareRevealed() { return GetInstance().s_SquareRevealed; }
-int& Session::GetCorrectFlag() { return GetInstance().s_CorrectFlag; }
-double& Session::GetCellSize() { return GetInstance().s_CellSize; }
+const int& Session::GetSquareRevealed() { return GetInstance().s_SquareRevealed; }
+void Session::IncrementSquareRevealed() { GetInstance().s_SquareRevealed++; }
+
+const double& Session::GetCellSize() { return GetInstance().s_CellSize; }
 
 void Session::SetCellSize(double size) {
     // TODO: insert return statement here
@@ -85,11 +90,6 @@ void Session::SetBoardDimension(int row, int col) {
     Session::GetInstance().s_BoardDimension = std::make_pair(row, col);
 }
 
-void Session::SetDifficulty() {
-    Session::GetInstance().s_difficulty = std::max(
-        (int)std::round(GetMineNumber() * 100 / (1.0f * GetRow() * GetColumn())), 1
-    );
-}
 const int& Session::GetRow() { return GetInstance().s_BoardDimension.first; }
 const int& Session::GetColumn() { return GetInstance().s_BoardDimension.second; }
 const int& Session::GetDifficulty() { return GetInstance().s_difficulty; }
@@ -182,7 +182,7 @@ QDataStream& operator<<(QDataStream& out, const Session& session) {
     out << session.s_state;
     out << session.s_CellSize;
     out << session.s_FlagSet;
-    out << session.s_CorrectFlag;
+
     out << session.s_SquareRevealed;
     out << session.s_MineNumber;
     out << session.timer->elapsedTime;
@@ -213,7 +213,6 @@ void Session::deserialize() {
 QDataStream& operator>>(QDataStream& in, Session& session) {
     in >> session.s_CellSize;
     in >> session.s_FlagSet;
-    in >> session.s_CorrectFlag;
     in >> session.s_SquareRevealed;
     in >> session.s_MineNumber;
     in >> session.timer->elapsedTime;

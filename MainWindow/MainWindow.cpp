@@ -32,7 +32,11 @@ void MainWindow::makeConnection() {
     QObject::connect(
         homePage, &HomePage::resumeGameSignal, this, &MainWindow::resumeGameSlot
     );
+
     QObject::connect(homePage, &HomePage::exit, this, &QCoreApplication::quit);
+    QObject::connect(
+        gameboardPage, &GameboardPage::exitSignal, this, &QCoreApplication::quit
+    );
 
     QObject::connect(
         levelSelectionPage, LevelSelectionPage::backClicked, Pages,
@@ -44,8 +48,7 @@ void MainWindow::makeConnection() {
     );
     // TODO : connect with a signal instead of the button
     QObject::connect(
-        gameboardPage->newGameButton, &QPushButton::clicked, this,
-        &MainWindow::endGameSlot
+        gameboardPage, &GameboardPage::newGameSignal, this, &MainWindow::endGameSlot
     );
 
     QObject::connect(
@@ -60,14 +63,12 @@ void MainWindow::makeConnection() {
 }
 void MainWindow::startNewGameSlot() {
     Session::StartSession();
-    Session::SetDifficulty();
     gameboardPage->handleNewGameStart();
     Pages->setCurrentWidget(gameboardPage);
     Session::GetInstance().startTimer();
 }
 void MainWindow::endGameSlot() {
-    Session::StopSession().serialize();
-    Session::ResetInstance();
+    Session::StopSession().ResetInstance();
     gameboardPage->cleanBoard();
     Pages->setCurrentWidget(levelSelectionPage);
 }
@@ -83,8 +84,8 @@ void MainWindow::resumeGameSlot() {
     }
     file.seek(0);
     QDataStream in(&file);
-    in >> Session::GetInstance().s_state;
-    if (Session::GetInstance().s_state != Session::State::Playing) {
+    in >> Session::GetState();
+    if (Session::GetState() != Session::State::Playing) {
         file.close();
         return;
     }

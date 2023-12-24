@@ -54,8 +54,8 @@ void LevelSelectionPage::setupLevelSelectionPage() {
 void LevelSelectionPage::setupNewGame(int row, int col, int mine) {
     Session::SetBoardDimension(row, col);
     Session::SetMineNumber(mine);
-    double maxBoardWidth = 0.85 * this->parentWidget()->width();
-    double maxBoardHeight = 0.85 * this->parentWidget()->height();
+    double maxBoardWidth = 0.7 * this->parentWidget()->width();
+    double maxBoardHeight = 0.7 * this->parentWidget()->height();
     // TODO : add set function
     double cellSize = std::min(
         maxBoardWidth / Session::GetColumn(), maxBoardHeight / Session::GetRow()
