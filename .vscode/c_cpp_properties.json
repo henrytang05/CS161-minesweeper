@@ -5,7 +5,7 @@
       "includePath": [
         "${workspaceFolder}/**",
         "C:/Install/Programming Language/C++/Compiler/winlibs-x86_64-mcf-seh-gcc-13.2.0-llvm-16.0.6-mingw-w64ucrt-11.0.1-r2/mingw64/bin",
-        "D:/Unsorted/QT/6.6.0/mingw_64/bin"
+        "C:/QT/6.6.1/mingw_64/bin"
       ],
       "defines": ["_DEBUG", "UNICODE", "_UNICODE"],
       "compilerPath": "C:/Install/Programming Language/C++/Compiler/winlibs-x86_64-mcf-seh-gcc-13.2.0-llvm-16.0.6-mingw-w64ucrt-11.0.1-r2/mingw64/bin/g++.exe",

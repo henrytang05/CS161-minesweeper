@@ -21,9 +21,11 @@ class GameboardPage : public QWidget {
    public:
     GameboardPage(QStackedWidget* parent = nullptr);
     ~GameboardPage();
+    void cleanBoard();
+
+   private:
     void setupGameboard();
     void reavealAllBombs();
-    void cleanBoard();
 
    private:
     QWidget* gameboard;
@@ -31,13 +33,15 @@ class GameboardPage : public QWidget {
     QLabel* timer;
     QPushButton* newGameButton;
     QPushButton* replayButton;
+    QPushButton* exitButton;
     QLabel* level;
     QLabel* highScore;
-
     QGridLayout* mainGridLayout;
 
    signals:
+    void newGameSignal();
     void replayClicked();
+    void exitSignal();
 
    public slots:
     void victoryAnnoucement(Result);
