@@ -16,15 +16,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 set(QT6_DIR C:\\QT\\6.6.1\\mingw_64) #replace the directory to your QT/6.6.0/mingw_64
-set(QT_COMPONENTS Widgets)
 set(CMAKE_PREFIX_PATH ${QT6_DIR})
+set(QT_COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
-
 if(NOT Qt6_FOUND)
-    message("Qt6 not found. Cloning from Git repository...")
-    execute_process(COMMAND git clone https://github.com/henrytang05/QT6.git ${QT6_DIR})
-    set(QT6_DIR C:\\QT\\6.6.1\\mingw_64)
-    find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
+    message(FATAL_ERROR "Qt6 not found. Please check your Qt installation.")
 endif()
 
 include_directories(${QT6_DIR}/include . Pages/ Pages/GameboardPage/)
