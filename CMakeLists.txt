@@ -15,7 +15,7 @@ set(TARGET_NAME Game)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
-set(QT6_DIR ${PROJECT_SOURCE_DIR}/QT6/) #replace the directory to your QT/6.6.0/mingw_64
+set(QT6_DIR ${PROJECT_SOURCE_DIR}/QT6/mingw_64) #replace the directory to your QT/6.6.0/mingw_64
 set(CMAKE_PREFIX_PATH ${QT6_DIR})
 set(QT_COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
