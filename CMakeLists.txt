@@ -9,7 +9,7 @@ if(MSVC)
 endif()
 
 
-FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp MainWindow/*.cpp Style/*.cpp Pages/*.cpp Session/*.cpp Timer/*.cpp )
+FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
 set(TARGET_NAME Game)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
@@ -23,11 +23,11 @@ if(NOT Qt6_FOUND)
     message(FATAL_ERROR "Qt6 not found. Please check your Qt installation.")
 endif()
 
-include_directories(${QT6_DIR}/include . Pages/ Pages/GameboardPage/)
+include_directories(${QT6_DIR}/include src/ src/Pages/ src/Pages/GameboardPage/)
 qt_standard_project_setup()
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOMOC ON)
-qt_add_executable(${TARGET_NAME} ${SOURCES} resources.qrc)
+qt_add_executable(${TARGET_NAME} ${SOURCES} src/resources.qrc)
 
 foreach(LIB ${QT_COMPONENTS})
     target_link_libraries(${TARGET_NAME} PRIVATE Qt6::${LIB})
