@@ -19,7 +19,7 @@ class GameboardPage : public QWidget {
     friend class MainWindow;
 
    public:
-    GameboardPage(QStackedWidget* parent = nullptr);
+    GameboardPage(QWidget* parent = nullptr);
     ~GameboardPage();
     void cleanBoard();
 

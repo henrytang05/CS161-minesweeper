@@ -3,7 +3,6 @@
 #include "GameboardPage/GameboardPage.h"
 #include "Session/Session.h"
 #include "Style/Style.h"
-static auto& board = Session::GetBoard();
 
 Square::Square(int row, int col, Square_Type type) {
     state = State::UnRevealed;
@@ -110,6 +109,8 @@ void Blank_Square::render_square() {
     this->setSquareIcon(icon);
 }
 void Square::breakSurroundingCells() {
+    auto& board = Session::GetBoard();
+
     this->changeState(State::Revealed);
     if (this->surroundingMineCount != 0) {
         return;

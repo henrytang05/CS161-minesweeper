@@ -1,9 +1,13 @@
 cmake_minimum_required(VERSION 3.26)
-# set(CMAKE_CXX_COMPILER "C:/Install/Programming Language/C++/Compiler/winlibs-x86_64-mcf-seh-gcc-13.2.0-llvm-16.0.6-mingw-w64ucrt-11.0.1-r2/mingw64/bin/g++.exe")
 
 project(CS161-Minesweeper VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(MSVC)
+    add_compile_options(/W4 /WX /Zc:__cplusplus /permissive-)
+endif()
+
 
 FILE(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS main.cpp MainWindow/*.cpp Style/*.cpp Pages/*.cpp Session/*.cpp Timer/*.cpp )
 
@@ -15,6 +19,14 @@ set(QT6_DIR C:\\QT\\6.6.1\\mingw_64) #replace the directory to your QT/6.6.0/min
 set(QT_COMPONENTS Widgets)
 set(CMAKE_PREFIX_PATH ${QT6_DIR})
 find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
+
+if(NOT Qt6_FOUND)
+    message("Qt6 not found. Cloning from Git repository...")
+    execute_process(COMMAND git clone https://github.com/qt/qt6.git ${QT6_DIR})
+    set(QT6_DIR C:\\QT\\6.6.1\\mingw_64)
+    set(CMAKE_PREFIX_PATH ${QT6_DIR})
+    find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
+endif()
 
 include_directories(${QT6_DIR}/include . Pages/ Pages/GameboardPage/)
 qt_standard_project_setup()
@@ -28,9 +40,7 @@ endforeach()
 
 set_target_properties(${TARGET_NAME} PROPERTIES WIN32_EXECUTABLE ON)
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  add_compile_options(/Zc:__cplusplus)
-endif()
+
 
 set(BUILD_DIR ${PROJECT_SOURCE_DIR}/build)
 set(DIST_DIR ${BUILD_DIR}/dist)

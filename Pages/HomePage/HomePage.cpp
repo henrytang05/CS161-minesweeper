@@ -2,7 +2,7 @@
 
 #include "Style/Color.h"
 #include "Style/Style.h"
-HomePage::HomePage(QStackedWidget* parent) { setupHomePage(); }
+HomePage::HomePage(QWidget* parent) : QWidget(parent) { setupHomePage(); }
 HomePage::~HomePage() {}
 void HomePage::setupHomePage() {
     QVBoxLayout* mainLayout = new QVBoxLayout;

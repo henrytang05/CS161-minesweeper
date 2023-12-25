@@ -5,7 +5,7 @@
 #include "Style/Color.h"
 #include "Style/Style.h"
 #include "Timer/Timer.h"
-GameboardPage::GameboardPage(QStackedWidget* parent) : QWidget(parent) {
+GameboardPage::GameboardPage(QWidget* parent) : QWidget(parent) {
     gameboard = new QWidget(this);
     newGameButton = new QPushButton("New Game", this);
     replayButton = new QPushButton("Replay", this);
@@ -54,8 +54,10 @@ void GameboardPage::setupGameboard() {
         handleReplay();
         Session::GetInstance().startTimer();
     });
-    QObject::connect(newGameButton, &QPushButton::clicked, this, &newGameSignal);
-    QObject::connect(exitButton, &QPushButton::clicked, this, &exitSignal);
+    QObject::connect(
+        newGameButton, &QPushButton::clicked, this, &GameboardPage::newGameSignal
+    );
+    QObject::connect(exitButton, &QPushButton::clicked, this, &GameboardPage::exitSignal);
 }
 void GameboardPage::handleNewGameStart() {
     auto& board = Session::GetBoard();

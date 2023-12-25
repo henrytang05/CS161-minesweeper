@@ -42,11 +42,11 @@ void MainWindow::makeConnection() {
     );
 
     QObject::connect(
-        levelSelectionPage, LevelSelectionPage::backClicked, Pages,
+        levelSelectionPage, &LevelSelectionPage::backClicked, Pages,
         [this]() { Pages->setCurrentWidget(homePage); }
     );
     QObject::connect(
-        levelSelectionPage, LevelSelectionPage::levelSelected, this,
+        levelSelectionPage, &LevelSelectionPage::levelSelected, this,
         &MainWindow::startNewGameSlot
     );
     // TODO : connect with a signal instead of the button

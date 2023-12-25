@@ -42,20 +42,26 @@ void styleWindow(QMainWindow* window) {
 }
 void styleSquare(Square* square, std::string&& color) {
     square->setFixedSize(Session::GetCellSize(), Session::GetCellSize());
-
-    if (color != "") {
-        if (!isdigit(color[1]))
+    std::string str = "QPushButton { border: 0px solid black;  ";
+    if (!color.empty()) {
+        if (std::isdigit(color[1])) {
+            if (color[0] == '#') color.erase(0, 1);
             square->setStyleSheet(
-                QString::fromStdString("background-color: " + color + ";")
+                QString::fromStdString(str + "background-color: #" + color + ";}")
             );
+        } else {
+            square->setStyleSheet(
+                QString::fromStdString(str + "background-color: " + color + ";}")
+            );
+        }
         return;
-        square->setStyleSheet(QString::fromStdString("background-color: #" + color + ";")
-        );
     }
     if (square->row % 2 == square->col % 2) {
-        square->setStyleSheet(QString::fromStdString("background-color: #C7DCA7;"));
+        square->setStyleSheet(QString::fromStdString(str + "background-color: #C7DCA7;}")
+        );
     } else {
-        square->setStyleSheet(QString::fromStdString("background-color: #89B9AD;"));
+        square->setStyleSheet(QString::fromStdString(str + "background-color: #89B9AD;}")
+        );
     }
 }
 void styleTimer(QLabel* timer, std::string&& color, double size) {

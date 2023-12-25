@@ -3,7 +3,7 @@
 #include "Session/Session.h"
 #include "Style/Color.h"
 #include "Style/Style.h"
-LevelSelectionPage::LevelSelectionPage(QStackedWidget* parent) {
+LevelSelectionPage::LevelSelectionPage(QWidget* parent) : QWidget(parent) {
     setupLevelSelectionPage();
 }
 LevelSelectionPage::~LevelSelectionPage() {}

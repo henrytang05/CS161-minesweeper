@@ -9,7 +9,7 @@
 class HomePage : public QWidget {
     Q_OBJECT
    public:
-    HomePage(QStackedWidget* parent = nullptr);
+    HomePage(QWidget* parent = nullptr);
     ~HomePage();
     void setupHomePage();
 

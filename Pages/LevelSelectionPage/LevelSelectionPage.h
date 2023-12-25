@@ -15,7 +15,7 @@ class LevelSelectionPage : public QWidget {
     Q_OBJECT
 
    public:
-    LevelSelectionPage(QStackedWidget* parent = nullptr);
+    LevelSelectionPage(QWidget* parent = nullptr);
     ~LevelSelectionPage();
 
    private:
