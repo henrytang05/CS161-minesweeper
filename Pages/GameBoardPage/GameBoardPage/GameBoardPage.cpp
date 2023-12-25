@@ -2,6 +2,7 @@
 
 #include "Session/Session.h"
 #include "Square/Square.h"
+#include "Style/Color.h"
 #include "Style/Style.h"
 #include "Timer/Timer.h"
 GameboardPage::GameboardPage(QStackedWidget* parent) : QWidget(parent) {
@@ -25,11 +26,11 @@ void GameboardPage::setupGameboard() {
     sideBar->setLayout(sideLayout);
 
     styleLabel(announcementLabel, "DBD8AE", 20);
-    styleButton(newGameButton, "12D9C4", true);
-    styleButton(replayButton, "12D9C4", true);
-    styleButton(exitButton, "12D9C4", true);
+    styleButton(newGameButton, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(replayButton, BUTTON_COLOR, BUTTON_TEXT_COLOR);
+    styleButton(exitButton, BUTTON_COLOR, BUTTON_TEXT_COLOR);
     styleLabel(level, "DBD8AE", 10);
-    styleTimer(timer);
+    styleTimer(timer, "4F6F52");
     styleLabel(highScore, "DBD8AE", 10);
 
     level->adjustSize();

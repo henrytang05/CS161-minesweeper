@@ -13,7 +13,7 @@ Square::Square(int row, int col, Square_Type type) {
     this->row = row;
     this->col = col;
 
-    styleSquare(this);
+    styleSquare(this, "");
 
     QObject::connect(this, &Square::leftClick, this, &Square::squareLeftClickedSlot);
     QObject::connect(this, &Square::rightClick, this, &Square::squareRightClickedSlot);
@@ -84,7 +84,7 @@ void Mine_Square::render_square() {
             break;
         case State::UnRevealed:
             this->setIcon(QIcon());
-            styleSquare(this);
+            styleSquare(this, "");
             return;
     }
     QIcon icon(iconPath);
@@ -103,7 +103,7 @@ void Blank_Square::render_square() {
             break;
         case State::UnRevealed:
             this->setIcon(QIcon());
-            styleSquare(this);
+            styleSquare(this, "");
             return;
     }
     QIcon icon(iconPath);
