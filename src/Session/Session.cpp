@@ -118,6 +118,8 @@ void Session::changeState(State newstate) {
             this->stopTimer();
             emit this->result(Result::Lose);
             break;
+        default:
+            break;
     }
 }
 
