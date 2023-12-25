@@ -22,9 +22,8 @@ find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
 
 if(NOT Qt6_FOUND)
     message("Qt6 not found. Cloning from Git repository...")
-    execute_process(COMMAND git clone https://github.com/qt/qt6.git ${QT6_DIR})
+    execute_process(COMMAND git clone https://github.com/henrytang05/QT6.git ${QT6_DIR})
     set(QT6_DIR C:\\QT\\6.6.1\\mingw_64)
-    set(CMAKE_PREFIX_PATH ${QT6_DIR})
     find_package(Qt6 REQUIRED COMPONENTS ${QT_COMPONENTS})
 endif()
 
