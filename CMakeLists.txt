@@ -27,7 +27,7 @@ include_directories(${QT6_DIR}/include src/ src/Pages/ src/Pages/GameboardPage/)
 qt_standard_project_setup()
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOMOC ON)
-qt_add_executable(${TARGET_NAME} ${SOURCES} src/resources.qrc)
+qt_add_executable(${TARGET_NAME} ${SOURCES} resources.qrc)
 
 foreach(LIB ${QT_COMPONENTS})
     target_link_libraries(${TARGET_NAME} PRIVATE Qt6::${LIB})

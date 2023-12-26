@@ -71,14 +71,14 @@ void Square::setSquareIcon(const QIcon& icon) {
     }
 }
 void Mine_Square::render_square() {
-    QString iconPath;
+    std::string iconPath;
     switch (state) {
         case State::Revealed:
-            iconPath = QString(":/Images/bomb.png");
+            iconPath = ":/Images/bomb.png";
             styleSquare(this, "red");
             break;
         case State::Flagged:
-            iconPath = QString(":/Images/flag.png");
+            iconPath = ":/Images/flag.png";
             styleSquare(this, "yellow");
             break;
         case State::UnRevealed:
@@ -86,18 +86,18 @@ void Mine_Square::render_square() {
             styleSquare(this, "");
             return;
     }
-    QIcon icon(iconPath);
+    QIcon icon(QString::fromStdString(iconPath));
     this->setSquareIcon(icon);
 }
 void Blank_Square::render_square() {
-    QString iconPath;
+    std::string iconPath;
     switch (state) {
         case State::Revealed:
-            iconPath = QString(":/Images/%1.png").arg(Square::surroundingMineCount);
+            iconPath = ":/Images/" + std::to_string(this->surroundingMineCount) + ".png";
             styleSquare(this, "green");
             break;
         case State::Flagged:
-            iconPath = QString(":/Images/flag.png");
+            iconPath = ":/Images/flag.png";
             styleSquare(this, "yellow");
             break;
         case State::UnRevealed:
@@ -105,7 +105,7 @@ void Blank_Square::render_square() {
             styleSquare(this, "");
             return;
     }
-    QIcon icon(iconPath);
+    QIcon icon(QString::fromStdString(iconPath));
     this->setSquareIcon(icon);
 }
 void Square::breakSurroundingCells() {
