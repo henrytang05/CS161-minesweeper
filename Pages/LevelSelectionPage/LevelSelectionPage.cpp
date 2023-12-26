@@ -8,19 +8,20 @@ LevelSelectionPage::LevelSelectionPage(QWidget* parent) : QWidget(parent) {
 }
 LevelSelectionPage::~LevelSelectionPage() {}
 void LevelSelectionPage::setupLevelSelectionPage() {
-    QVBoxLayout* mainLayout = new QVBoxLayout();
+    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+
     this->setLayout(mainLayout);
 
     QLabel* label = new QLabel("Choose a level");
-    styleLabel(label, "DBD8AE");
+    styleLabel(label, LABEL_COLOR);
     mainLayout->addWidget(label, 0, Qt::AlignCenter);
     mainLayout->addSpacing(-50);
     QVBoxLayout* buttonLayout = new QVBoxLayout(this);
     mainLayout->addLayout(buttonLayout);
     resume = new QPushButton("Resume", this);
-    easy = new QPushButton("Easy", this);
-    medium = new QPushButton("Medium", this);
-    hard = new QPushButton("Hard", this);
+    easy = new QPushButton("Beginner", this);
+    medium = new QPushButton("Intermediate", this);
+    hard = new QPushButton("Expert", this);
     custom = new QPushButton("Custom", this);
     back = new QPushButton("Back", this);
 

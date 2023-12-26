@@ -17,8 +17,14 @@ _"I am using VSCode here, but if you are using other IDE, the steps are pretty s
   ![env3](images/env3.png)
   ![env4](images/env4.png)
 
-- Build and run Game:
+- Build Game:
   ![build](images/build.png)
   ![build successfully](images/buildsucess.png)
+
+- Run the Game:
+  ![runOnly](images/runOnly.png)
+
+- or install and run:
+  ![run](images/run.png)
 
 - And now you can enjoy the Game :heart_eyes::heart_eyes:

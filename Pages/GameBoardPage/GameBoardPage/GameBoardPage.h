@@ -44,7 +44,7 @@ class GameboardPage : public QWidget {
     void exitSignal();
 
    public slots:
-    void victoryAnnoucement(Result);
+    void resultAnnoucement(Result);
     void handleNewGameStart();
     void handleReplay();
 };

@@ -82,7 +82,7 @@ If you have not had QT framework installed in your system, run:
   **_!!!This step is important to be able to run the Game.exe application!!!_**
   **_Make sure you have QT6\mingw_64\bin in your environment variable Path_**
 
-- To build, install and run the Game, run the following shell script in the root directory of the project (you may want to refresh terminal before doing this step):
+- To build the Game, run the following shell script in the root directory of the project (you may want to refresh terminal before doing this step):
 
 ```
 ./build.sh
@@ -94,16 +94,22 @@ This will build the project, output the executable in the root directory of the 
 
 ##Running the Project
 
-- **To only run the project, navigate to the root directory and run the executable:**
+- To only run the project, navigate to the root directory and run the executable:
 
 ```
 ./Game.exe
 ```
 
+- To install and run the installed version of the game, run the following command in the root diretory:
+
+```
+./run.sh
+```
+
 This will start the Minesweeper game.
 _if you get any error related to dll, please check if you have correctly put to path to `\QT6\mingw_64\bin` into your environment variable_
 
-> _If you struggle in any step, please see [this visual manual](doc/manual.md)_
+> _If you struggle in any step, please see this visual manual: [doc/manual.md](doc/manual.md)_
 
 > _If you have any problem in the process of building and run the Game, please contract me via:
 > Gmail: tqhuy23@apcs.fitus.edu.vn

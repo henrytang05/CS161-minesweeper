@@ -61,7 +61,7 @@ void MainWindow::makeConnection() {
 
     QObject::connect(
         &Session::GetInstance(), &Session::result, gameboardPage,
-        &GameboardPage::victoryAnnoucement
+        &GameboardPage::resultAnnoucement
     );
 }
 void MainWindow::startNewGameSlot() {

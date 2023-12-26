@@ -7,7 +7,7 @@
 #include "Timer/Timer.h"
 GameboardPage::GameboardPage(QWidget* parent) : QWidget(parent) {
     gameboard = new QWidget(this);
-    newGameButton = new QPushButton("New Game", this);
+    newGameButton = new QPushButton("Another level", this);
     replayButton = new QPushButton("Replay", this);
     exitButton = new QPushButton("Exit", this);
     timer = new QLabel("00:00", this);
@@ -22,16 +22,21 @@ GameboardPage::~GameboardPage() {}
 
 void GameboardPage::setupGameboard() {
     static QWidget* sideBar = new QWidget(this);
-    static QVBoxLayout* sideLayout = new QVBoxLayout(sideBar);
-    sideBar->setLayout(sideLayout);
+    static QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    static QVBoxLayout* labelLayout = new QVBoxLayout(this);
+    static QVBoxLayout* buttonLayout = new QVBoxLayout(this);
 
-    styleLabel(announcementLabel, "DBD8AE", 20);
+    sideBar->setLayout(mainLayout);
+    mainLayout->addLayout(labelLayout);
+    mainLayout->addLayout(buttonLayout);
+
+    styleLabel(announcementLabel, "596FB7", 30);
     styleButton(newGameButton, BUTTON_COLOR, BUTTON_TEXT_COLOR);
     styleButton(replayButton, BUTTON_COLOR, BUTTON_TEXT_COLOR);
     styleButton(exitButton, BUTTON_COLOR, BUTTON_TEXT_COLOR);
-    styleLabel(level, "DBD8AE", 10);
+    styleLabel(level, "756AB6", 20);
+    styleLabel(highScore, "AC87C5", 15);
     styleTimer(timer, "4F6F52");
-    styleLabel(highScore, "DBD8AE", 10);
 
     level->adjustSize();
     highScore->adjustSize();
@@ -40,14 +45,12 @@ void GameboardPage::setupGameboard() {
     exitButton->adjustSize();
     timer->adjustSize();
 
-    sideLayout->addWidget(timer);
-    sideLayout->addWidget(newGameButton);
-    sideLayout->addWidget(replayButton);
-    sideLayout->addWidget(exitButton);
-    sideLayout->addWidget(level);
-    sideLayout->addWidget(highScore);
-    sideLayout->setAlignment(Qt::AlignVCenter);
-    sideLayout->setAlignment(Qt::AlignHCenter);
+    labelLayout->addWidget(level, 0, Qt::AlignCenter);
+    labelLayout->addWidget(highScore, 0, Qt::AlignVCenter);
+    labelLayout->addWidget(timer, 0, Qt::AlignVCenter);
+    buttonLayout->addWidget(newGameButton, 0, Qt::AlignVCenter);
+    buttonLayout->addWidget(replayButton, 0, Qt::AlignVCenter);
+    buttonLayout->addWidget(exitButton, 0, Qt::AlignVCenter);
 
     QObject::connect(replayButton, &QPushButton::clicked, this, [this]() {
         Session::ResetForReplay();
@@ -79,7 +82,10 @@ void GameboardPage::handleNewGameStart() {
     int x = (parentWidget()->width() - gameboard->width()) / 2;
     int y = (parentWidget()->height() - gameboard->height()) / 2;
     gameboard->setGeometry(x, y, gameboard->width(), gameboard->height());
-    announcementLabel->setGeometry(x + gameboard->width() / 2 - 200, y - 50, 200, 50);
+    announcementLabel->setGeometry(
+        (this->parentWidget()->width() - announcementLabel->width()) / 2,
+        (parentWidget()->height() - gameboard->height()) / 2 - 50, 200, 50
+    );
     connect(Session::GetTimer(), &Timer::timerUpdated, timer, [this]() {
         timer->setText(Session::GetElapsedTimeAsString());
     });
@@ -100,7 +106,6 @@ void GameboardPage::handleReplay() {
             square->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         }
     }
-    timer->setText("00:00");
     announcementLabel->hide();
 }
 
@@ -117,7 +122,7 @@ void GameboardPage::reavealAllBombs() {
         }
     }
 }
-void GameboardPage::victoryAnnoucement(Result won) {
+void GameboardPage::resultAnnoucement(Result won) {
     auto& board = Session::GetBoard();
 
     announcementLabel->show();
@@ -128,6 +133,10 @@ void GameboardPage::victoryAnnoucement(Result won) {
         announcementLabel->setText("You lost!");
         return;
     }
+    announcementLabel->setGeometry(
+        (this->parentWidget()->width() - announcementLabel->width()) / 2,
+        (parentWidget()->height() - gameboard->height()) / 2 - 50, 200, 50
+    );
 
     for (auto& squareRow : board) {
         for (auto& square : squareRow) {
