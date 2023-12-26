@@ -1,5 +1,7 @@
 #include "GameboardPage.h"
 
+#include <string>
+
 #include "Session/Session.h"
 #include "Square/Square.h"
 #include "Style/Color.h"
@@ -81,11 +83,15 @@ void GameboardPage::handleNewGameStart() {
     gameboard->setGeometry(x, y, gameboard->width(), gameboard->height());
     announcementLabel->setGeometry(x + gameboard->width() / 2 - 200, y - 50, 200, 50);
     connect(Session::GetTimer(), &Timer::timerUpdated, timer, [this]() {
-        timer->setText(Session::GetElapsedTimeAsString());
+        // timer->setText("00:00");
     });
     announcementLabel->hide();
-    level->setText("Level: " + QString::number(Session::GetDifficulty()));
-    highScore->setText("High Score: " + Session::GetHighScoreAsString());
+    level->setText(
+        QString::fromStdString("Level: " + std::to_string(Session::GetDifficulty()))
+    );
+    highScore->setText(
+        QString::fromStdString("High Score: " + Session::GetHighScoreAsString())
+    );
 }
 void GameboardPage::handleReplay() {
     cleanBoard();
@@ -136,8 +142,9 @@ void GameboardPage::victoryAnnoucement(Result won) {
             square->setEnabled(false);
         }
     }
-
-    highScore->setText("High Score: " + Session::GetHighScoreAsString());
+    highScore->setText(
+        QString::fromStdString("High Score: " + Session::GetHighScoreAsString())
+    );
 }
 
 void GameboardPage::cleanBoard() {

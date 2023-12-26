@@ -47,7 +47,7 @@ class Session : public QObject {
 
     static const int& GetDifficulty();
 
-    static const QString GetHighScoreAsString();
+    static std::string GetHighScoreAsString();
     static void SaveHighScores();
     static void GetHighScores();
 
@@ -56,7 +56,7 @@ class Session : public QObject {
     void startTimer();
     void stopTimer();
     void resetTimer();
-    static const QString GetElapsedTimeAsString();
+    static std::string GetElapsedTimeAsString();
     static Timer* GetTimer();
 
     void setupBoard();

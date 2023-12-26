@@ -10,5 +10,8 @@
     <file>../Images/8.png</file>
     <file>../Images/bomb.png</file>
     <file>../Images/flag.png</file>
+    <file>../Data/Session.dat</file>
+    <file>../Data/Highscores.dat</file>
+
   </qresource>
 </RCC>
