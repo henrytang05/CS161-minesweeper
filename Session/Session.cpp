@@ -81,7 +81,10 @@ void Session::IncrementSquareRevealed() { GetInstance().s_SquareRevealed++; }
 
 const double& Session::GetCellSize() { return GetInstance().s_CellSize; }
 
-void Session::SetCellSize(double size) { Session::GetInstance().s_CellSize = size; }
+void Session::SetCellSize(double size) {
+    // TODO: insert return statement here
+    Session::GetInstance().s_CellSize = size;
+}
 
 void Session::SetBoardDimension(int row, int col) {
     Session::GetInstance().s_BoardDimension = std::make_pair(row, col);
@@ -91,12 +94,10 @@ const int& Session::GetRow() { return GetInstance().s_BoardDimension.first; }
 const int& Session::GetColumn() { return GetInstance().s_BoardDimension.second; }
 const int& Session::GetDifficulty() { return GetInstance().s_difficulty; }
 
-std::string Session::GetHighScoreAsString() {
-    if (!GetInstance().highScores.contains(Session::GetDifficulty())) return "00:00";
-    return Session::GetInstance()
-        .highScores[Session::GetDifficulty()]
-        .toString("mm:ss")
-        .toStdString();
+const QString Session::GetHighScoreAsString() {
+    if (!GetInstance().highScores.contains(Session::GetDifficulty()))
+        return QString("00:00");
+    return Session::GetInstance().highScores[Session::GetDifficulty()].toString("mm:ss");
 }
 void Session::changeState(State newstate) {
     if (s_state == newstate) return;
@@ -116,8 +117,6 @@ void Session::changeState(State newstate) {
         case State::Lose:
             this->stopTimer();
             emit this->result(Result::Lose);
-            break;
-        default:
             break;
     }
 }
@@ -168,7 +167,7 @@ void Session::setupBoard() {
     }
 }
 void Session::serialize() {
-    QFile file(":/Data/Session.dat");
+    QFile file("Data/Session.dat");
     if (!file.open(QIODevice::WriteOnly)) {
         qDebug() << "Cannot open file for writing: " << qPrintable(file.errorString())
                  << '\n';
@@ -199,7 +198,7 @@ QDataStream& operator<<(QDataStream& out, const Session& session) {
     return out;
 }
 void Session::deserialize() {
-    QFile file(":/Data/Session.dat");
+    QFile file("Data/Session.dat");
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "Cannot open file for reading: " << qPrintable(file.errorString())
                  << '\n';
@@ -245,13 +244,13 @@ QDataStream& operator>>(QDataStream& in, Session& session) {
 void Session::startTimer() { timer->startTimer(); }
 void Session::stopTimer() { timer->stopTimer(); }
 void Session::resetTimer() { timer->resetTimer(); }
-std::string Session::GetElapsedTimeAsString() {
-    return GetInstance().timer->elapsedTime.toString("mm:ss").toStdString();
+const QString Session::GetElapsedTimeAsString() {
+    return GetInstance().timer->elapsedTime.toString("mm:ss");
 }
 Timer* Session::GetTimer() { return GetInstance().timer; }
 
 void Session::SaveHighScores() {
-    QFile file(":/Data/Highscores.dat");
+    QFile file("Data/Highscores.dat");
     if (!file.open(QIODevice::WriteOnly)) {
         qDebug() << "Cannot open file for writing: " << qPrintable(file.errorString())
                  << '\n';
@@ -261,7 +260,7 @@ void Session::SaveHighScores() {
     out << Session::GetInstance().highScores;
 }
 void Session::GetHighScores() {
-    QFile file(":/Data/Highscores.dat");
+    QFile file("Data/Highscores.dat");
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "Cannot open file for reading: " << qPrintable(file.errorString())
                  << '\n';

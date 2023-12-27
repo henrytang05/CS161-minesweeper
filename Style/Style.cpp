@@ -1,5 +1,6 @@
-#include "Style/Style.h"
+#include "Style.h"
 
+#include "Color.h"
 #include "Session/Session.h"
 #include "Square/Square.h"
 void styleButton(
@@ -14,9 +15,9 @@ void styleButton(
         "font-size: 0px;" + "color: #" + text_color +
         "; font-family: 'Arial'; font-size: 14px; font-weight: bold; "
     );
-
     b->setFixedSize(100, 50);
     b->setStyleSheet(styleSheet);
+    b->adjustSize();
 }
 void styleLabel(QLabel* label, std::string&& color, double size) {
     QFont font = label->font();
@@ -32,13 +33,14 @@ void styleLabel(QLabel* label, std::string&& color, double size) {
 }
 
 void styleWindow(QMainWindow* window) {
-    QLinearGradient gradient(0, 0, 0, window->height());
-    gradient.setColorAt(0, QColor("#FFB88C"));
-    gradient.setColorAt(1, QColor("#DE6262"));
-    QPalette palette;
-    palette.setBrush(QPalette::Window, gradient);
-    window->setPalette(palette);
-    window->setAutoFillBackground(true);
+    // QLinearGradient gradient(0, 0, 0, window->height());
+    // gradient.setColorAt(0, QColor("#FFB88C"));
+    // gradient.setColorAt(1, QColor("#DE6262"));
+    // QPalette palette;
+    // palette.setBrush(QPalette::Window, gradient);
+    // window->setPalette(palette);
+    // window->setAutoFillBackground(true);
+    window->setStyleSheet("background-color: #E0AED0; ");
 }
 void styleSquare(Square* square, std::string&& color) {
     square->setFixedSize(Session::GetCellSize(), Session::GetCellSize());

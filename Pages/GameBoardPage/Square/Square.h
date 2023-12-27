@@ -51,7 +51,7 @@ class Square : public QPushButton {
     void doubleClick();
 
    protected:
-    void mouseReleaseEvent(QMouseEvent* e) override {
+    void mouseReleaseEvent(QMouseEvent* e) {
         if (e->button() == Qt::RightButton)
             emit rightClick();
         else if (e->button() == Qt::LeftButton)

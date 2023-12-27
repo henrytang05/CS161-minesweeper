@@ -11,8 +11,8 @@ void HomePage::setupHomePage() {
     QVBoxLayout* labelLayout = new QVBoxLayout;
     QLabel* titleLabel = new QLabel("MineSweeper");
     QLabel* welcomeLabel = new QLabel("Welcome to");
-    styleLabel(titleLabel, "DBD8AE");
-    styleLabel(welcomeLabel, "DBD8AE");
+    styleLabel(titleLabel, LABEL_COLOR);
+    styleLabel(welcomeLabel, LABEL_COLOR);
     labelLayout->addWidget(welcomeLabel, 0, Qt::AlignCenter);
     labelLayout->addWidget(titleLabel, 0, Qt::AlignCenter);
 
@@ -24,7 +24,7 @@ void HomePage::setupHomePage() {
     styleButton(resume, BUTTON_COLOR, BUTTON_TEXT_COLOR);
     styleButton(exit, BUTTON_COLOR, BUTTON_TEXT_COLOR);
 
-    buttonLayout->setSpacing(20);
+    buttonLayout->setSpacing(15);
     buttonLayout->addWidget(newGame, 0, Qt::AlignCenter);
     buttonLayout->setSpacing(20);
     buttonLayout->addWidget(resume, 0, Qt::AlignCenter);

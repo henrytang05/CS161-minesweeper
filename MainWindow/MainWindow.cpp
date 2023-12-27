@@ -61,7 +61,7 @@ void MainWindow::makeConnection() {
 
     QObject::connect(
         &Session::GetInstance(), &Session::result, gameboardPage,
-        &GameboardPage::victoryAnnoucement
+        &GameboardPage::resultAnnoucement
     );
 }
 void MainWindow::startNewGameSlot() {
@@ -76,7 +76,7 @@ void MainWindow::endGameSlot() {
     Pages->setCurrentWidget(levelSelectionPage);
 }
 void MainWindow::resumeGameSlot() {
-    QFile file(":/Data/Session.dat");
+    QFile file("Data/Session.dat");
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << file.errorString();
         return;
@@ -94,8 +94,7 @@ void MainWindow::resumeGameSlot() {
     }
     Session::ResumeSession();
     gameboardPage->handleNewGameStart();
-    gameboardPage->timer->setText(QString::fromStdString(Session::GetElapsedTimeAsString()
-    ));
+    gameboardPage->timer->setText(Session::GetElapsedTimeAsString());
     Pages->setCurrentWidget(gameboardPage);
     file.close();
 }
